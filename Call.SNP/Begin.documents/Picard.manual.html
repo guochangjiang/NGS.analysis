@@ -1,0 +1,1178 @@
+
+<!doctype html>
+<html>
+		<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="chrome=1">
+		<title>Overview of Picard command-line tools</title>
+
+		<link rel="stylesheet" href="stylesheets/styles.css">
+		<link rel="stylesheet" href="stylesheets/pygment_trac.css">
+		<script src="javascripts/scale.fix.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="wrapper">
+						<header>
+			<h1>Picard</h1>
+			<p><a href="https://travis-ci.org/broadinstitute/picard"><img src="https://travis-ci.org/broadinstitute/picard.svg?branch=master" alt="Build Status"></a></p>
+			<p>A set of tools (in Java) for working with next generation sequencing data in the BAM (http://samtools.sourceforge.net) format.</p>
+			<p class="view"><a href="https://github.com/broadinstitute/picard">View the Project on GitHub <small>broadinstitute/picard</small></a></p>
+			<ul>
+				<li><a href="https://github.com/broadinstitute/picard/releases/latest">Latest <strong>Release</strong></a></li>
+				<li><a href="https://github.com/broadinstitute/picard/zipball/master">Download <strong>ZIP File</strong></a></li>
+				<li><a href="https://github.com/broadinstitute/picard/tarball/master">Download <strong>TAR Ball</strong></a></li>
+				<li><a href="https://github.com/broadinstitute/picard">View On <strong>GitHub</strong></a></li>
+			</ul>
+			</header>
+
+
+			<a id="Overview"/>
+			<h2>Overview of Picard command-line tools</h2>
+			<section>
+
+			<p>The Picard command-line tools are packaged as executable jar files.  They require Java
+			1.6.  They can be invoked as follows:</p>
+			<pre>java <i>jvm-args</i> -jar <i>PicardCommand</i>.jar OPTION1=value1 OPTION2=value2...</pre>
+			<p>Most of the commands are designed to run in 2GB of JVM, so the JVM argument -Xmx2g is
+			recommended.</p>
+			</section>
+			<h3>Standard Options</h3>
+			<section>
+			<p>The following options are relevant for most Picard programs:</p>
+			<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>--help</td><td>Displays options specific to this tool.</td></tr>
+<tr><td>--stdhelp</td><td>Displays options specific to this tool AND options common to all Picard command line tools.</td></tr>
+<tr><td>--version</td><td>Displays program version.</td></tr>
+<tr><td>TMP_DIR=File</td><td>This option may be specified 0 or more times. </td></tr>
+<tr><td>VERBOSITY=LogLevel</td><td>Control verbosity of logging.  Default value: INFO. This option can be set to 'null' to clear the default value. Possible values: {ERROR, WARNING, INFO, DEBUG} </td></tr>
+<tr><td>QUIET=Boolean</td><td>Whether to suppress job-summary info on System.err.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>VALIDATION_STRINGENCY=ValidationStringency</td><td>Validation stringency for all SAM files read by this program.  Setting stringency to SILENT can improve performance when processing a BAM file in which variable-length data (read, qualities, tags) do not otherwise need to be decoded.  Default value: STRICT. This option can be set to 'null' to clear the default value. Possible values: {STRICT, LENIENT, SILENT} </td></tr>
+<tr><td>COMPRESSION_LEVEL=Integer</td><td>Compression level for all compressed files created (e.g. BAM and GELI).  Default value: 5. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MAX_RECORDS_IN_RAM=Integer</td><td>When writing SAM files that need to be sorted, this will specify the number of records stored in RAM before spilling to disk. Increasing this number reduces the number of file handles needed to sort a SAM file, and increases the amount of RAM needed.  Default value: 500000. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>CREATE_INDEX=Boolean</td><td>Whether to create a BAM index when writing a coordinate-sorted BAM file.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>CREATE_MD5_FILE=Boolean</td><td>Whether to create an MD5 digest for any BAM or FASTQ files created.    Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+
+			<br/>
+			<a id="AddCommentsToBam"/>
+<h3>AddCommentsToBam</h3>
+<p>Adds one or more comments to the header of a specified BAM file. Copies the file with the modified header to a specified output file. Note that a block copying method is used to ensure efficient transfer to the output file. SAM files are not supported</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>Input BAM file to add a comment to the header  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>Output BAM file to write results  Required. </td></tr>
+<tr><td>COMMENT=String</td><td>Comments to add to the BAM file  This option may be specified 0 or more times. </td></tr>
+</table>
+<br/>
+
+<a id="AddOrReplaceReadGroups"/>
+<h3>AddOrReplaceReadGroups</h3>
+<p>Replaces all read groups in the INPUT file with a new read group and assigns all reads to this read group in the OUTPUT BAMVersion: 1.0
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>Input file (bam or sam).  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>Output file (bam or sam).  Required. </td></tr>
+<tr><td>SORT_ORDER=SortOrder</td><td>Optional sort order to output in. If not supplied OUTPUT is in the same order as INPUT.  Default value: null. Possible values: {unsorted, queryname, coordinate} </td></tr>
+<tr><td>RGID=String</td><td>Read Group ID  Default value: 1. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>RGLB=String</td><td>Read Group Library  Required. </td></tr>
+<tr><td>RGPL=String</td><td>Read Group platform (e.g. illumina, solid)  Required. </td></tr>
+<tr><td>RGPU=String</td><td>Read Group platform unit (eg. run barcode)  Required. </td></tr>
+<tr><td>RGSM=String</td><td>Read Group sample name  Required. </td></tr>
+<tr><td>RGCN=String</td><td>Read Group sequencing center name  Default value: null. </td></tr>
+<tr><td>RGDS=String</td><td>Read Group description  Default value: null. </td></tr>
+<tr><td>RGDT=Iso8601Date</td><td>Read Group run date  Default value: null. </td></tr>
+<tr><td>RGPI=Integer</td><td>Read Group predicted insert size  Default value: null. </td></tr>
+</table>
+<br/>
+
+<a id="BamToBfq"/>
+<h3>BamToBfq</h3>
+<p>USAGE: BamToBfq [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#BamToBfq
+<p>
+<p>Create BFQ files for use by the Maq aligner.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The BAM file to parse.  Required. </td></tr>
+<tr><td>ANALYSIS_DIR=File</td><td>The analysis directory for the binary output file.   Required. </td></tr>
+<tr><td>FLOWCELL_BARCODE=String</td><td>Flowcell barcode (e.g. 30PYMAAXX).    Required.  Cannot be used in conjuction with option(s) OUTPUT_FILE_PREFIX</td></tr>
+<tr><td>LANE=Integer</td><td>Lane number.   Default value: null.  Cannot be used in conjuction with option(s) OUTPUT_FILE_PREFIX</td></tr>
+<tr><td>OUTPUT_FILE_PREFIX=String</td><td>Prefix for all output files  Required.  Cannot be used in conjuction with option(s) FLOWCELL_BARCODE (F) LANE (L)</td></tr>
+<tr><td>READS_TO_ALIGN=Integer</td><td>Number of reads to align (null = all).  Default value: null. </td></tr>
+<tr><td>READ_CHUNK_SIZE=Integer</td><td>Number of reads to break into individual groups for alignment  Default value: 2000000. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>PAIRED_RUN=Boolean</td><td>Whether this is a paired-end run.   Required. Possible values: {true, false} </td></tr>
+<tr><td>RUN_BARCODE=String</td><td>Deprecated option; use READ_NAME_PREFIX instead  Default value: null.  Cannot be used in conjuction with option(s) READ_NAME_PREFIX</td></tr>
+<tr><td>READ_NAME_PREFIX=String</td><td>Prefix to be stripped off the beginning of all read names  (to make them short enough to run in Maq)  Default value: null. </td></tr>
+<tr><td>INCLUDE_NON_PF_READS=Boolean</td><td>Whether to include non-PF reads  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>CLIP_ADAPTERS=Boolean</td><td>Whether to clip adapters from the reads  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>BASES_TO_WRITE=Integer</td><td>The number of bases from each read to write to the bfq file.  If this is non-null, then only the first BASES_TO_WRITE bases from each read will be written.  Default value: null. </td></tr>
+</table>
+<br/>
+
+<a id="BamIndexStats"/>
+<h3>BamIndexStats</h3>
+<p>USAGE: BamIndexStats [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#BamIndexStats
+<p>
+<p>Generates BAM index statistics. Input BAM file must have a corresponding index file.
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>A BAM file to process.  Required. </td></tr>
+</table>
+<br/>
+
+<a id="BedToIntervalList"/>
+<h3>BedToIntervalList</h3>
+<p>USAGE: BedToIntervalList [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#BedToIntervalList
+<p>
+<p>Converts a BED file to an Picard Interval List.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The input BED file  Required. </td></tr>
+<tr><td>SEQUENCE_DICTIONARY=File</td><td>The sequence dictionary  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>The output Picard Interval List  Required. </td></tr>
+</table>
+<br/>
+
+<a id="BuildBamIndex"/>
+<h3>BuildBamIndex</h3>
+<p>USAGE: BuildBamIndex [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#BuildBamIndex
+<p>
+<p>Generates a BAM index (.bai) file.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=String</td><td>A BAM file or URL to process. Must be sorted in coordinate order.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>The BAM index file. Defaults to x.bai if INPUT is x.bam, otherwise INPUT.bai.
+<p>If INPUT is a URL and OUTPUT is unspecified, defaults to a file in the current directory.  Default value: null. </td></tr>
+</table>
+<br/>
+
+<a id="CalculateHsMetrics"/>
+<h3>CalculateHsMetrics</h3>
+<p>USAGE: CalculateHsMetrics [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#CalculateHsMetrics
+<p>
+<p>Calculates a set of Hybrid Selection specific metrics from an aligned SAMor BAM file. If a reference sequence is provided, AT/GC dropout metrics will be calculated, and the PER_TARGET_COVERAGE option can be used to output GC and mean coverage information for every target.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>BAIT_INTERVALS=File</td><td>An interval list file that contains the locations of the baits used.  This option must be specified at least 1 times. </td></tr>
+<tr><td>BAIT_SET_NAME=String</td><td>Bait set name. If not provided it is inferred from the filename of the bait intervals.  Default value: null. </td></tr>
+<tr><td>TARGET_INTERVALS=File</td><td>An interval list file that contains the locations of the targets.  This option must be specified at least 1 times. </td></tr>
+<tr><td>INPUT=File</td><td>An aligned SAM or BAM file.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>The output file to write the metrics to.  Required. </td></tr>
+<tr><td>METRIC_ACCUMULATION_LEVEL=MetricAccumulationLevel</td><td>The level(s) at which to accumulate metrics.  Possible values: {ALL_READS, SAMPLE, LIBRARY, READ_GROUP} This option may be specified 0 or more times. This option can be set to 'null' to clear the default list. </td></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>The reference sequence aligned to.  Default value: null. </td></tr>
+<tr><td>PER_TARGET_COVERAGE=File</td><td>An optional file to output per target coverage information to.  Default value: null. </td></tr>
+</table>
+<br/>
+
+<a id="CleanSam"/>
+<h3>CleanSam</h3>
+<p>USAGE: CleanSam [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#CleanSam
+<p>
+<p>Read SAM and perform various fix-ups.  Currently, the only fix-ups are 1: to soft-clip an alignment that hangs off the end of its reference sequence; and 2: to set MAPQ to 0 if a read is unmapped.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>Input SAM to be cleaned.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>Where to write cleaned SAM.  Required. </td></tr>
+</table>
+<br/>
+
+<a id="CollectAlignmentSummaryMetrics"/>
+<h3>CollectAlignmentSummaryMetrics</h3>
+<p>USAGE: CollectAlignmentSummaryMetrics [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#CollectAlignmentSummaryMetrics
+<p>
+<p>Reads a SAM or BAM file and writes a file containing summary alignment metrics.
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>MAX_INSERT_SIZE=Integer</td><td>Paired end reads above this insert size will be considered chimeric along with inter-chromosomal pairs.  Default value: 100000. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>ADAPTER_SEQUENCE=String</td><td>List of adapter sequences to use when processing the alignment metrics  This option may be specified 0 or more times. This option can be set to 'null' to clear the default list. </td></tr>
+<tr><td>METRIC_ACCUMULATION_LEVEL=MetricAccumulationLevel</td><td>The level(s) at which to accumulate metrics.    Possible values: {ALL_READS, SAMPLE, LIBRARY, READ_GROUP} This option may be specified 0 or more times. This option can be set to 'null' to clear the default list. </td></tr>
+<tr><td>IS_BISULFITE_SEQUENCED=Boolean</td><td>Whether the SAM or BAM file consists of bisulfite sequenced reads.    Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>INPUT=File</td><td>Input SAM or BAM file.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>File to write the output to.  Required. </td></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>Reference sequence fasta  Default value: null. </td></tr>
+<tr><td>ASSUME_SORTED=Boolean</td><td>If true (default), then the sort order in the header file will be ignored.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>STOP_AFTER=Long</td><td>Stop after processing N reads, mainly for debugging.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="CollectBaseDistributionByCycle"/>
+<h3>CollectBaseDistributionByCycle</h3>
+<p>USAGE: CollectBaseDistributionByCycle [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#CollectBaseDistributionByCycle
+<p>
+<p>Program to chart the nucleotide distribution per cycle in a SAM or BAM file.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>CHART_OUTPUT=File</td><td>A file (with .pdf extension) to write the chart to.  Required. </td></tr>
+<tr><td>ALIGNED_READS_ONLY=Boolean</td><td>If set to true, calculate the base distribution over aligned reads only.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>PF_READS_ONLY=Boolean</td><td>If set to true calculate the base distribution over PF reads only.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>INPUT=File</td><td>Input SAM or BAM file.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>File to write the output to.  Required. </td></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>Reference sequence fasta  Default value: null. </td></tr>
+<tr><td>ASSUME_SORTED=Boolean</td><td>If true (default), then the sort order in the header file will be ignored.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>STOP_AFTER=Long</td><td>Stop after processing N reads, mainly for debugging.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="CollectGcBiasMetrics"/>
+<h3>CollectGcBiasMetrics</h3>
+<p>Usage: program [options...]
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>The reference sequence fasta file.  Required. </td></tr>
+<tr><td>INPUT=File</td><td>The BAM or SAM file containing aligned reads.  Must be coordinate-sorted.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>The text file to write the metrics table to.  Required. </td></tr>
+<tr><td>CHART_OUTPUT=File</td><td>The PDF file to render the chart to.  Required. </td></tr>
+<tr><td>SUMMARY_OUTPUT=File</td><td>The text file to write summary metrics to.  Default value: null. </td></tr>
+<tr><td>WINDOW_SIZE=Integer</td><td>The size of windows on the genome that are used to bin reads.  Default value: 100. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MINIMUM_GENOME_FRACTION=Double</td><td>For summary metrics, exclude GC windows that include less than this fraction of the genome.  Default value: 1.0E-5. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>ASSUME_SORTED=Boolean</td><td>If true, assume that the input file is coordinate sorted, even if the header says otherwise.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>IS_BISULFITE_SEQUENCED=Boolean</td><td>Whether the SAM or BAM file consists of bisulfite sequenced reads.    Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="CollectInsertSizeMetrics"/>
+<h3>CollectInsertSizeMetrics</h3>
+<p>USAGE: CollectInsertSizeMetrics [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#CollectInsertSizeMetrics
+<p>
+<p>Reads a SAM or BAM file and writes a file containing metrics about the statistical distribution of insert size (excluding duplicates) and generates a Histogram plot.
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>HISTOGRAM_FILE=File</td><td>File to write insert size Histogram chart to.  Required. </td></tr>
+<tr><td>DEVIATIONS=Double</td><td>Generate mean, sd and plots by trimming the data down to MEDIAN + DEVIATIONS*MEDIAN_ABSOLUTE_DEVIATION. This is done because insert size data typically includes enough anomalous values from chimeras and other artifacts to make the mean and sd grossly misleading regarding the real distribution.  Default value: 10.0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>HISTOGRAM_WIDTH=Integer</td><td>Explicitly sets the Histogram width, overriding automatic truncation of Histogram tail. Also, when calculating mean and standard deviation, only bins &lt;= Histogram_WIDTH will be included.  Default value: null. </td></tr>
+<tr><td>MINIMUM_PCT=Float</td><td>When generating the Histogram, discard any data categories (out of FR, TANDEM, RF) that have fewer than this percentage of overall reads. (Range: 0 to 1).  Default value: 0.05. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>METRIC_ACCUMULATION_LEVEL=MetricAccumulationLevel</td><td>The level(s) at which to accumulate metrics.    Possible values: {ALL_READS, SAMPLE, LIBRARY, READ_GROUP} This option may be specified 0 or more times. This option can be set to 'null' to clear the default list. </td></tr>
+<tr><td>INPUT=File</td><td>Input SAM or BAM file.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>File to write the output to.  Required. </td></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>Reference sequence fasta  Default value: null. </td></tr>
+<tr><td>ASSUME_SORTED=Boolean</td><td>If true (default), then the sort order in the header file will be ignored.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>STOP_AFTER=Long</td><td>Stop after processing N reads, mainly for debugging.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="CollectMultipleMetrics"/>
+<h3>CollectMultipleMetrics</h3>
+<p>USAGE: CollectMultipleMetrics [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#CollectMultipleMetrics
+<p>
+<p>Takes an input BAM and reference sequence and runs one or more Picard metrics modules at the same time to cut down on I/O. Currently all programs are run with default options and fixed output extesions, but this may become more flexible in future.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>Input SAM or BAM file.  Required. </td></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>Reference sequence fasta.  Default value: null. </td></tr>
+<tr><td>ASSUME_SORTED=Boolean</td><td>If true (default), then the sort order in the header file will be ignored.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>STOP_AFTER=Integer</td><td>Stop after processing N reads, mainly for debugging.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>OUTPUT=String</td><td>Base name of output files.  Required. </td></tr>
+<tr><td>PROGRAM=Program</td><td>List of metrics programs to apply during the pass through the SAM file.  Possible values: {CollectAlignmentSummaryMetrics, CollectInsertSizeMetrics, QualityScoreDistribution, MeanQualityByCycle, CollectBaseDistributionByCycle} This option may be specified 0 or more times. This option can be set to 'null' to clear the default list. </td></tr>
+</table>
+<br/>
+
+<a id="CollectTargetedPcrMetrics"/>
+<h3>CollectTargetedPcrMetrics</h3>
+<p>Calculates a set of metrics to Illumina Truseq Custom Amplicon sequencing from an aligned SAMor BAM file. If a reference sequence is provided, AT/GC dropout metrics will be calculated, and the PER_TARGET_COVERAGE option can be used to output GC and mean coverage information for every target.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>AMPLICON_INTERVALS=File</td><td>An interval list file that contains the locations of the baits used.  Required. </td></tr>
+<tr><td>CUSTOM_AMPLICON_SET_NAME=String</td><td>Custom amplicon set name. If not provided it is inferred from the filename of the AMPLICON_INTERVALS intervals.  Default value: null. </td></tr>
+<tr><td>TARGET_INTERVALS=File</td><td>An interval list file that contains the locations of the targets.  This option must be specified at least 1 times. </td></tr>
+<tr><td>INPUT=File</td><td>An aligned SAM or BAM file.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>The output file to write the metrics to.  Required. </td></tr>
+<tr><td>METRIC_ACCUMULATION_LEVEL=MetricAccumulationLevel</td><td>The level(s) at which to accumulate metrics.  Possible values: {ALL_READS, SAMPLE, LIBRARY, READ_GROUP} This option may be specified 0 or more times. This option can be set to 'null' to clear the default list. </td></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>The reference sequence aligned to.  Default value: null. </td></tr>
+<tr><td>PER_TARGET_COVERAGE=File</td><td>An optional file to output per target coverage information to.  Default value: null. </td></tr>
+</table>
+<br/>
+
+<a id="CollectRnaSeqMetrics"/>
+<h3>CollectRnaSeqMetrics</h3>
+<p>USAGE: CollectRnaSeqMetrics [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#CollectRnaSeqMetrics
+<p>
+<p>Program to collect metrics about the alignment of RNA to various functional classes of loci in the genome: coding, intronic, UTR, intergenic, ribosomal.
+<p>Also determines strand-specificity for strand-specific libraries.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>REF_FLAT=File</td><td>Gene annotations in refFlat form.  Format described here: http://genome.ucsc.edu/goldenPath/gbdDescriptionsOld.html#RefFlat  Required. </td></tr>
+<tr><td>RIBOSOMAL_INTERVALS=File</td><td>Location of rRNA sequences in genome, in interval_list format.  If not specified no bases will be identified as being ribosomal.  Format described here: http://samtools.github.io/htsjdk/javadoc/htsjdk/htsjdk/samtools/util/IntervalList.html  Default value: null. </td></tr>
+<tr><td>STRAND_SPECIFICITY=StrandSpecificity</td><td>For strand-specific library prep. For unpaired reads, use FIRST_READ_TRANSCRIPTION_STRAND if the reads are expected to be on the transcription strand.  Required. Possible values: {NONE, FIRST_READ_TRANSCRIPTION_STRAND, SECOND_READ_TRANSCRIPTION_STRAND} </td></tr>
+<tr><td>MINIMUM_LENGTH=Integer</td><td>When calculating coverage based values (e.g. CV of coverage) only use transcripts of this length or greater.  Default value: 500. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>CHART_OUTPUT=File</td><td>The PDF file to write out a plot of normalized position vs. coverage.  Default value: null. </td></tr>
+<tr><td>IGNORE_SEQUENCE=String</td><td>If a read maps to a sequence specified with this option, all the bases in the read are counted as ignored bases.  These reads are not counted as   This option may be specified 0 or more times. </td></tr>
+<tr><td>RRNA_FRAGMENT_PERCENTAGE=Double</td><td>This percentage of the length of a fragment must overlap one of the ribosomal intervals for a read or read pair by this must in order to be considered rRNA.  Default value: 0.8. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>METRIC_ACCUMULATION_LEVEL=MetricAccumulationLevel</td><td>The level(s) at which to accumulate metrics.    Possible values: {ALL_READS, SAMPLE, LIBRARY, READ_GROUP} This option may be specified 0 or more times. This option can be set to 'null' to clear the default list. </td></tr>
+<tr><td>INPUT=File</td><td>Input SAM or BAM file.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>File to write the output to.  Required. </td></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>Reference sequence fasta  Default value: null. </td></tr>
+<tr><td>ASSUME_SORTED=Boolean</td><td>If true (default), then the sort order in the header file will be ignored.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>STOP_AFTER=Long</td><td>Stop after processing N reads, mainly for debugging.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="CollectWgsMetrics"/>
+<h3>CollectWgsMetrics</h3>
+<p>Computes a number of metrics that are useful for evaluating coverage and performance of whole genome sequencing experiments.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>Input SAM or BAM file.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>Output metrics file.  Required. </td></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>The reference sequence fasta aligned to.  Required. </td></tr>
+<tr><td>MINIMUM_MAPPING_QUALITY=Integer</td><td>Minimum mapping quality for a read to contribute coverage.  Default value: 20. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MINIMUM_BASE_QUALITY=Integer</td><td>Minimum base quality for a base to contribute coverage.  Default value: 20. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>COVERAGE_CAP=Integer</td><td>Treat bases with coverage exceeding this value as if they had coverage at this value.  Default value: 250. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>STOP_AFTER=Long</td><td>For debugging purposes, stop after processing this many genomic bases.  Default value: -1. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="CompareSAMs"/>
+<h3>CompareSAMs</h3>
+<p>USAGE: CompareSAMS &lt;SAMFile1> &lt;SAMFile2>
+<p>Compares the headers of the two input SAM or BAM files, and, if possible, the SAMRecords. For SAMRecords, compares only the readUnmapped flag, reference name, start position and strand. Reports the number of SAMRecords that match, differ in alignment, are mapped in only one input, or are missing in one of the files</p>
+<br/>
+
+<a id="CreateSequenceDictionary"/>
+<h3>CreateSequenceDictionary</h3>
+<p>Usage: picard.sam.CreateSequenceDictionary [options]
+<p>
+<p>Read fasta or fasta.gz containing reference sequences, and write as a SAM or BAM file with only sequence dictionary.
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>REFERENCE=File</td><td>Input reference fasta or fasta.gz  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>Output SAM or BAM file containing only the sequence dictionary  Required. </td></tr>
+<tr><td>GENOME_ASSEMBLY=String</td><td>Put into AS field of sequence dictionary entry if supplied  Default value: null. </td></tr>
+<tr><td>URI=String</td><td>Put into UR field of sequence dictionary entry.  If not supplied, input reference file is used  Default value: null. </td></tr>
+<tr><td>SPECIES=String</td><td>Put into SP field of sequence dictionary entry  Default value: null. </td></tr>
+<tr><td>TRUNCATE_NAMES_AT_WHITESPACE=Boolean</td><td>Make sequence name the first word from the > line in the fasta file.  By default the entire contents of the > line is used, excluding leading and trailing whitespace.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>NUM_SEQUENCES=Integer</td><td>Stop after writing this many sequences.  For testing.  Default value: 2147483647. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="DownsampleSam"/>
+<h3>DownsampleSam</h3>
+<p>USAGE: DownsampleSam [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#DownsampleSam
+<p>
+<p> Randomly down-sample a SAM or BAM file to retain a random subset of the reads. Mate-pairs are either both kept or both discarded. Reads marked as not primary alignments are all discarded. Each read is given a probability P of being retained - results with the exact same input in the same order and with the same value for RANDOM_SEED will produce the same results.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The input SAM or BAM file to downsample.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>The output, downsampled, SAM or BAM file to write.  Required. </td></tr>
+<tr><td>RANDOM_SEED=Long</td><td>Random seed to use if reproducibilty is desired.  Setting to null will cause multiple invocations to produce different results.  Default value: 1. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>PROBABILITY=Double</td><td>The probability of keeping any individual read, between 0 and 1.  Default value: 1.0. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="ExtractIlluminaBarcodes"/>
+<h3>ExtractIlluminaBarcodes</h3>
+<p>USAGE: ExtractIlluminaBarcodes [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#ExtractIlluminaBarcodes
+<p>
+<p>Determine the barcode for each read in an Illumina lane.
+<p>For each tile, a file is written to the basecalls directory of the form s_&lt;lane>_&lt;tile>_barcode.txt. An output file contains a line for each read in the tile, aligned with the regular basecall output. 
+<p>The output file contains the following tab-separated columns: 
+<p>    * read subsequence at barcode position
+<p>    * Y or N indicating if there was a barcode match
+<p>    * matched barcode sequence
+<p>Note that the order of specification of barcodes can cause arbitrary differences in output for poorly matching barcodes.
+<p>
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>BASECALLS_DIR=File</td><td>The Illumina basecalls directory.   Required. </td></tr>
+<tr><td>OUTPUT_DIR=File</td><td>Where to write _barcode.txt files.  By default, these are written to BASECALLS_DIR.  Default value: null. </td></tr>
+<tr><td>LANE=Integer</td><td>Lane number.   Required. </td></tr>
+<tr><td>READ_STRUCTURE=String</td><td>A description of the logical structure of clusters in an Illumina Run, i.e. a description of the structure IlluminaBasecallsToSam assumes the  data to be in. It should consist of integer/character pairs describing the number of cycles and the type of those cycles (B for Barcode, T for Template, and S for skip).  E.g. If the input data consists of 80 base clusters and we provide a read structure of "36T8B8S28T" then, before being converted to SAM records those bases will be split into 4 reads where read one consists of 36 cycles of template, read two consists of 8 cycles of barcode, read three will be an 8 base read of skipped cycles and read four is another 28 cycle template read.  The read consisting of skipped cycles would NOT be included in output SAM/BAM file read groups.  Required. </td></tr>
+<tr><td>BARCODE=String</td><td>Barcode sequence.  These must be unique, and all the same length.  This cannot be used with reads that have more than one barcode; use BARCODE_FILE in that case.   This option may be specified 0 or more times.  Cannot be used in conjuction with option(s) BARCODE_FILE</td></tr>
+<tr><td>BARCODE_FILE=File</td><td>Tab-delimited file of barcode sequences, barcode name and, optionally, library name.  Barcodes must be unique and all the same length.  Column headers must be 'barcode_sequence_1', 'barcode_sequence_2' (optional), 'barcode_name', and 'library_name'.  Required.  Cannot be used in conjuction with option(s) BARCODE</td></tr>
+<tr><td>METRICS_FILE=File</td><td>Per-barcode and per-lane metrics written to this file.  Required. </td></tr>
+<tr><td>MAX_MISMATCHES=Integer</td><td>Maximum mismatches for a barcode to be considered a match.  Default value: 1. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MIN_MISMATCH_DELTA=Integer</td><td>Minimum difference between number of mismatches in the best and second best barcodes for a barcode to be considered a match.  Default value: 1. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MAX_NO_CALLS=Integer</td><td>Maximum allowable number of no-calls in a barcode read before it is considered unmatchable.  Default value: 2. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MINIMUM_BASE_QUALITY=Integer</td><td>Minimum base quality. Any barcode bases falling below this quality will be considered a mismatch even in the bases match.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MINIMUM_QUALITY=Integer</td><td>The minimum quality (after transforming 0s to 1s) expected from reads.  If qualities are lower than this value, an error is thrown.The default of 2 is what the Illumina's spec describes as the minimum, but in practice the value has been observed lower.  Default value: 2. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>COMPRESS_OUTPUTS=Boolean</td><td>Compress output s_l_t_barcode.txt files using gzip and append a .gz extension to the file names.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>NUM_PROCESSORS=Integer</td><td>Run this many PerTileBarcodeExtractors in parallel.  If NUM_PROCESSORS = 0, number of cores is automatically set to the number of cores available on the machine. If NUM_PROCESSORS &lt; 0 then the number of cores used will be the number available on the machine less NUM_PROCESSORS.  Default value: 1. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="EstimateLibraryComplexity"/>
+<h3>EstimateLibraryComplexity</h3>
+<p>Attempts to estimate library complexity from sequence of read pairs alone. Does so by sorting all reads by the first N bases (5 by default) of each read and then comparing reads with the first N bases identical to each other for duplicates.  Reads are considered to be duplicates if they match each other with no gaps and an overall mismatch rate less than or equal to MAX_DIFF_RATE (0.03 by default).
+<p>
+<p>Reads of poor quality are filtered out so as to provide a more accurate estimate. The filtering removes reads with any no-calls in the first N bases or with a mean base quality lower than MIN_MEAN_QUALITY across either the first or second read.
+<p>
+<p>Unpaired reads are ignored in this computation.
+<p>
+<p>The algorithm attempts to detect optical duplicates separately from PCR duplicates and excludes these in the calculation of library size. Also, since there is no alignment to screen out technical reads one further filter is applied on the data.  After examining all reads a Histogram is built of [#reads in duplicate set -> #of duplicate sets]; all bins that contain exactly one duplicate set are then removed from the Histogram as outliers before library size is estimated.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>One or more files to combine and estimate library complexity from. Reads can be mapped or unmapped.  This option may be specified 0 or more times. </td></tr>
+<tr><td>OUTPUT=File</td><td>Output file to writes per-library metrics to.  Required. </td></tr>
+<tr><td>MIN_IDENTICAL_BASES=Integer</td><td>The minimum number of bases at the starts of reads that must be identical for reads to be grouped together for duplicate detection.  In effect total_reads / 4^max_id_bases reads will be compared at a time, so lower numbers will produce more accurate results but consume exponentially more memory and CPU.  Default value: 5. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MAX_DIFF_RATE=Double</td><td>The maximum rate of differences between two reads to call them identical.  Default value: 0.03. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MIN_MEAN_QUALITY=Integer</td><td>The minimum mean quality of the bases in a read pair for the read to be analyzed. Reads with lower average quality are filtered out and not considered in any calculations.  Default value: 20. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MAX_GROUP_RATIO=Integer</td><td>Do not process self-similar groups that are this many times over the mean expected group size. I.e. if the input contains 10m read pairs and MIN_IDENTICAL_BASES is set to 5, then the mean expected group size would be approximately 10 reads.  Default value: 500. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>READ_NAME_REGEX=String</td><td>Regular expression that can be used to parse read names in the incoming SAM file. Read names are parsed to extract three variables: tile/region, x coordinate and y coordinate. These values are used to estimate the rate of optical duplication in order to give a more accurate estimated library size. Set this option to null to disable optical duplicate detection. The regular expression should contain three capture groups for the three variables, in order. It must match the entire read name. Note that if the default regex is specified, a regex match is not actually done, but instead the read name  is split on colon character. For 5 element names, the 3rd, 4th and 5th elements are assumed to be tile, x and y values. For 7 element names (CASAVA 1.8), the 5th, 6th, and 7th elements are assumed to be tile, x and y values.  Default value: [a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).*. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>OPTICAL_DUPLICATE_PIXEL_DISTANCE=Integer</td><td>The maximum offset between two duplicte clusters in order to consider them optical duplicates. This should usually be set to some fairly small number (e.g. 5-10 pixels) unless using later versions of the Illumina pipeline that multiply pixel values by 10, in which case 50-100 is more normal.  Default value: 100. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="FastqToSam"/>
+<h3>FastqToSam</h3>
+<p>Extracts read sequences and qualities from the input fastq file and writes them into the output file in unaligned BAM format. Input files can be in GZip format (end in .gz).
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>FASTQ=File</td><td>Input fastq file (optionally gzipped) for single end data, or first read in paired end data.  Required. </td></tr>
+<tr><td>FASTQ2=File</td><td>Input fastq file (optionally gzipped) for the second read of paired end data.  Default value: null. </td></tr>
+<tr><td>QUALITY_FORMAT=FastqQualityFormat</td><td>A value describing how the quality values are encoded in the fastq.  Either Solexa for pre-pipeline 1.3 style scores (solexa scaling + 66), Illumina for pipeline 1.3 and above (phred scaling + 64) or Standard for phred scaled scores with a character shift of 33.  If this value is not specified, the quality format will be detected automatically.  Default value: null. Possible values: {Solexa, Illumina, Standard} </td></tr>
+<tr><td>OUTPUT=File</td><td>Output SAM/BAM file.   Required. </td></tr>
+<tr><td>READ_GROUP_NAME=String</td><td>Read group name  Default value: A. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>SAMPLE_NAME=String</td><td>Sample name to insert into the read group header  Required. </td></tr>
+<tr><td>LIBRARY_NAME=String</td><td>The library name to place into the LB attribute in the read group header  Default value: null. </td></tr>
+<tr><td>PLATFORM_UNIT=String</td><td>The platform unit (often run_barcode.lane) to insert into the read group header  Default value: null. </td></tr>
+<tr><td>PLATFORM=String</td><td>The platform type (e.g. illumina, solid) to insert into the read group header  Default value: null. </td></tr>
+<tr><td>SEQUENCING_CENTER=String</td><td>The sequencing center from which the data originated  Default value: null. </td></tr>
+<tr><td>PREDICTED_INSERT_SIZE=Integer</td><td>Predicted median insert size, to insert into the read group header  Default value: null. </td></tr>
+<tr><td>COMMENT=String</td><td>Comment(s) to include in the merged output file's header.  This option may be specified 0 or more times. </td></tr>
+<tr><td>DESCRIPTION=String</td><td>Inserted into the read group header  Default value: null. </td></tr>
+<tr><td>RUN_DATE=Iso8601Date</td><td>Date the run was produced, to insert into the read group header  Default value: null. </td></tr>
+<tr><td>SORT_ORDER=SortOrder</td><td>The sort order for the output sam/bam file.  Default value: queryname. This option can be set to 'null' to clear the default value. Possible values: {unsorted, queryname, coordinate} </td></tr>
+<tr><td>MIN_Q=Integer</td><td>Minimum quality allowed in the input fastq.  An exception will be thrown if a quality is less than this value.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MAX_Q=Integer</td><td>Maximum quality allowed in the input fastq.  An exception will be thrown if a quality is greater than this value.  Default value: 93. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>STRIP_UNPAIRED_MATE_NUMBER=Boolean</td><td>If true and this is an unpaired fastq any occurance of '/1' will be removed from the end of a read name.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>ALLOW_AND_IGNORE_EMPTY_LINES=Boolean</td><td>Allow (and ignore) empty lines  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="FifoBuffer"/>
+<h3>FifoBuffer</h3>
+<p>Provides a large, configurable, FIFO buffer that can be used to buffer input and output streams between programs with a buffer size that is larger than that offered by native unix FIFOs (usually 64k).</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>BUFFER_SIZE=Integer</td><td>The size of the memory buffer in bytes.  Default value: 536870912. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>IO_SIZE=Integer</td><td>The size, in bytes, to read/write atomically to the input and output streams.  Default value: 65536. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>DEBUG_FREQUENCY=Integer</td><td>How frequently, in seconds, to report debugging statistics. Set to zero for never.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>NAME=String</td><td>Name to use for Fifo in debugging statements.  Default value: null. </td></tr>
+</table>
+<br/>
+
+<a id="FilterSamReads"/>
+<h3>FilterSamReads</h3>
+<p>Produces a new SAM or BAM file by including or excluding aligned reads or a list of reads names supplied in the READ_LIST_FILE from the INPUT SAM or BAM file.
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The SAM or BAM file that will be filtered.  Required. </td></tr>
+<tr><td>FILTER=Filter</td><td>Filter.  Required. Possible values: {includeAligned [OUTPUT SAM/BAM will contain aligned reads only. INPUT SAM/BAM must be in queryname SortOrder. (Note that *both* first and second of paired reads must be aligned to be included in the OUTPUT SAM or BAM)], excludeAligned [OUTPUT SAM/BAM will contain un-mapped reads only. INPUT SAM/BAM must be in queryname SortOrder. (Note that *both* first and second of pair must be aligned to be excluded from the OUTPUT SAM or BAM)], includeReadList [OUTPUT SAM/BAM will contain reads that are supplied in the READ_LIST_FILE file], excludeReadList [OUTPUT bam will contain reads that are *not* supplied in the READ_LIST_FILE file]} </td></tr>
+<tr><td>READ_LIST_FILE=File</td><td>Read List File containing reads that will be included or excluded from the OUTPUT SAM or BAM file.  Default value: null. </td></tr>
+<tr><td>SORT_ORDER=SortOrder</td><td>SortOrder of the OUTPUT SAM or BAM file, otherwise use the SortOrder of the INPUT file.  Default value: null. Possible values: {unsorted, queryname, coordinate} </td></tr>
+<tr><td>WRITE_READS_FILES=Boolean</td><td>Create .reads files (for debugging purposes)  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>OUTPUT=File</td><td>SAM or BAM file to write read excluded results to  Required. </td></tr>
+</table>
+<br/>
+
+<a id="FixMateInformation"/>
+<h3>FixMateInformation</h3>
+<p>Ensure that all mate-pair information is in sync between each read  and it's mate pair.  If no OUTPUT file is supplied then the output is written to a temporary file  and then copied over the INPUT file.  Reads marked with the secondary alignment flag are written to the output file unchanged.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The input file to fix.  This option may be specified 0 or more times. </td></tr>
+<tr><td>OUTPUT=File</td><td>The output file to write to. If no output file is supplied, the input file is overwritten.  Default value: null. </td></tr>
+<tr><td>SORT_ORDER=SortOrder</td><td>Optional sort order if the OUTPUT file should be sorted differently than the INPUT file.  Default value: null. Possible values: {unsorted, queryname, coordinate} </td></tr>
+<tr><td>ASSUME_SORTED=Boolean</td><td>If true, assume that the input file is queryname sorted, even if the header says otherwise.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>ADD_MATE_CIGAR=Boolean</td><td>Adds the mate CIGAR tag (MC) if true, does not if false.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="GatherBamFiles"/>
+<h3>GatherBamFiles</h3>
+<p>Concatenates one or more BAM files together as efficiently as possible. Assumes that the list of BAM files provided as INPUT are in the order that they should be concatenated and simply concatenates the bodies of the BAM files while retaining the header from the first file.  Operates via copying of the gzip blocks directly for speed but also supports generation of an MD5 on the output and indexing of the output BAM file. Only support BAM files, does not support SAM files.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>One or more BAM files or text files containing lists of BAM files one per line.  This option may be specified 0 or more times. </td></tr>
+<tr><td>OUTPUT=File</td><td>The output BAM file to write.  Required. </td></tr>
+</table>
+<br/>
+
+<a id="GenotypeConcordance"/>
+<h3>GenotypeConcordance</h3>
+<p>USAGE: GenotypeConcordance [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#GenotypeConcordance
+<p>
+<p>Calculates the concordance between genotype data for two samples in two different VCFs - one being considered the truth (or reference) the other being considered the call.  The concordance is broken into separate results sections for SNPs and indels.  Summary and detailed statistics are reported
+<p>
+<p>Note that for any pair of variants to compare, only the alleles for the samples under interrogation are considered and MNP, Symbolic, and Mixed classes of variants are not included.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>TRUTH_VCF=File</td><td>The VCF containing the truth sample  Required. </td></tr>
+<tr><td>CALL_VCF=File</td><td>The VCF containing the call sample  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>Basename for the two metrics files that are to be written. Resulting files will be &lt;OUTPUT>.genotype_concordance_summary_metrics  and &lt;OUTPUT>.genotype_concordance_detail_metrics.  Required. </td></tr>
+<tr><td>TRUTH_SAMPLE=String</td><td>The name of the truth sample within the truth VCF  Required. </td></tr>
+<tr><td>CALL_SAMPLE=String</td><td>The name of the call sample within the call VCF  Required. </td></tr>
+<tr><td>INTERVALS=File</td><td>One or more interval list files that will be used to limit the genotype concordance.  This option may be specified 0 or more times. </td></tr>
+<tr><td>INTERSECT_INTERVALS=Boolean</td><td>If true, multiple interval lists will be intersected. If false multiple lists will be unioned.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>MIN_GQ=Integer</td><td>Genotypes below this genotype quality will have genotypes classified as LowGq.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MIN_DP=Integer</td><td>Genotypes below this depth will have genotypes classified as LowDp.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>OUTPUT_ALL_ROWS=Boolean</td><td>If true, output all rows in detailed statistics even when count == 0.  When false only output rows with non-zero counts.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>USE_VCF_INDEX=Boolean</td><td>If true, use the VCF index, else iterate over the entire VCF.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="IlluminaBasecallsToFastq"/>
+<h3>IlluminaBasecallsToFastq</h3>
+<p>USAGE: IlluminaBasecallsToFastq [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#IlluminaBasecallsToFastq
+<p>
+<p>Generate fastq file(s) from data in an Illumina basecalls output directory.
+<p>Separate fastq file(s) are created for each template read, and for each barcode read, in the basecalls.
+<p>Template fastqs have extensions like .&lt;number>.fastq, where &lt;number> is the number of the template read,
+<p>starting with 1.  Barcode fastqs have extensions like .barcode_&lt;number>.fastq, where &lt;number> is the number
+<p>of the barcode read, starting with 1.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>BASECALLS_DIR=File</td><td>The basecalls directory.   Required. </td></tr>
+<tr><td>BARCODES_DIR=File</td><td>The barcodes directory with _barcode.txt files (generated by ExtractIlluminaBarcodes). If not set, use BASECALLS_DIR.   Default value: null. </td></tr>
+<tr><td>LANE=Integer</td><td>Lane number.   Required. </td></tr>
+<tr><td>OUTPUT_PREFIX=File</td><td>The prefix for output fastqs.  Extensions as described above are appended.  Use this option for a non-barcoded run, or for a barcoded run in which it is not desired to demultiplex reads into separate files by barcode.  Required.  Cannot be used in conjuction with option(s) MULTIPLEX_PARAMS</td></tr>
+<tr><td>RUN_BARCODE=String</td><td>The barcode of the run.  Prefixed to read names.  Required. </td></tr>
+<tr><td>MACHINE_NAME=String</td><td>The name of the machine on which the run was sequenced; required if emitting Casava1.8-style read name headers  Default value: null. </td></tr>
+<tr><td>FLOWCELL_BARCODE=String</td><td>The barcode of the flowcell that was sequenced; required if emitting Casava1.8-style read name headers  Default value: null. </td></tr>
+<tr><td>READ_STRUCTURE=String</td><td>A description of the logical structure of clusters in an Illumina Run, i.e. a description of the structure IlluminaBasecallsToSam assumes the  data to be in. It should consist of integer/character pairs describing the number of cycles and the type of those cycles (B for Barcode, T for Template, and S for skip).  E.g. If the input data consists of 80 base clusters and we provide a read structure of "36T8B8S28T" then, before being converted to SAM records those bases will be split into 4 reads where read one consists of 36 cycles of template, read two consists of 8 cycles of barcode, read three will be an 8 base read of skipped cycles and read four is another 28 cycle template read.  The read consisting of skipped cycles would NOT be included in output SAM/BAM file read groups.  Required. </td></tr>
+<tr><td>MULTIPLEX_PARAMS=File</td><td>Tab-separated file for creating all output fastqs demultiplexed by barcode for a lane with single IlluminaBasecallsToFastq invocation.  The columns are OUTPUT_PREFIX, and BARCODE_1, BARCODE_2 ... BARCODE_X where X = number of barcodes per cluster (optional).  Row with BARCODE_1 set to 'N' is used to specify an output_prefix for no barcode match.  Required.  Cannot be used in conjuction with option(s) OUTPUT_PREFIX (O)</td></tr>
+<tr><td>ADAPTERS_TO_CHECK=IlluminaAdapterPair</td><td>Which adapters to look for in the read.  Possible values: {PAIRED_END, INDEXED, SINGLE_END, NEXTERA_V1, NEXTERA_V2, DUAL_INDEXED, FLUIDIGM, TRUSEQ_SMALLRNA, ALTERNATIVE_SINGLE_END} This option may be specified 0 or more times. This option can be set to 'null' to clear the default list. </td></tr>
+<tr><td>NUM_PROCESSORS=Integer</td><td>The number of threads to run in parallel. If NUM_PROCESSORS = 0, number of cores is automatically set to the number of cores available on the machine. If NUM_PROCESSORS &lt; 0, then the number of cores used will be the number available on the machine less NUM_PROCESSORS.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>FIRST_TILE=Integer</td><td>If set, this is the first tile to be processed (used for debugging).  Note that tiles are not processed in numerical order.  Default value: null. </td></tr>
+<tr><td>TILE_LIMIT=Integer</td><td>If set, process no more than this many tiles (used for debugging).  Default value: null. </td></tr>
+<tr><td>APPLY_EAMSS_FILTER=Boolean</td><td>Apply EAMSS filtering to identify inappropriately quality scored bases towards the ends of reads and convert their quality scores to Q2.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>FORCE_GC=Boolean</td><td>If true, call System.gc() periodically.  This is useful in cases in which the -Xmx value passed is larger than the available memory.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>MAX_READS_IN_RAM_PER_TILE=Integer</td><td>Configure SortingCollections to store this many records before spilling to disk. For an indexed run, each SortingCollection gets this value/number of indices.  Default value: 1200000. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MINIMUM_QUALITY=Integer</td><td>The minimum quality (after transforming 0s to 1s) expected from reads.  If qualities are lower than this value, an error is thrown.The default of 2 is what the Illumina's spec describes as the minimum, but in practice the value has been observed lower.  Default value: 2. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>INCLUDE_NON_PF_READS=Boolean</td><td>Whether to include non-PF reads  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>READ_NAME_FORMAT=ReadNameFormat</td><td>The read name header formatting to emit.  Casava1.8 formatting has additional information beyond Illumina, including: the passing-filter flag value for the read, the flowcell name, and the sequencer name.  Default value: CASAVA_1_8. This option can be set to 'null' to clear the default value. Possible values: {CASAVA_1_8, ILLUMINA} </td></tr>
+<tr><td>COMPRESS_OUTPUTS=Boolean</td><td>Compress output FASTQ files using gzip and append a .gz extension to the file names.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="IlluminaBasecallsToSam"/>
+<h3>IlluminaBasecallsToSam</h3>
+<p>USAGE: IlluminaBasecallsToSam [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#IlluminaBasecallsToSam
+<p>
+<p>Generate a SAM or BAM file from data in an Illumina basecalls output directory.
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>BASECALLS_DIR=File</td><td>The basecalls directory.   Required. </td></tr>
+<tr><td>BARCODES_DIR=File</td><td>The barcodes directory with _barcode.txt files (generated by ExtractIlluminaBarcodes). If not set, use BASECALLS_DIR.   Default value: null. </td></tr>
+<tr><td>LANE=Integer</td><td>Lane number.   Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>Deprecated (use LIBRARY_PARAMS).  The output SAM or BAM file. Format is determined by extension.  Required.  Cannot be used in conjuction with option(s) BARCODE_PARAMS LIBRARY_PARAMS</td></tr>
+<tr><td>RUN_BARCODE=String</td><td>The barcode of the run.  Prefixed to read names.  Required. </td></tr>
+<tr><td>SAMPLE_ALIAS=String</td><td>Deprecated (use LIBRARY_PARAMS).  The name of the sequenced sample  Required.  Cannot be used in conjuction with option(s) BARCODE_PARAMS LIBRARY_PARAMS</td></tr>
+<tr><td>READ_GROUP_ID=String</td><td>ID used to link RG header record with RG tag in SAM record.  If these are unique in SAM files that get merged, merge performance is better.  If not specified, READ_GROUP_ID will be set to &lt;first 5 chars of RUN_BARCODE>.&lt;LANE> .  Default value: null. </td></tr>
+<tr><td>LIBRARY_NAME=String</td><td>Deprecated (use LIBRARY_PARAMS).  The name of the sequenced library  Default value: null.  Cannot be used in conjuction with option(s) BARCODE_PARAMS LIBRARY_PARAMS</td></tr>
+<tr><td>SEQUENCING_CENTER=String</td><td>The name of the sequencing center that produced the reads.  Used to set the RG.CN tag.  Default value: BI. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>RUN_START_DATE=Date</td><td>The start date of the run.  Default value: null. </td></tr>
+<tr><td>PLATFORM=String</td><td>The name of the sequencing technology that produced the read.  Default value: illumina. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>READ_STRUCTURE=String</td><td>A description of the logical structure of clusters in an Illumina Run, i.e. a description of the structure IlluminaBasecallsToSam assumes the  data to be in. It should consist of integer/character pairs describing the number of cycles and the type of those cycles (B for Barcode, T for Template, and S for skip).  E.g. If the input data consists of 80 base clusters and we provide a read structure of "36T8B8S28T" then, before being converted to SAM records those bases will be split into 4 reads where read one consists of 36 cycles of template, read two consists of 8 cycles of barcode, read three will be an 8 base read of skipped cycles and read four is another 28 cycle template read.  The read consisting of skipped cycles would NOT be included in output SAM/BAM file read groups.  Required. </td></tr>
+<tr><td>BARCODE_PARAMS=File</td><td>Deprecated (use LIBRARY_PARAMS).  Tab-separated file for creating all output BAMs for barcoded run with single IlluminaBasecallsToSam invocation.  Columns are BARCODE, OUTPUT, SAMPLE_ALIAS, and LIBRARY_NAME.  Row with BARCODE=N is used to specify a file for no barcode match  Required.  Cannot be used in conjuction with option(s) SAMPLE_ALIAS (ALIAS) LIBRARY_NAME (LIB) OUTPUT (O) LIBRARY_PARAMS</td></tr>
+<tr><td>LIBRARY_PARAMS=File</td><td>Tab-separated file for creating all output BAMs for a lane with single IlluminaBasecallsToSam invocation.  The columns are OUTPUT, SAMPLE_ALIAS, and LIBRARY_NAME, BARCODE_1, BARCODE_2 ... BARCODE_X where X = number of barcodes per cluster (optional).  Row with BARCODE_1 set to 'N' is used to specify a file for no barcode match.  You may also provide any 2 letter RG header attributes (excluding PU, CN, PL, and DT)  as columns in this file and the values for those columns will be inserted into the RG tag for the BAM file created for a given row.  Required.  Cannot be used in conjuction with option(s) SAMPLE_ALIAS (ALIAS) LIBRARY_NAME (LIB) BARCODE_PARAMS OUTPUT (O)</td></tr>
+<tr><td>ADAPTERS_TO_CHECK=IlluminaAdapterPair</td><td>Which adapters to look for in the read.  Possible values: {PAIRED_END, INDEXED, SINGLE_END, NEXTERA_V1, NEXTERA_V2, DUAL_INDEXED, FLUIDIGM, TRUSEQ_SMALLRNA, ALTERNATIVE_SINGLE_END} This option may be specified 0 or more times. This option can be set to 'null' to clear the default list. </td></tr>
+<tr><td>NUM_PROCESSORS=Integer</td><td>The number of threads to run in parallel. If NUM_PROCESSORS = 0, number of cores is automatically set to the number of cores available on the machine. If NUM_PROCESSORS &lt; 0, then the number of cores used will be the number available on the machine less NUM_PROCESSORS.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>FIRST_TILE=Integer</td><td>If set, this is the first tile to be processed (used for debugging).  Note that tiles are not processed in numerical order.  Default value: null. </td></tr>
+<tr><td>TILE_LIMIT=Integer</td><td>If set, process no more than this many tiles (used for debugging).  Default value: null. </td></tr>
+<tr><td>FORCE_GC=Boolean</td><td>If true, call System.gc() periodically.  This is useful in cases in which the -Xmx value passed is larger than the available memory.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>APPLY_EAMSS_FILTER=Boolean</td><td>Apply EAMSS filtering to identify inappropriately quality scored bases towards the ends of reads and convert their quality scores to Q2.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>MAX_READS_IN_RAM_PER_TILE=Integer</td><td>Configure SortingCollections to store this many records before spilling to disk. For an indexed run, each SortingCollection gets this value/number of indices.  Default value: 1200000. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MINIMUM_QUALITY=Integer</td><td>The minimum quality (after transforming 0s to 1s) expected from reads.  If qualities are lower than this value, an error is thrown.The default of 2 is what the Illumina's spec describes as the minimum, but in practice the value has been observed lower.  Default value: 2. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>INCLUDE_NON_PF_READS=Boolean</td><td>Whether to include non-PF reads  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="CheckIlluminaDirectory"/>
+<h3>CheckIlluminaDirectory</h3>
+<p>USAGE: CheckIlluminaDirectory [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#CheckIlluminaDirectory
+<p>
+<p>Check that the files to provide the data specified by DATA_TYPES are available, exist, and are reasonably sized for every tile/cycle.  Reasonably sized means non-zero sized for files that exist per tile and equal size for binary files that exist per cycle/per tile. CheckIlluminaDirectory DOES NOT check that the individual records in a file are well-formed.
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>BASECALLS_DIR=File</td><td>The basecalls output directory.   Required. </td></tr>
+<tr><td>DATA_TYPES=IlluminaDataType</td><td>The data types that should be checked for each tile/cycle.  If no values are provided then the data types checked are those required by IlluminaBaseCallsToSam (which is a superset of those used in ExtractIlluminaBarcodes).  These data types vary slightly depending onwhether or not the run is barcoded so READ_STRUCTURE should be the same as that which will be passed to IlluminaBasecallsToSam.  If this option is left unspecified then both ExtractIlluminaBarcodes and IlluminaBaseCallsToSam should complete successfully UNLESS the individual records of the files themselves are spurious.   Possible values: {Position, BaseCalls, QualityScores, PF, Barcodes} This option may be specified 0 or more times. </td></tr>
+<tr><td>READ_STRUCTURE=String</td><td>A description of the logical structure of clusters in an Illumina Run, i.e. a description of the structure IlluminaBasecallsToSam assumes the  data to be in. It should consist of integer/character pairs describing the number of cycles and the type of those cycles (B for Barcode, T for Template, and S for skip).  E.g. If the input data consists of 80 base clusters and we provide a read structure of "36T8B8S28T" then, before being converted to SAM records those bases will be split into 4 reads where read one consists of 36 cycles of template, read two consists of 8 cycles of barcode, read three will be an 8 base read of skipped cycles and read four is another 28 cycle template read.  The read consisting of skipped cycles would NOT be included in output SAM/BAM file read groups.  Note:  If you want to check whether or not a future IlluminaBasecallsToSam or ExtractIlluminaBarcodes run will fail then be sure to use the exact same READ_STRUCTURE that you would pass to these programs for this run.  Required. </td></tr>
+<tr><td>LANES=Integer</td><td>The number of the lane(s) to check.   This option must be specified at least 1 times. </td></tr>
+<tr><td>TILE_NUMBERS=Integer</td><td>The number(s) of the tile(s) to check.   This option may be specified 0 or more times. </td></tr>
+<tr><td>FAKE_FILES=Boolean</td><td>A flag to determine whether or not to create fake versions of the missing files.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>LINK_LOCS=Boolean</td><td>A flag to create symlinks to the loc file for the X Ten for each tile.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="CollectHiSeqXPfFailMetrics"/>
+<h3>CollectHiSeqXPfFailMetrics</h3>
+<p>USAGE: CollectHiSeqXPfFailMetrics [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#CollectHiSeqXPfFailMetrics
+<p>
+<p> program to classify PF-Failing reads in a HiSeqX Illumina Basecalling directory into categories: [EMPTY, POLYCLONAL, MISALIGNED, UNKNOWN]. The classification is based on a heuristic that was derived by looking at a few titration experiments.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>BASECALLS_DIR=File</td><td>The Illumina basecalls directory.   Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>Basename for metrics file. Resulting file will be &lt;OUTPUT>.pffail_summary_metrics  Required. </td></tr>
+<tr><td>PROB_EXPLICIT_READS=Double</td><td>The fraction of (non-PF) reads for which to output explicit classification. Output file will be &lt;OUTPUT>.pffail_detailed_metrics (if PROB_EXPLICIT_READS != 0)  Default value: 0.0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>LANE=Integer</td><td>Lane number.  Required. </td></tr>
+<tr><td>NUM_PROCESSORS=Integer</td><td>Run this many PerTileBarcodeExtractors in parallel.  If NUM_PROCESSORS = 0, number of cores is automatically set to the number of cores available on the machine. If NUM_PROCESSORS &lt; 0 then the number of cores used will be the number available on the machine less NUM_PROCESSORS.  Default value: 1. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>N_CYCLES=Integer</td><td>Number of cycles to look at. At time of writing PF status gets determined at cycle 24 so numbers greater than this will yield strange results. In addition, PF status is currently determined at cycle 24, so running this with any other value is neither tested nor recommended.  Default value: 24. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="IntervalListTools"/>
+<h3>IntervalListTools</h3>
+<p>USAGE: IntervalListTools [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#IntervalListTools
+<p>
+<p> General tool for manipulating interval lists, including sorting, merging, padding, uniqueifying, and other set-theoretic operations. Default operation if given one or more inputs is to merge and sort them.  Other options are controlled by arguments.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>One or more interval lists. If multiple interval lists are provided the output is theresult of merging the inputs.  This option must be specified at least 1 times. </td></tr>
+<tr><td>OUTPUT=File</td><td>The output interval list file to write (if SCATTER_COUNT is 1) or the directory into which to write the scattered interval sub-directories (if SCATTER_COUNT > 1)  Default value: null. </td></tr>
+<tr><td>PADDING=Integer</td><td>The amount to pad each end of the intervals by before other operations are undertaken. Negative numbers are allowed and indicate intervals should be shrunk. Resulting intervals &lt; 0 bases long will be removed. Padding is applied to the interval lists &lt;b> before &lt;/b> the ACTION is performed.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>UNIQUE=Boolean</td><td>If true, merge overlapping and adjacent intervals to create a list of unique intervals. Implies SORT=true  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>SORT=Boolean</td><td>If true, sort the resulting interval list by coordinate.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>ACTION=Action</td><td>Action to take on inputs.  Default value: CONCAT. This option can be set to 'null' to clear the default value. Possible values: {
+<p>CONCAT (The concatenation of all the INPUTs, no sorting or merging of overlapping/abutting intervals implied. Will result in an unsorted list unless requested otherwise.)
+<p>UNION (Like CONCATENATE but with UNIQUE and SORT implied, the result being the set-wise union of all INPUTS.)
+<p>INTERSECT (The sorted, uniqued set of all loci that are contained in all of the INPUTs.)
+<p>SUBTRACT (Subtracts SECOND_INPUT from INPUT. The resulting loci are there in INPUT that are not in SECOND_INPUT)
+<p>SYMDIFF (Find loci that are in INPUT or SECOND_INPUT but are not in both.)
+<p>} </td></tr>
+<tr><td>SECOND_INPUT=File</td><td>Second set of intervals for SUBTRACT and DIFFERENCE operations.  This option may be specified 0 or more times. </td></tr>
+<tr><td>COMMENT=String</td><td>One or more lines of comment to add to the header of the output file.  This option may be specified 0 or more times. </td></tr>
+<tr><td>SCATTER_COUNT=Integer</td><td>The number of files into which to scatter the resulting list by locus; in some situations, fewer intervals may be emitted.  Default value: 1. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>SUBDIVISION_MODE=Mode</td><td>Do not subdivide   Default value: INTERVAL_SUBDIVISION. This option can be set to 'null' to clear the default value. Possible values: {INTERVAL_SUBDIVISION, BALANCING_WITHOUT_INTERVAL_SUBDIVISION} </td></tr>
+<tr><td>INVERT=Boolean</td><td>Produce the inverse list  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="MakeSitesOnlyVcf"/>
+<h3>MakeSitesOnlyVcf</h3>
+<p>Reads a VCF/VCF.gz/BCF and removes all genotype information from it while retaining all site level information, including annotations based on genotypes (e.g. AN, AF). Output an be any support variant format including .vcf, .vcf.gz or .bcf.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>Input VCF or BCF  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>Output VCF or BCF to emit without per-sample info.  Required. </td></tr>
+<tr><td>SAMPLE=String</td><td>Optionally one or more samples to retain when building the 'sites-only' VCF.  This option may be specified 0 or more times. </td></tr>
+</table>
+<br/>
+
+<a id="MarkDuplicates"/>
+<h3>MarkDuplicates</h3>
+<p>USAGE: MarkDuplicates [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicates
+<p>
+<p>Examines aligned records in the supplied SAM or BAM file to locate duplicate molecules. All records are then written to the output file with the duplicate records flagged.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>MAX_SEQUENCES_FOR_DISK_READ_ENDS_MAP=Integer</td><td>This option is obsolete. ReadEnds will always be spilled to disk.  Default value: 50000. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=Integer</td><td>Maximum number of file handles to keep open when spilling read ends to disk. Set this number a little lower than the per-process maximum number of file that may be open. This number can be found by executing the 'ulimit -n' command on a Unix system.  Default value: 8000. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>SORTING_COLLECTION_SIZE_RATIO=Double</td><td>This number, plus the maximum RAM available to the JVM, determine the memory footprint used by some of the sorting collections.  If you are running out of memory, try reducing this number.  Default value: 0.25. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>INPUT=File</td><td>One or more input SAM or BAM files to analyze. Must be coordinate sorted.  This option may be specified 0 or more times. </td></tr>
+<tr><td>OUTPUT=File</td><td>The output file to write marked records to  Required. </td></tr>
+<tr><td>METRICS_FILE=File</td><td>File to write duplication metrics to  Required. </td></tr>
+<tr><td>PROGRAM_RECORD_ID=String</td><td>The program record ID for the @PG record(s) created by this program. Set to null to disable PG record creation.  This string may have a suffix appended to avoid collision with other program record IDs.  Default value: MarkDuplicates. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>PROGRAM_GROUP_VERSION=String</td><td>Value of VN tag of PG record to be created. If not specified, the version will be detected automatically.  Default value: null. </td></tr>
+<tr><td>PROGRAM_GROUP_COMMAND_LINE=String</td><td>Value of CL tag of PG record to be created. If not supplied the command line will be detected automatically.  Default value: null. </td></tr>
+<tr><td>PROGRAM_GROUP_NAME=String</td><td>Value of PN tag of PG record to be created.  Default value: MarkDuplicates. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>COMMENT=String</td><td>Comment(s) to include in the output file's header.  This option may be specified 0 or more times. </td></tr>
+<tr><td>REMOVE_DUPLICATES=Boolean</td><td>If true do not write duplicates to the output file instead of writing them with appropriate flags set.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>ASSUME_SORTED=Boolean</td><td>If true, assume that the input file is coordinate sorted even if the header says otherwise.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>DUPLICATE_SCORING_STRATEGY=ScoringStrategy</td><td>The scoring strategy for choosing the non-duplicate among candidates.  Default value: SUM_OF_BASE_QUALITIES. This option can be set to 'null' to clear the default value. Possible values: {SUM_OF_BASE_QUALITIES, TOTAL_MAPPED_REFERENCE_LENGTH} </td></tr>
+<tr><td>READ_NAME_REGEX=String</td><td>Regular expression that can be used to parse read names in the incoming SAM file. Read names are parsed to extract three variables: tile/region, x coordinate and y coordinate. These values are used to estimate the rate of optical duplication in order to give a more accurate estimated library size. Set this option to null to disable optical duplicate detection. The regular expression should contain three capture groups for the three variables, in order. It must match the entire read name. Note that if the default regex is specified, a regex match is not actually done, but instead the read name  is split on colon character. For 5 element names, the 3rd, 4th and 5th elements are assumed to be tile, x and y values. For 7 element names (CASAVA 1.8), the 5th, 6th, and 7th elements are assumed to be tile, x and y values.  Default value: [a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).*. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>OPTICAL_DUPLICATE_PIXEL_DISTANCE=Integer</td><td>The maximum offset between two duplicte clusters in order to consider them optical duplicates. This should usually be set to some fairly small number (e.g. 5-10 pixels) unless using later versions of the Illumina pipeline that multiply pixel values by 10, in which case 50-100 is more normal.  Default value: 100. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="MarkDuplicatesWithMateCigar"/>
+<h3>MarkDuplicatesWithMateCigar</h3>
+<p>USAGE: MarkDuplicatesWithMateCigar [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicatesWithMateCigar
+<p>
+<p>Examines aligned records in the supplied SAM or BAM file to locate duplicate molecules. All records are then written to the output file with the duplicate records flagged.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>MINIMUM_DISTANCE=Integer</td><td>The minimum distance to buffer records to account for clipping on the 5' end of the records.Set this number to -1 to use twice the first read's read length (or 100, whichever is smaller).  Default value: -1. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>SKIP_PAIRS_WITH_NO_MATE_CIGAR=Boolean</td><td>Skip record pairs with no mate cigar and include them in the output.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>BLOCK_SIZE=Integer</td><td>The block size for use in the coordinate-sorted record buffer.  Default value: 100000. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>INPUT=File</td><td>One or more input SAM or BAM files to analyze. Must be coordinate sorted.  This option may be specified 0 or more times. </td></tr>
+<tr><td>OUTPUT=File</td><td>The output file to write marked records to  Required. </td></tr>
+<tr><td>METRICS_FILE=File</td><td>File to write duplication metrics to  Required. </td></tr>
+<tr><td>PROGRAM_RECORD_ID=String</td><td>The program record ID for the @PG record(s) created by this program. Set to null to disable PG record creation.  This string may have a suffix appended to avoid collision with other program record IDs.  Default value: MarkDuplicates. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>PROGRAM_GROUP_VERSION=String</td><td>Value of VN tag of PG record to be created. If not specified, the version will be detected automatically.  Default value: null. </td></tr>
+<tr><td>PROGRAM_GROUP_COMMAND_LINE=String</td><td>Value of CL tag of PG record to be created. If not supplied the command line will be detected automatically.  Default value: null. </td></tr>
+<tr><td>PROGRAM_GROUP_NAME=String</td><td>Value of PN tag of PG record to be created.  Default value: MarkDuplicatesWithMateCigar. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>COMMENT=String</td><td>Comment(s) to include in the output file's header.  This option may be specified 0 or more times. </td></tr>
+<tr><td>REMOVE_DUPLICATES=Boolean</td><td>If true do not write duplicates to the output file instead of writing them with appropriate flags set.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>ASSUME_SORTED=Boolean</td><td>If true, assume that the input file is coordinate sorted even if the header says otherwise.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>DUPLICATE_SCORING_STRATEGY=ScoringStrategy</td><td>The scoring strategy for choosing the non-duplicate among candidates.  Default value: TOTAL_MAPPED_REFERENCE_LENGTH. This option can be set to 'null' to clear the default value. Possible values: {SUM_OF_BASE_QUALITIES, TOTAL_MAPPED_REFERENCE_LENGTH} </td></tr>
+<tr><td>READ_NAME_REGEX=String</td><td>Regular expression that can be used to parse read names in the incoming SAM file. Read names are parsed to extract three variables: tile/region, x coordinate and y coordinate. These values are used to estimate the rate of optical duplication in order to give a more accurate estimated library size. Set this option to null to disable optical duplicate detection. The regular expression should contain three capture groups for the three variables, in order. It must match the entire read name. Note that if the default regex is specified, a regex match is not actually done, but instead the read name  is split on colon character. For 5 element names, the 3rd, 4th and 5th elements are assumed to be tile, x and y values. For 7 element names (CASAVA 1.8), the 5th, 6th, and 7th elements are assumed to be tile, x and y values.  Default value: [a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).*. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>OPTICAL_DUPLICATE_PIXEL_DISTANCE=Integer</td><td>The maximum offset between two duplicte clusters in order to consider them optical duplicates. This should usually be set to some fairly small number (e.g. 5-10 pixels) unless using later versions of the Illumina pipeline that multiply pixel values by 10, in which case 50-100 is more normal.  Default value: 100. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="MeanQualityByCycle"/>
+<h3>MeanQualityByCycle</h3>
+<p>Usage: program [options...]
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>CHART_OUTPUT=File</td><td>A file (with .pdf extension) to write the chart to.  Required. </td></tr>
+<tr><td>ALIGNED_READS_ONLY=Boolean</td><td>If set to true, calculate mean quality over aligned reads only.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>PF_READS_ONLY=Boolean</td><td>If set to true calculate mean quality over PF reads only.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>INPUT=File</td><td>Input SAM or BAM file.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>File to write the output to.  Required. </td></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>Reference sequence fasta  Default value: null. </td></tr>
+<tr><td>ASSUME_SORTED=Boolean</td><td>If true (default), then the sort order in the header file will be ignored.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>STOP_AFTER=Long</td><td>Stop after processing N reads, mainly for debugging.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="MergeBamAlignment"/>
+<h3>MergeBamAlignment</h3>
+<p>USAGE: MergeBamAlignment [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#MergeBamAlignment
+<p>
+<p>Merges alignment data from a SAM or BAM file with additional data stored in an unmapped BAM file and produces a third SAM or BAM file of aligned and unaligned reads. NOTE that this program expects to find a sequence dictionary in the same directory as REFERENCE_SEQUENCE and expects it to have the same base name as the reference fasta except with the extension '.dict'</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>UNMAPPED_BAM=File</td><td>Original SAM or BAM file of unmapped reads, which must be in queryname order.  Required. </td></tr>
+<tr><td>ALIGNED_BAM=File</td><td>SAM or BAM file(s) with alignment data.  This option may be specified 0 or more times.  Cannot be used in conjuction with option(s) READ1_ALIGNED_BAM (R1_ALIGNED) READ2_ALIGNED_BAM (R2_ALIGNED)</td></tr>
+<tr><td>READ1_ALIGNED_BAM=File</td><td>SAM or BAM file(s) with alignment data from the first read of a pair.  This option may be specified 0 or more times.  Cannot be used in conjuction with option(s) ALIGNED_BAM (ALIGNED)</td></tr>
+<tr><td>READ2_ALIGNED_BAM=File</td><td>SAM or BAM file(s) with alignment data from the second read of a pair.  This option may be specified 0 or more times.  Cannot be used in conjuction with option(s) ALIGNED_BAM (ALIGNED)</td></tr>
+<tr><td>OUTPUT=File</td><td>Merged SAM or BAM file to write to.  Required. </td></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>Path to the fasta file for the reference sequence.  Required. </td></tr>
+<tr><td>PROGRAM_RECORD_ID=String</td><td>The program group ID of the aligner (if not supplied by the aligned file).  Default value: null. </td></tr>
+<tr><td>PROGRAM_GROUP_VERSION=String</td><td>The version of the program group (if not supplied by the aligned file).  Default value: null. </td></tr>
+<tr><td>PROGRAM_GROUP_COMMAND_LINE=String</td><td>The command line of the program group (if not supplied by the aligned file).  Default value: null. </td></tr>
+<tr><td>PROGRAM_GROUP_NAME=String</td><td>The name of the program group (if not supplied by the aligned file).  Default value: null. </td></tr>
+<tr><td>PAIRED_RUN=Boolean</td><td>This argument is ignored and will be removed.  Required. Possible values: {true, false} </td></tr>
+<tr><td>JUMP_SIZE=Integer</td><td>The expected jump size (required if this is a jumping library). Deprecated. Use EXPECTED_ORIENTATIONS instead  Default value: null.  Cannot be used in conjuction with option(s) EXPECTED_ORIENTATIONS (ORIENTATIONS)</td></tr>
+<tr><td>CLIP_ADAPTERS=Boolean</td><td>Whether to clip adapters where identified.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>IS_BISULFITE_SEQUENCE=Boolean</td><td>Whether the lane is bisulfite sequence (used when caculating the NM tag).  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>ALIGNED_READS_ONLY=Boolean</td><td>Whether to output only aligned reads.    Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>MAX_INSERTIONS_OR_DELETIONS=Integer</td><td>The maximum number of insertions or deletions permitted for an alignment to be included. Alignments with more than this many insertions or deletions will be ignored. Set to -1 to allow any number of insertions or deletions.  Default value: 1. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>ATTRIBUTES_TO_RETAIN=String</td><td>Reserved alignment attributes (tags starting with X, Y, or Z) that should be brought over from the alignment data when merging.  This option may be specified 0 or more times. </td></tr>
+<tr><td>ATTRIBUTES_TO_REMOVE=String</td><td>Attributes from the alignment record that should be removed when merging.  This overrides ATTRIBUTES_TO_RETAIN if they share common tags.  This option may be specified 0 or more times. </td></tr>
+<tr><td>READ1_TRIM=Integer</td><td>The number of bases trimmed from the beginning of read 1 prior to alignment  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>READ2_TRIM=Integer</td><td>The number of bases trimmed from the beginning of read 2 prior to alignment  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>EXPECTED_ORIENTATIONS=PairOrientation</td><td>The expected orientation of proper read pairs. Replaces JUMP_SIZE  Possible values: {FR, RF, TANDEM} This option may be specified 0 or more times.  Cannot be used in conjuction with option(s) JUMP_SIZE (JUMP)</td></tr>
+<tr><td>ALIGNER_PROPER_PAIR_FLAGS=Boolean</td><td>Use the aligner's idea of what a proper pair is rather than computing in this program.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>SORT_ORDER=SortOrder</td><td>The order in which the merged reads should be output.  Default value: coordinate. This option can be set to 'null' to clear the default value. Possible values: {unsorted, queryname, coordinate} </td></tr>
+<tr><td>PRIMARY_ALIGNMENT_STRATEGY=PrimaryAlignmentStrategy</td><td>Strategy for selecting primary alignment when the aligner has provided more than one alignment for a pair or fragment, and none are marked as primary, more than one is marked as primary, or the primary alignment is filtered out for some reason. BestMapq expects that multiple alignments will be correlated with HI tag, and prefers the pair of alignments with the largest MAPQ, in the absence of a primary selected by the aligner. EarliestFragment prefers the alignment which maps the earliest base in the read. Note that EarliestFragment may not be used for paired reads. BestEndMapq is appropriate for cases in which the aligner is not pair-aware, and does not output the HI tag. It simply picks the alignment for each end with the highest MAPQ, and makes those alignments primary, regardless of whether the two alignments make sense together.MostDistant is also for a non-pair-aware aligner, and picks the alignment pair with the largest insert size. If all alignments would be chimeric, it picks the alignments for each end with the best MAPQ.  For all algorithms, ties are resolved arbitrarily.  Default value: BestMapq. This option can be set to 'null' to clear the default value. Possible values: {BestMapq, EarliestFragment, BestEndMapq, MostDistant} </td></tr>
+<tr><td>CLIP_OVERLAPPING_READS=Boolean</td><td>For paired reads, soft clip the 3' end of each read if necessary so that it does not extend past the 5' end of its mate.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>INCLUDE_SECONDARY_ALIGNMENTS=Boolean</td><td>If false, do not write secondary alignments to output.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>ADD_MATE_CIGAR=Boolean</td><td>Adds the mate CIGAR tag (MC) if true, does not if false.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="MergeSamFiles"/>
+<h3>MergeSamFiles</h3>
+<p>Merges multiple SAM/BAM files into one file.
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>SAM or BAM input file  This option must be specified at least 1 times. </td></tr>
+<tr><td>OUTPUT=File</td><td>SAM or BAM file to write merged result to  Required. </td></tr>
+<tr><td>SORT_ORDER=SortOrder</td><td>Sort order of output file  Default value: coordinate. This option can be set to 'null' to clear the default value. Possible values: {unsorted, queryname, coordinate} </td></tr>
+<tr><td>ASSUME_SORTED=Boolean</td><td>If true, assume that the input files are in the same sort order as the requested output sort order, even if their headers say otherwise.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>MERGE_SEQUENCE_DICTIONARIES=Boolean</td><td>Merge the sequence dictionaries  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>USE_THREADING=Boolean</td><td>Option to create a background thread to encode, compress and write to disk the output file. The threaded version uses about 20% more CPU and decreases runtime by ~20% when writing out a compressed BAM file.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>COMMENT=String</td><td>Comment(s) to include in the merged output file's header.  This option may be specified 0 or more times. </td></tr>
+</table>
+<br/>
+
+<a id="MergeVcfs"/>
+<h3>MergeVcfs</h3>
+<p>USAGE: MergeVcfs [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#MergeVcfs
+<p>
+<p>Merges multiple VCF or BCF files into one VCF file. Input files must be sorted by their contigs and, within contigs, by start position. The input files must have the same sample and contig lists. An index file is created and a sequence dictionary is required by default.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>VCF or BCF input files File format is determined by file extension.  This option must be specified at least 1 times. </td></tr>
+<tr><td>OUTPUT=File</td><td>The merged VCF or BCF file. File format is determined by file extension.  Required. </td></tr>
+<tr><td>SEQUENCE_DICTIONARY=File</td><td>The index sequence dictionary to use instead of the sequence dictionary in the input file  Default value: null. </td></tr>
+</table>
+<br/>
+
+<a id="NormalizeFasta"/>
+<h3>NormalizeFasta</h3>
+<p>Takes any file that conforms to the fasta format and normalizes it so that all lines of sequence except the last line per named sequence are of the same length.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The input fasta file to normalize.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>The output fasta file to write.  Required. </td></tr>
+<tr><td>LINE_LENGTH=Integer</td><td>The line length to be used for the output fasta file.  Default value: 100. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>TRUNCATE_SEQUENCE_NAMES_AT_WHITESPACE=Boolean</td><td>Truncate sequence names at first whitespace.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="ExtractSequences"/>
+<h3>ExtractSequences</h3>
+<p>Extracts one or more intervals described in an interval_list file from a given reference sequence and writes them out in FASTA format. Requires a fasta index file to be present.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INTERVAL_LIST=File</td><td>Interval list describing intervals to be extracted from the reference sequence.  Required. </td></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>Reference sequence file.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>Output fasta file.  Required. </td></tr>
+<tr><td>LINE_LENGTH=Integer</td><td>Maximum line length for sequence data.  Default value: 80. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="QualityScoreDistribution"/>
+<h3>QualityScoreDistribution</h3>
+<p>USAGE: QualityScoreDistribution [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#QualityScoreDistribution
+<p>
+<p>Program to chart quality score distributions in a SAM or BAM file.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>CHART_OUTPUT=File</td><td>A file (with .pdf extension) to write the chart to.  Required. </td></tr>
+<tr><td>ALIGNED_READS_ONLY=Boolean</td><td>If set to true calculate mean quality over aligned reads only.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>PF_READS_ONLY=Boolean</td><td>If set to true calculate mean quality over PF reads only.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>INCLUDE_NO_CALLS=Boolean</td><td>If set to true, include quality for no-call bases in the distribution.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>INPUT=File</td><td>Input SAM or BAM file.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>File to write the output to.  Required. </td></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>Reference sequence fasta  Default value: null. </td></tr>
+<tr><td>ASSUME_SORTED=Boolean</td><td>If true (default), then the sort order in the header file will be ignored.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>STOP_AFTER=Long</td><td>Stop after processing N reads, mainly for debugging.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="ReorderSam"/>
+<h3>ReorderSam</h3>
+<p>Not to be confused with SortSam which sorts a SAM or BAM file with a valid sequence dictionary, ReorderSam reorders reads in a SAM/BAM file to match the contig ordering in a provided reference file, as determined by exact name matching of contigs.  Reads mapped to contigs absent in the new reference are dropped. Runs substantially faster if the input is an indexed BAM file.Version: 1.0
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>Input file (bam or sam) to extract reads from.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>Output file (bam or sam) to write extracted reads to.  Required. </td></tr>
+<tr><td>REFERENCE=File</td><td>Reference sequence to reorder reads to match.  A sequence dictionary corresponding to the reference fasta is required.  Create one with CreateSequenceDictionary.jar.  Required. </td></tr>
+<tr><td>ALLOW_INCOMPLETE_DICT_CONCORDANCE=Boolean</td><td>If true, then allows only a partial overlap of the BAM contigs with the new reference sequence contigs.  By default, this tool requires a corresponding contig in the new reference for each read contig  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>ALLOW_CONTIG_LENGTH_DISCORDANCE=Boolean</td><td>If true, then permits mapping from a read contig to a new reference contig with the same name but a different length.  Highly dangerous, only use if you know what you are doing.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="ReplaceSamHeader"/>
+<h3>ReplaceSamHeader</h3>
+<p>USAGE: ReplaceSamHeader [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#ReplaceSamHeader
+<p>
+<p>Replace the SAMFileHeader in a SAM file with the given header. Validation is minimal.  It is up to the user to ensure that all the elements referred to in the SAMRecords are present in the new header.  Sort order of the two input files must be the same.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>SAM file from which SAMRecords will be read.  Required. </td></tr>
+<tr><td>HEADER=File</td><td>SAM file from which SAMFileHeader will be read.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>SAMFileHeader from HEADER file will be written to this file, followed by SAMRecords from INPUT file  Required. </td></tr>
+</table>
+<br/>
+
+<a id="RevertSam"/>
+<h3>RevertSam</h3>
+<p>USAGE: RevertSam [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#RevertSam
+<p>
+<p>Reverts SAM or BAM files to a previous state by removing certain types of information and/or substituting in the original quality scores when available.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The input SAM/BAM file to revert the state of.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>The output SAM/BAM file to create.  Required. </td></tr>
+<tr><td>SORT_ORDER=SortOrder</td><td>The sort order to create the reverted output file with.  Default value: queryname. This option can be set to 'null' to clear the default value. Possible values: {unsorted, queryname, coordinate} </td></tr>
+<tr><td>RESTORE_ORIGINAL_QUALITIES=Boolean</td><td>True to restore original qualities from the OQ field to the QUAL field if available.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>REMOVE_DUPLICATE_INFORMATION=Boolean</td><td>Remove duplicate read flags from all reads.  Note that if this is true and REMOVE_ALIGNMENT_INFORMATION==false,  the output may have the unusual but sometimes desirable trait of having unmapped reads that are marked as duplicates.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>REMOVE_ALIGNMENT_INFORMATION=Boolean</td><td>Remove all alignment information from the file.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>ATTRIBUTE_TO_CLEAR=String</td><td>When removing alignment information, the set of optional tags to remove.  This option may be specified 0 or more times. This option can be set to 'null' to clear the default list. </td></tr>
+<tr><td>SANITIZE=Boolean</td><td>WARNING: This option is potentially destructive. If enabled will discard reads in order to produce a consistent output BAM. Reads discarded include (but are not limited to) paired reads with missing mates, duplicated records, records with mismatches in length of bases and qualities. This option can only be enabled if the output sort order is queryname and will always cause sorting to occur.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>MAX_DISCARD_FRACTION=Double</td><td>If SANITIZE=true and higher than MAX_DISCARD_FRACTION reads are discarded due to sanitization thenthe program will exit with an Exception instead of exiting cleanly. Output BAM will still be valid.  Default value: 0.01. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>SAMPLE_ALIAS=String</td><td>The sample alias to use in the reverted output file.  This will override the existing sample alias in the file and is used only if all the read groups in the input file have the same sample alias   Default value: null. </td></tr>
+<tr><td>LIBRARY_NAME=String</td><td>The library name to use in the reverted output file.  This will override the existing sample alias in the file and is used only if all the read groups in the input file have the same sample alias   Default value: null. </td></tr>
+</table>
+<br/>
+
+<a id="RevertOriginalBaseQualitiesAndAddMateCigar"/>
+<h3>RevertOriginalBaseQualitiesAndAddMateCigar</h3>
+<p>USAGE: RevertOriginalBaseQualitiesAndAddMateCigar [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#RevertOriginalBaseQualitiesAndAddMateCigar
+<p>
+<p>Reverts the original base qualities and adds the mate cigar tag to SAM or BAMs.  The mate cigar is only added to </p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The input SAM/BAM file to revert the state of.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>The output SAM/BAM file to create.  Required. </td></tr>
+<tr><td>SORT_ORDER=SortOrder</td><td>The sort order to create the reverted output file with.By default, the sort order will be the same as the input.  Default value: null. Possible values: {unsorted, queryname, coordinate} </td></tr>
+<tr><td>RESTORE_ORIGINAL_QUALITIES=Boolean</td><td>True to restore original qualities from the OQ field to the QUAL field if available.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>MAX_RECORDS_TO_EXAMINE=Integer</td><td>The maximum number of records to examine to determine if we can exit early and not output, given that there are a no original base qualities (if we are to restore) and mate cigars exist. Set to 0 to never skip the file.  Default value: 10000. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="SamFormatConverter"/>
+<h3>SamFormatConverter</h3>
+<p>USAGE: SamFormatConverter [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#SamFormatConverter
+<p>
+<p>Convert a BAM file to a SAM file, or BAM to SAM.
+<p>Input and output formats are determined by file extension.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The BAM or SAM file to parse.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>The BAM or SAM output file.   Required. </td></tr>
+</table>
+<br/>
+
+<a id="SamToFastq"/>
+<h3>SamToFastq</h3>
+<p>USAGE: SamToFastq [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#SamToFastq
+<p>
+<p>Extracts read sequences and qualities from the input SAM/BAM file and writes them into the output file in Sanger fastq format. In the RC mode (default is True), if the read is aligned and the alignment is to the reverse strand on the genome, the read's sequence from input SAM file will be reverse-complemented prior to writing it to fastq in order restore correctlythe original read sequence as it was generated by the sequencer.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>Input SAM/BAM file to extract reads from  Required. </td></tr>
+<tr><td>FASTQ=File</td><td>Output fastq file (single-end fastq or, if paired, first end of the pair fastq).  Required.  Cannot be used in conjuction with option(s) OUTPUT_PER_RG (OPRG)</td></tr>
+<tr><td>SECOND_END_FASTQ=File</td><td>Output fastq file (if paired, second end of the pair fastq).  Default value: null.  Cannot be used in conjuction with option(s) OUTPUT_PER_RG (OPRG)</td></tr>
+<tr><td>UNPAIRED_FASTQ=File</td><td>Output fastq file for unpaired reads; may only be provided in paired-fastq mode  Default value: null.  Cannot be used in conjuction with option(s) OUTPUT_PER_RG (OPRG)</td></tr>
+<tr><td>OUTPUT_PER_RG=Boolean</td><td>Output a fastq file per read group (two fastq files per read group if the group is paired).  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false}  Cannot be used in conjuction with option(s) SECOND_END_FASTQ (F2) UNPAIRED_FASTQ (FU) FASTQ (F)</td></tr>
+<tr><td>OUTPUT_DIR=File</td><td>Directory in which to output the fastq file(s).  Used only when OUTPUT_PER_RG is true.  Default value: null. </td></tr>
+<tr><td>RE_REVERSE=Boolean</td><td>Re-reverse bases and qualities of reads with negative strand flag set before writing them to fastq  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>INTERLEAVE=Boolean</td><td>Will generate an interleaved fastq if paired, each line will have /1 or /2 to describe which end it came from  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>INCLUDE_NON_PF_READS=Boolean</td><td>Include non-PF reads from the SAM file into the output FASTQ files. PF means 'passes filtering'. Reads whose 'not passing quality controls' flag is set are non-PF reads.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>CLIPPING_ATTRIBUTE=String</td><td>The attribute that stores the position at which the SAM record should be clipped  Default value: null. </td></tr>
+<tr><td>CLIPPING_ACTION=String</td><td>The action that should be taken with clipped reads: 'X' means the reads and qualities should be trimmed at the clipped position; 'N' means the bases should be changed to Ns in the clipped region; and any integer means that the base qualities should be set to that value in the clipped region.  Default value: null. </td></tr>
+<tr><td>READ1_TRIM=Integer</td><td>The number of bases to trim from the beginning of read 1.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>READ1_MAX_BASES_TO_WRITE=Integer</td><td>The maximum number of bases to write from read 1 after trimming. If there are fewer than this many bases left after trimming, all will be written.  If this value is null then all bases left after trimming will be written.  Default value: null. </td></tr>
+<tr><td>READ2_TRIM=Integer</td><td>The number of bases to trim from the beginning of read 2.  Default value: 0. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>READ2_MAX_BASES_TO_WRITE=Integer</td><td>The maximum number of bases to write from read 2 after trimming. If there are fewer than this many bases left after trimming, all will be written.  If this value is null then all bases left after trimming will be written.  Default value: null. </td></tr>
+<tr><td>INCLUDE_NON_PRIMARY_ALIGNMENTS=Boolean</td><td>If true, include non-primary alignments in the output.  Support of non-primary alignments in SamToFastq is not comprehensive, so there may be exceptions if this is set to true and there are paired reads with non-primary alignments.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="SortSam"/>
+<h3>SortSam</h3>
+<p>USAGE: SortSam [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#SortSam
+<p>
+<p>Sorts the input SAM or BAM.
+<p>Input and output formats are determined by file extension.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The BAM or SAM file to sort.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>The sorted BAM or SAM output file.   Required. </td></tr>
+<tr><td>SORT_ORDER=SortOrder</td><td>Sort order of output file  Required. Possible values: {unsorted, queryname, coordinate} </td></tr>
+</table>
+<br/>
+
+<a id="SortVcf"/>
+<h3>SortVcf</h3>
+<p>USAGE: SortVcf [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#SortVcf
+<p>
+<p>Sorts one or more VCF files according to the order of the contigs in the header/sequence dictionary and then by coordinate. Can accept an external sequence dictionary. If no external dictionary is supplied, multiple inputs' headers must have the same sequence dictionaries. Multiple inputs must have the same sample names (in order)
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>Input VCF(s) to be sorted. Multiple inputs must have the same sample names (in order)  This option may be specified 0 or more times. </td></tr>
+<tr><td>OUTPUT=File</td><td>Output VCF to be written.  Required. </td></tr>
+<tr><td>SEQUENCE_DICTIONARY=File</td><td>Default value: null. </td></tr>
+</table>
+<br/>
+
+<a id="UpdateVcfSequenceDictionary"/>
+<h3>UpdateVcfSequenceDictionary</h3>
+<p>USAGE: UpdateVcfSequenceDictionary [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#UpdateVcfSequenceDictionary
+<p>
+<p>Takes a VCF and a second file that contains a sequence dictionary and updates the VCF with the new sequence dictionary.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>Input VCF  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>Output VCF to be written.  Required. </td></tr>
+<tr><td>SEQUENCE_DICTIONARY=File</td><td>A Sequence Dictionary (can be read from one of the following file types (SAM, BAM, VCF, BCF, Interval List, Fasta, or Dict)  Required. </td></tr>
+</table>
+<br/>
+
+<a id="VcfFormatConverter"/>
+<h3>VcfFormatConverter</h3>
+<p>USAGE: VcfFormatConverter [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#VcfFormatConverter
+<p>
+<p>Convert a VCF file to a BCF file, or BCF to VCF.
+<p>Input and output formats are determined by file extension.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The BCF or VCF input file. The file format is determined by file extension.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>The BCF or VCF output file. The file format is determined by file extension.  Required. </td></tr>
+<tr><td>REQUIRE_INDEX=Boolean</td><td>Fail if an index is not available for the input VCF/BCF  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="MarkIlluminaAdapters"/>
+<h3>MarkIlluminaAdapters</h3>
+<p>USAGE: MarkIlluminaAdapters [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#MarkIlluminaAdapters
+<p>
+<p>Reads a SAM or BAM file and rewrites it with new adapter-trimming tags.
+<p>Clear any existing adapter-trimming tags (XT:i:).
+<p>Only works for unaligned files in query-name order.
+<p>Note: This is a utility program and will not be run in the pipeline.
+<p></p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>If output is not specified, just the metrics are generated  Default value: null. </td></tr>
+<tr><td>METRICS=File</td><td>Histogram showing counts of bases_clipped in how many reads  Required. </td></tr>
+<tr><td>MIN_MATCH_BASES_SE=Integer</td><td>The minimum number of bases to match over when clipping single-end reads.  Default value: 12. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MIN_MATCH_BASES_PE=Integer</td><td>The minimum number of bases to match over (per-read) when clipping paired-end reads.  Default value: 6. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MAX_ERROR_RATE_SE=Double</td><td>The maximum mismatch error rate to tolerate when clipping single-end reads.  Default value: 0.1. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>MAX_ERROR_RATE_PE=Double</td><td>The maximum mismatch error rate to tolerate when clipping paired-end reads.  Default value: 0.1. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>PAIRED_RUN=Boolean</td><td>DEPRECATED. Whether this is a paired-end run. No longer used.  Default value: null. Possible values: {true, false} </td></tr>
+<tr><td>ADAPTERS=IlluminaAdapterPair</td><td>Which adapters sequences to attempt to identify and clip.  Possible values: {PAIRED_END, INDEXED, SINGLE_END, NEXTERA_V1, NEXTERA_V2, DUAL_INDEXED, FLUIDIGM, TRUSEQ_SMALLRNA, ALTERNATIVE_SINGLE_END} This option may be specified 0 or more times. This option can be set to 'null' to clear the default list. </td></tr>
+<tr><td>FIVE_PRIME_ADAPTER=String</td><td>For specifying adapters other than standard Illumina  Default value: null. </td></tr>
+<tr><td>THREE_PRIME_ADAPTER=String</td><td>For specifying adapters other than standard Illumina  Default value: null. </td></tr>
+<tr><td>ADAPTER_TRUNCATION_LENGTH=Integer</td><td>Adapters are truncated to this length to speed adapter matching.  Set to a large number to effectively disable truncation.  Default value: 30. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>PRUNE_ADAPTER_LIST_AFTER_THIS_MANY_ADAPTERS_SEEN=Integer</td><td>If looking for multiple adapter sequences, then after having seen this many adapters, shorten the list of sequences. Keep the adapters that were found most frequently in the input so far. Set to -1 if the input has a heterogeneous mix of adapters so shortening is undesirable.  Default value: 100. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>NUM_ADAPTERS_TO_KEEP=Integer</td><td>If pruning the adapter list, keep only this many adapter sequences when pruning the list (plus any adapters that were tied with the adapters being kept).  Default value: 1. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="SplitVcfs"/>
+<h3>SplitVcfs</h3>
+<p>USAGE: SplitVcfs [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#SplitVcfs
+<p>
+<p>Splits an input VCF or BCF file into two VCF files, one for indel records and one for SNPs. Theheaders of the two output files will be identical. An index file is created and asequence dictionary is required by default.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The VCF or BCF input file  Required. </td></tr>
+<tr><td>SNP_OUTPUT=File</td><td>The VCF or BCF file to which SNP records should be written. The file format is determined by file extension.  Required. </td></tr>
+<tr><td>INDEL_OUTPUT=File</td><td>The VCF or BCF file to which indel records should be written. The file format is determined by file extension.  Required. </td></tr>
+<tr><td>SEQUENCE_DICTIONARY=File</td><td>The index sequence dictionary to use instead of the sequence dictionaries in the input files  Default value: null. </td></tr>
+<tr><td>STRICT=Boolean</td><td>If true an exception will be thrown if an event type other than SNP or indel is encountered  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+</table>
+<br/>
+
+<a id="ValidateSamFile"/>
+<h3>ValidateSamFile</h3>
+<p>USAGE: ValidateSamFile [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#ValidateSamFile
+<p>
+<p>Read a SAM or BAM file and report on its validity.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>Input SAM/BAM file  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>Output file or standard out if missing  Default value: null. </td></tr>
+<tr><td>MODE=Mode</td><td>Mode of output  Default value: VERBOSE. This option can be set to 'null' to clear the default value. Possible values: {VERBOSE, SUMMARY} </td></tr>
+<tr><td>IGNORE=Type</td><td>List of validation error types to ignore.  Possible values: {INVALID_QUALITY_FORMAT, INVALID_FLAG_PROPER_PAIR, INVALID_FLAG_MATE_UNMAPPED, MISMATCH_FLAG_MATE_UNMAPPED, INVALID_FLAG_MATE_NEG_STRAND, MISMATCH_FLAG_MATE_NEG_STRAND, INVALID_FLAG_FIRST_OF_PAIR, INVALID_FLAG_SECOND_OF_PAIR, PAIRED_READ_NOT_MARKED_AS_FIRST_OR_SECOND, INVALID_FLAG_NOT_PRIM_ALIGNMENT, INVALID_FLAG_SUPPLEMENTARY_ALIGNMENT, INVALID_FLAG_READ_UNMAPPED, INVALID_INSERT_SIZE, INVALID_MAPPING_QUALITY, INVALID_CIGAR, ADJACENT_INDEL_IN_CIGAR, INVALID_MATE_REF_INDEX, MISMATCH_MATE_REF_INDEX, INVALID_REFERENCE_INDEX, INVALID_ALIGNMENT_START, MISMATCH_MATE_ALIGNMENT_START, MATE_FIELD_MISMATCH, INVALID_TAG_NM, MISSING_TAG_NM, MISSING_HEADER, MISSING_SEQUENCE_DICTIONARY, MISSING_READ_GROUP, RECORD_OUT_OF_ORDER, READ_GROUP_NOT_FOUND, RECORD_MISSING_READ_GROUP, INVALID_INDEXING_BIN, MISSING_VERSION_NUMBER, INVALID_VERSION_NUMBER, TRUNCATED_FILE, MISMATCH_READ_LENGTH_AND_QUALS_LENGTH, EMPTY_READ, CIGAR_MAPS_OFF_REFERENCE, MISMATCH_READ_LENGTH_AND_E2_LENGTH, MISMATCH_READ_LENGTH_AND_U2_LENGTH, E2_BASE_EQUALS_PRIMARY_BASE, BAM_FILE_MISSING_TERMINATOR_BLOCK, UNRECOGNIZED_HEADER_TYPE, POORLY_FORMATTED_HEADER_TAG, HEADER_TAG_MULTIPLY_DEFINED, HEADER_RECORD_MISSING_REQUIRED_TAG, INVALID_DATE_STRING, TAG_VALUE_TOO_LARGE, INVALID_INDEX_FILE_POINTER, INVALID_PREDICTED_MEDIAN_INSERT_SIZE, DUPLICATE_READ_GROUP_ID, MISSING_PLATFORM_VALUE, INVALID_PLATFORM_VALUE, DUPLICATE_PROGRAM_GROUP_ID, MATE_NOT_FOUND, MATES_ARE_SAME_END, MISMATCH_MATE_CIGAR_STRING, MATE_CIGAR_STRING_INVALID_PRESENCE} This option may be specified 0 or more times. </td></tr>
+<tr><td>MAX_OUTPUT=Integer</td><td>The maximum number of lines output in verbose mode  Default value: 100. This option can be set to 'null' to clear the default value. </td></tr>
+<tr><td>REFERENCE_SEQUENCE=File</td><td>Reference sequence file, the NM tag check will be skipped if this is missing  Default value: null. </td></tr>
+<tr><td>IGNORE_WARNINGS=Boolean</td><td>If true, only report errors and ignore warnings.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>VALIDATE_INDEX=Boolean</td><td>If true and input is a BAM file with an index file, also validates the index.  Default value: true. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>IS_BISULFITE_SEQUENCED=Boolean</td><td>Whether the SAM or BAM file consists of bisulfite sequenced reads. If so, C->T is not counted as an error in computing the value of the NM tag.  Default value: false. This option can be set to 'null' to clear the default value. Possible values: {true, false} </td></tr>
+<tr><td>MAX_OPEN_TEMP_FILES=Integer</td><td>Relevant for a coordinate-sorted file containing read pairs only. Maximum number of file handles to keep open when spilling mate info to disk. Set this number a little lower than the per-process maximum number of file that may be open. This number can be found by executing the 'ulimit -n' command on a Unix system.  Default value: 8000. This option can be set to 'null' to clear the default value. </td></tr>
+</table>
+<br/>
+
+<a id="VcfToIntervalList"/>
+<h3>VcfToIntervalList</h3>
+<p>USAGE: VcfToIntervalList [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#VcfToIntervalList
+<p>
+<p>Converts a VCF or BCF file to a Picard Interval List.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The BCF or VCF input file. The file format is determined by file extension.  Required. </td></tr>
+<tr><td>OUTPUT=File</td><td>The output Picard Interval List  Required. </td></tr>
+</table>
+<br/>
+
+<a id="ViewSam"/>
+<h3>ViewSam</h3>
+<p>USAGE: ViewSam [options]
+<p>
+<p>Documentation: http://broadinstitute.github.io/picard/command-line-overview.html#ViewSam
+<p>
+<p>Prints a SAM or BAM file to the screen.</p>
+<table>
+<tr><th>Option</th><th>Description</th></tr>
+<tr><td>INPUT=File</td><td>The SAM or BAM file to view.  Required. </td></tr>
+<tr><td>ALIGNMENT_STATUS=AlignmentStatus</td><td>Print out all reads, just the aligned reads or just the unaligned reads.  Default value: All. This option can be set to 'null' to clear the default value. Possible values: {Aligned, Unaligned, All} </td></tr>
+<tr><td>PF_STATUS=PfStatus</td><td>Print out all reads, just the PF reads or just the non-PF reads.  Default value: All. This option can be set to 'null' to clear the default value. Possible values: {PF, NonPF, All} </td></tr>
+</table>
+<br/>
+
+
+			</div>
+			</section>
+		</div>
+				<footer>
+		<p>Project maintained by <a href="https://github.com/broadinstitute">broadinstitute</a></p>
+		<p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+		</footer>
+		<!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
+</body>
+</html>
