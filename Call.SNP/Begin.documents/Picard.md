@@ -69,5 +69,13 @@ Picard命令行工具打包成可执行的jar文件，用法如下：
 |LANE=Integer|Lane数目，默认值：null。不能和选项OUTPUT_FILE_PREFIX一起使用|
 |OUTPUT_FILE_PREFIX=String|所有输出文件的前缀，**必需**。不能和上两项同时使用。|
 |READS_TO_ALIGN=Integer|align的read数量，默认：null（null=all)|
-|READ_CHUNK_SIZE=Integer|
-|
+|READ_CHUNK_SIZE=Integer|用于分入单独group的read数目，默认值2,000,000。该选项可以设置为null以清除默认设置。|
+|PAIRED_RUN=Boolean|是否是pair-end，**必须**。可能取值：true, false|
+|RUN_BARCODE=String|弃用选项，用READ_NAME_PREFIX而非默认值null，不可和选项READ_NAME_PREFIX同时使用|
+|READ_NAME_PREFIX=String|从每个read名中剥去的前缀，以使满足Maq的要求。默认值：null。|
+|INCLUDE_NON_PF_READS=Boolean|是否保留non-PF read，默认值为false.该选项可设定为null以清除默认设置。可能取值：true, false.|
+|CLIP_ADAPTERS=Boolean|是否从read剪掉adapter，默认值为true。可设定为null以清除默认设置。可能取值：true, false.|
+|BASES_TO_WRITE=Integer|从每个read的那些碱基写到BFQ文件。如为non-null，只有每个read的前BASES_TO_WRITE个碱基会写到bfq文件。默认值为null|
+
+#### 3.4 BamIndexStats
+
