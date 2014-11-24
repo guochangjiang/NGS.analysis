@@ -20,4 +20,5 @@ Andy Rimmer, Hang Phan, Iain Mathieson, Zamin Iqbal, Stephen R. F. Twigg, WGS500
 
 #### 描述
 
+Platypus是为高通量测序数据进行高效准确的变异检测而设计的工具。通过read的本地realignment和本地assembly，Platypus实现了高敏感性和高特异性。Platypus可以探测SNPs,MNPs,short indels, replacements和长达数kb deletions（使用assembly参数）。它广泛地应用于[whole-genome](http://www.ncbi.nlm.nih.gov/pubmed/?term=24463883)、[exon-capture](http://www.nature.com/ng/journal/v45/n1/abs/ng.2492.html)和[targeted capture](http://www.nature.com/nature/journal/v493/n7432/abs/nature11725.html)等数据。
 
