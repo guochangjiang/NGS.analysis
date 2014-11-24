@@ -79,3 +79,6 @@ Picard命令行工具打包成可执行的jar文件，用法如下：
 
 #### 3.4 BamIndexStats
 
+
+#### 3.  CreateSequenceDictionary
+
