@@ -20,5 +20,5 @@ Andy Rimmer, Hang Phan, Iain Mathieson, Zamin Iqbal, Stephen R. F. Twigg, WGS500
 
 #### 描述
 
-Platypus是为高通量测序数据进行高效准确的变异检测而设计的工具。通过read的本地realignment和本地assembly，Platypus实现了高敏感性和高特异性。Platypus可以探测SNPs,MNPs,short indels, replacements和长达数kb deletions（使用assembly参数）。它广泛地应用于[whole-genome](http://www.ncbi.nlm.nih.gov/pubmed/?term=24463883)、[exon-capture](http://www.nature.com/ng/journal/v45/n1/abs/ng.2492.html)和[targeted capture](http://www.nature.com/nature/journal/v493/n7432/abs/nature11725.html)等数据。
+Platypus是为高通量测序数据进行高效准确的变异检测而设计的工具。通过read的本地realignment和本地assembly，Platypus实现了高敏感性和高特异性。Platypus可以探测SNPs,MNPs,short indels, replacements和长达数kb deletions（使用assembly参数）。它广泛地应用于[whole-genome](http://www.ncbi.nlm.nih.gov/pubmed/?term=24463883)、[exon-capture](http://www.nature.com/ng/journal/v45/n1/abs/ng.2492.html)和[targeted capture](http://www.nature.com/nature/journal/v493/n7432/abs/nature11725.html)等数据。Platypus已在[Thousand Genomes](http://www.1000genomes.org/)和WGS500 projects中使用，并在[ Mainstreaming Cancer Genetics programme](http://www.mcgprogramme.com/)中用于临床测序试验。在对[Stampy](http://www.well.ox.ac.uk/project-stampy)和[BWA](http://bio-bwa.sourceforge.net/)的map数据进行分析中，Platypus表现良好。虽然尚未对其他map工具的map数据进行测试，Platypus应该也具有很好的表现。Platypus已用于人类、小鼠、老鼠和黑猩猩样品以及其他几乎所有二倍体生物体中进行变异检测。它同样用于人外显子组数据中对癌症中的体细胞突变和马赛克突变进行探测。
 
