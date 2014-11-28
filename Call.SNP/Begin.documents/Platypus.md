@@ -125,7 +125,7 @@ Platypus variant-caller的完整用户指导手册。
 #### 输入选项
 Platypus具有很多可用的命令行参数，可以通过`$ python Platypus.py callVariants --help`进行查看。下面的选项是一些重要的命令行参数：
 
-+ 一般variant calling参数
++ 主要variant calling参数
 
 选项|控制内容|默认值
 ----|-----|----
@@ -140,11 +140,18 @@ Platypus具有很多可用的命令行参数，可以通过`$ python Platypus.py
 --nCPU=NCPU|运行Platypus使用的线程数|1
 --logFileName=LogFile|记录信息输出文件名|log.txt
 --bufferSize=BUFFERSIZE|一次读入内存的基因组区域大小，增加该值可以缩短运行时间但增加内存占用|100000
---minReads=MINREADS|最少所需reads数目|\
---maxReads=MAXREADS|窗口中最大覆盖度|\
---verbosity=VERBOSITY|记录信息的冗余度|\
+--minReads=MINREADS|最少所需reads数目|2
+--maxReads=MAXREADS|bufferSize中read最大数量|5000000
+--verbosity=VERBOSITY|记录信息的冗余度|2
 --maxReadLength=RLEN|最大read长度|\
 --compressReads=COMPRESSREADS|是否压缩read，设为1可减少内存占用但速度减慢|0
---maxSize=MAXSIZE|
+--maxSize=MAXSIZE|Largest variant to consider|\
+--maxVariants|一个window（典型为100bp)中变异的最大数量，增加该值会减慢运行速度，但可在差异度大的区域得到更精确的变异|8
+--minPosterior=MINPOSTERIOR|Only variants with posterior >= this will be output to the VCF. Value is a Phred-score.|\ 	 	 	 
+--largeWindows=LARGEWINDOWS|值为1时，window size can be up to 'maxSize'|\
+--genSNPs=GENSNPS|If set to TRUE (default), SNP candidates will be considered|TRUE
+--genIndels=GENINDELS|If set to TRUE (default), Indel candidates will be considered|TRUE
+--mergeClusteredVariants=MERGECLUSTEREDVARIANTS|If set to 1, variant-containing windows which are close together will be merged, resulting in slower, more accurate variant calls in diverse regions|0
+--minFlank=MINFLANK|Ignore base-changes closer than minFlank bases to the end of reads. Also, merge SNPs within this distance into MNPs or complex replacements|\
 
 
