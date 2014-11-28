@@ -118,4 +118,33 @@ tabix -p vcf listOfVariants.vcf.gz
 ```
 其中，第一行命令产生一个压缩的VCF文件(`.vcf.gz`)，第二行命令对刚刚产生的文件进行index(.vcf.gz.tbi)。这样就可以让Platypus问询VCF的特定区域了。选项`--minPosterior=0`设置所报道的变异的最小质量得分为0.这样Platypus就可以报道这些变异体的genotype了（这些数据可能在你的输出vcf中没有展示）。如不想在输出中查看reference genotype，可以移除该选项。选项`--getVariantsFromBAM=0`阻止Platypus进行正常的variant calling，而保证输入VCF中的等位基因才被报道。如向进行正常的variant calling和genotyping，可以移除该选项（此时会允许你使用外部变异体列表以扩大产生候选，对于call大的indel有用处）。
 
+### Platypus Documentation
+
+Platypus variant-caller的完整用户指导手册。
+
+#### 输入选项
+Platypus具有很多可用的命令行参数，可以通过`$ python Platypus.py callVariants --help`进行查看。下面的选项是一些重要的命令行参数：
+
++ 一般variant calling参数
+
+选项|控制内容|默认值
+----|-----|----
+-h, --help|查看callVariants的帮助信息|\
+--output=OUPUT,-o OUTPUT|输出VCF文件名|AllVariants.cvf
+--refFile=REFFILE|index的参考fasta文件|\
+--bamFiles=BAMFILES|BAM文件列表，列表以逗号分隔，或为每个BAM名单行文本文件|\
+--regions=REGIONS|进行variant calling的区域，也可以逗号分隔的列表（chr:start-end,可仅给出染色体号）形式或行分隔的文本文件形式给出|所有区域（由BAM文件头获得）
+--skipRegionsFile=SKIPREGIONSFILE|不进行variant calling的区域，形式与--regions已知|\
+--assemble|是否以assembler来产生候选单倍型|0
+--source=SOURCEFILE|进行genotyping输入的VCF文件（列表）|\
+--nCPU=NCPU|运行Platypus使用的线程数|1
+--logFileName=LogFile|记录信息输出文件名|log.txt
+--bufferSize=BUFFERSIZE|一次读入内存的基因组区域大小，增加该值可以缩短运行时间但增加内存占用|100000
+--minReads=MINREADS|最少所需reads数目|\
+--maxReads=MAXREADS|窗口中最大覆盖度|\
+--verbosity=VERBOSITY|记录信息的冗余度|\
+--maxReadLength=RLEN|最大read长度|\
+--compressReads=COMPRESSREADS|是否压缩read，设为1可减少内存占用但速度减慢|0
+--maxSize=MAXSIZE|
+
 
