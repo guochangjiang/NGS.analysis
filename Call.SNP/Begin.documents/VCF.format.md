@@ -47,4 +47,58 @@ VCF是一种文本文件格式，包括元信息(meta-information)行、头文�
 `fileformat`总是必需的，并且必须位于文件第一行，用于指明VCF格式的版本号，例如：  
 `##fileformat=VCFv4.2`
 
+##### 1.2.2 信息域格式
+`INFO`域应按如下格式进行表述，其中前4个关键词是必须的，而后2个则推荐使用。
+`##INFO=<ID=ID,Number=number,Type=type,Description="description",Source="source",Version="version">`
+
+信息域各个类的可能取值类型为：整型、浮点型、Flag、字符和字符串。其中，`Number`条目是一个整型数值，描述INFO域中包含的值的数目，例如：
+
+INFO仅包括1个数值，该值为1，而若表述一对数值，那么该值为2，等等。该值还有一些特殊的字符值：
+
++ 如该域每个可选等位基因一个值，那么该值为A；
++ 如该域每个可能等位基因（包括参考序列）仅有一个值，那么该值为R；
++ 如该域每个可能的基因型（与FORMAT标签相关）仅有一个值，那么该值为G；
++ 如可能值的数量变化、未知或无限时，该值为"."
+
+`Flag`类型表示INFO域不包括一个数值条目，因此`Number`应为0.`Description`值必须由双引号包括。双引号字符可以由反斜线进行转义。`Source`和`Version`值同样应该由双引号进行包括，指定注释来源（不区分大小写，如"dbsnp")和准确的版本（如"138"）。
+
+##### 1.2.3 过滤域格式
+
+FILTERs应该以以下格式进行描述：
+```
+##FILTER=<ID=ID,Description="description">
+```
+
+例如：
+
+```
+##FILTER=<ID=q10,Description="Quality below 10">
+##FILTER=<ID=s50,Description="Less than 50% of samples have data">
+```
+
+##### 1.2.4 个体格式域的格式
+FORMAT域的格式为：
+```
+##FORMAT=<ID=ID,Number=number,Type=type,Description="description">
+```
+
+##### 1.2.5 可选等位基因域格式
+
+描述不确定的结构变异的符号格式为：
+```
+##ALT=<ID=type,Description=description>
+```
+其中，ID值表述结构变异的类型，可以是冒号分隔的类型或亚类型列表。ID值是大小写敏感的字符串，不包含空格或尖括号。第一层次的类型必须是以下中的一个：
+
++ DEL：相对于参考序列是一个deletion；
++ INS：相对于参考序列是一个insertion；
++ DUP：相对于参考序列是一个拷贝数的增加；
++ INV：相对于参看序列是一个倒置；
++ CNV：拷贝数变化区（可以同时是deletion和重复duplication）。注意：当更确定的类型可以确认时，不要使用CNV。亚类型有：
+  - DUP：TANDEM 串联重复；
+  - DEL:ME 相对于参考序列，可移动元件(Mobile element)的deletion；
+  - INS:ME 相对于参考序列，可移动元件的insertion；
+
+
+
 
