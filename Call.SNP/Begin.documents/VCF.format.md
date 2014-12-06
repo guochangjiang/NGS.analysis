@@ -99,6 +99,7 @@ FORMAT域的格式为：
   - DEL:ME 相对于参考序列，可移动元件(Mobile element)的deletion；
   - INS:ME 相对于参考序列，可移动元件的insertion；
 
+另外，强烈推荐使用一些其他标签用于描述参考序列及其他数据来源信息。
 
 
 
