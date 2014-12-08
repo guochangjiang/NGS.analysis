@@ -99,7 +99,18 @@ FORMAT域的格式为：
   - DEL:ME 相对于参考序列，可移动元件(Mobile element)的deletion；
   - INS:ME 相对于参考序列，可移动元件的insertion；
 
-另外，强烈推荐使用一些其他标签用于描述参考序列及其他数据来源信息。
+另外，强烈推荐使用一些其他标签用于描述参考序列及其他数据来源信息。这些标签都是基于SAM语法的SQ域。所有便签都是可选的（参见上述示例）。
+
+对于所有`##INFO,##Format,##FILTER和##ALT`元信息域，额外域的可以包含于其后，例如：
+```
+##INFO=<ID=ID,Number=number,Type=type,Description="description",Source="description",Version="128">
+```
+上例中，额外项`Source`和`Version`等可选项应以字符串的形式给出，即使是数值。
+
+##### 1.2.6 比对域格式
+
+结构变异的断点比对可以以外部文件给出：`##assembly=url`.URL指明包含有锻炼比对信息的fasta文件位置。
 
 
+##### 1.2.7 Contig域格式
 
