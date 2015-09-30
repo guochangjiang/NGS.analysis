@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html dir="ltr" class="client-js ve-not-available" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>FASTQ format - Wikipedia, the free encyclopedia</title>
+<meta name="generator" content="MediaWiki 1.26wmf1">
+<link rel="alternate" href="android-app://org.wikipedia/http/en.m.wikipedia.org/wiki/FASTQ_format">
+<link rel="alternate" type="application/x-wiki" title="Edit this page" href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit">
+<link rel="edit" title="Edit this page" href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit">
+<link rel="apple-touch-icon" href="http://bits.wikimedia.org/apple-touch/wikipedia.png">
+<link rel="shortcut icon" href="http://bits.wikimedia.org/favicon/wikipedia.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://en.wikipedia.org/w/opensearch_desc.php" title="Wikipedia (en)">
+<link rel="EditURI" type="application/rsd+xml" href="http://en.wikipedia.org/w/api.php?action=rsd">
+<link rel="alternate" hreflang="x-default" href="http://en.wikipedia.org/wiki/FASTQ_format">
+<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/">
+<link rel="alternate" type="application/atom+xml" title="Wikipedia Atom feed" href="http://en.wikipedia.org/w/index.php?title=Special:RecentChanges&amp;feed=atom">
+<link rel="canonical" href="http://en.wikipedia.org/wiki/FASTQ_format">
+<link rel="stylesheet" href="FASTQ%20format_files/load.css">
+<style>
+.tipsy{padding:5px;position:absolute;z-index:100000;cursor:default}.tipsy-inner{padding:5px 8px 4px 8px; background-color:#ffffff;border:solid 1px #a7d7f9;color:black;max-width:15em;border-radius:4px; }.tipsy-arrow{position:absolute;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAALAgMAAADUwp+1AAAACVBMVEX5+fmn1/n///9s6BFKAAAAAXRSTlMAQObYZgAAACpJREFUCB1jZBD4wMiQMoeRcUU4I9uSaYxSE54xZjn8AtMgPkgcJA9UBwAeDw1Qrb3pVAAAAABJRU5ErkJggg==) no-repeat top left;background:url(//bits.wikimedia.org/static-1.26wmf1/resources/src/jquery.tipsy/images/tipsy.png?2015-04-08T18:15:00Z) no-repeat top left!ie;width:11px;height:6px} .tipsy-n .tipsy-arrow{top:0px;left:50%;margin-left:-5px} .tipsy-nw .tipsy-arrow{top:1px;left:10px} .tipsy-ne .tipsy-arrow{top:1px;right:10px} .tipsy-s .tipsy-arrow{bottom:0px;left:50%;margin-left:-5px;background-position:bottom left} .tipsy-sw .tipsy-arrow{bottom:0px;left:10px;background-position:bottom left} .tipsy-se .tipsy-arrow{bottom:0px;right:10px;background-position:bottom left} .tipsy-e .tipsy-arrow{top:50%;margin-top:-5px;right:1px;width:5px;height:11px;background-position:top right} .tipsy-w .tipsy-arrow{top:50%;margin-top:-5px;left:0px;width:6px;height:11px} .tipsy{font-size:0.8em}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:ececcd68600217cc991511d10f4961a6 */</style><style>
+@media print{#centralNotice{display:none}}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:ddb0c98a055632ae8e349c9cf48ac703 */
+.ve-activated #toc,.ve-activated #siteNotice,.ve-activated .mw-indicators, .ve-active #bodyContent > :not(#siteSub):not(#contentSub):not(.ve-ui-mwTocWidget),.ve-activated #t-print,.ve-activated #t-permalink,.ve-activated #p-coll-print_export,.ve-activated #t-cite,.ve-activating .ve-ui-surface,.ve-deactivating .ve-ui-surface{display:none}.ve-activated #bodyContent,.ve-activated #firstHeading,.ve-activated #siteSub,.ve-activated #contentSub{opacity:0.6;pointer-events:none}.ve-activated #firstHeading{cursor:default} .ve-activated #content{position:relative}.ve-init-mw-viewPageTarget-loading-overlay{position:absolute;left:0;right:0;z-index:1;margin-top:-0.5em}.ve-init-mw-viewPageTarget-progress{border:1px solid #347bff;background:#fff;height:0.75em;border-radius:2px;overflow:hidden;margin:0 25%}.ve-init-mw-viewPageTarget-progress-bar{width:0;height:0.75em;background:#347bff} .mw-editsection{white-space:nowrap; unicode-bidi:-moz-isolate;unicode-bidi:-webkit-isolate;unicode-bidi:isolate}.mw-editsection-divider{color:#555}.ve-tabmessage-appendix{font-size:0.7em;vertical-align:top;line-height:1.43em;padding-left:0.5em; background-image:none !important;display:inline !important}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:98428ddb6d82ef9bb6dcf1d1c4437f25 */
+.uls-menu a{cursor:pointer}.uls-menu.callout .caret-before{border-top:20px solid transparent;border-right:20px solid #C9C9C9;border-bottom:20px solid transparent;display:inline-block;left:-21px;top:30px;position:absolute}.uls-menu.callout .caret-after{border-top:20px solid transparent;border-right:20px solid #FCFCFC;border-bottom:20px solid transparent;display:inline-block;left:-20px;top:30px;position:absolute}.uls-ui-languages button{width:23%;text-overflow:ellipsis;margin-right:4%}button.uls-more-languages{width:auto}.settings-title{font-size:11pt}.settings-text{color:#555555;font-size:9pt}div.display-settings-block:hover .settings-text{color:#252525}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:22d1681fa868b4ff4fbcb1ec1e58a9ea */
+@-webkit-keyframes centralAuthPPersonalAnimation{0%{opacity:0;-webkit-transform:translateY(-20px)}100%{opacity:1;-webkit-transform:translateY(0)}}@-moz-keyframes centralAuthPPersonalAnimation{0%{opacity:0;-moz-transform:translateY(-20px)}100%{opacity:1;-moz-transform:translateY(0)}}@-o-keyframes centralAuthPPersonalAnimation{0%{opacity:0;-o-transform:translateY(-20px)}100%{opacity:1;-o-transform:translateY(0)}}@keyframes centralAuthPPersonalAnimation{0%{opacity:0;transform:translateY(-20px)}100%{opacity:1;transform:translateY(0)}}.centralAuthPPersonalAnimation{-webkit-animation-duration:1s;-moz-animation-duration:1s;-o-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;-moz-animation-fill-mode:both;-o-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-name:centralAuthPPersonalAnimation;-moz-animation-name:centralAuthPPersonalAnimation;-o-animation-name:centralAuthPPersonalAnimation;animation-name:centralAuthPPersonalAnimation}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:0dcacc990dd02e7db9669ab3090b80f1 */</style><style>
+.cite-accessibility-label{position:absolute !important; top:-99999px;clip:rect(1px 1px 1px 1px); clip:rect(1px,1px,1px,1px);padding:0 !important;border:0 !important;height:1px !important;width:1px !important;overflow:hidden}.mw-cite-backlink,.cite-accessibility-label{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none} ol.references li:target,sup.reference:target{background-color:#def; background-color:rgba(0,127,255,0.133)}@media print{.mw-cite-backlink{display:none}}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:2970940d33044e6aa6a620ce3c93c662 */
+.mw-collapsible-toggle{float:right;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none}  .mw-content-ltr .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr .mw-collapsible-toggle{float:right} .mw-content-rtl .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl .mw-collapsible-toggle{float:left}.mw-customtoggle,.mw-collapsible-toggle{cursor:pointer} caption .mw-collapsible-toggle,.mw-content-ltr caption .mw-collapsible-toggle,.mw-content-rtl caption .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle{float:none} li .mw-collapsible-toggle,.mw-content-ltr li .mw-collapsible-toggle,.mw-content-rtl li .mw-collapsible-toggle,.mw-content-rtl .mw-content-ltr li .mw-collapsible-toggle,.mw-content-ltr .mw-content-rtl li .mw-collapsible-toggle{float:none} .mw-collapsible-toggle-li{list-style:none}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:e1ffd603cbaaa5f1a36e0d13fe843535 */
+.suggestions{overflow:hidden;position:absolute;top:0;left:0;width:0;border:none;z-index:1099;padding:0;margin:-1px 0 0 0}.suggestions-special{position:relative;background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0;margin-top:-2px;display:none;padding:0.25em 0.25em;line-height:1.25em}.suggestions-results{background-color:white;cursor:pointer;border:solid 1px #aaaaaa;padding:0;margin:0}.suggestions-result{color:black;margin:0;line-height:1.5em;padding:0.01em 0.25em;text-align:left; overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}.suggestions-result-current{background-color:#4C59A6;color:white}.suggestions-special .special-label{color:gray;text-align:left}.suggestions-special .special-query{color:black;font-style:italic;text-align:left}.suggestions-special .special-hover{background-color:silver}.suggestions-result-current .special-label,.suggestions-result-current .special-query{color:white}.highlight{font-weight:bold}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:f8d0c6895ce3ae14434c16b8fca59432 */
+.wp-teahouse-question-form{position:absolute;margin-left:auto;margin-right:auto;background-color:#f4f3f0;border:1px solid #a7d7f9;padding:1em}#wp-th-question-ask{float:right}.wp-teahouse-ask a.external{background-image:none !important}.wp-teahouse-respond-form{position:absolute;margin-left:auto;margin-right:auto;background-color:#f4f3f0;border:1px solid #a7d7f9;padding:1em}.wp-th-respond{float:right}.wp-teahouse-respond a.external{background-image:none !important}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:8614dfa7ef847fc9bfcc2d1c9f720197 */
+.column-break-inside-avoid{-webkit-column-break-inside:avoid;page-break-inside:avoid;break-inside:avoid-column}.mw-ui-icon{position:relative;min-height:1.4em;min-width:1.4em}.mw-ui-icon.mw-ui-icon-element{text-indent:-999px;overflow:hidden;width:3.4em;min-width:3.4em;max-width:3.4em}.mw-ui-icon.mw-ui-icon-element:before{left:0;right:0;position:absolute;margin:0 1em}.mw-ui-icon.mw-ui-icon-after:after,.mw-ui-icon.mw-ui-icon-before:before,.mw-ui-icon.mw-ui-icon-element:before{background-position:50% 50%;float:left;display:block;background-repeat:no-repeat;background-size:100% auto;min-height:1.4em;content:''}.mw-ui-icon.mw-ui-icon-before:before{position:relative;width:1.4em;margin-right:1em}.mw-ui-icon.mw-ui-icon-after:after{position:relative;float:right;width:1.4em;margin-left:1em}.mw-ui-icon-ok.mw-ui-icon:after,.mw-ui-icon-ok.mw-ui-icon:before{background-image:url(//bits.wikimedia.org/static-1.26wmf1/resources/src/mediawiki.ui/components/images/ok.png?2015-04-08T18:15:00Z);background-image:-webkit-linear-gradient(transparent,transparent),url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2222%22%20height%3D%2222%22%3E%3Cpath%20d%3D%22M18.125%201.813l-10.5%2010.75-3.844-3.75L0%2012.719l7.72%207.452L22%205.625z%22%20fill%3D%22%23f0f0f0%22%2F%3E%3C%2Fsvg%3E%0A);background-image:-webkit-linear-gradient(transparent,transparent),url(//bits.wikimedia.org/static-1.26wmf1/resources/src/mediawiki.ui/components/images/ok.svg?2015-04-08T18:15:00Z)!ie;background-image:linear-gradient(transparent,transparent),url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2222%22%20height%3D%2222%22%3E%3Cpath%20d%3D%22M18.125%201.813l-10.5%2010.75-3.844-3.75L0%2012.719l7.72%207.452L22%205.625z%22%20fill%3D%22%23f0f0f0%22%2F%3E%3C%2Fsvg%3E%0A);background-image:linear-gradient(transparent,transparent),url(//bits.wikimedia.org/static-1.26wmf1/resources/src/mediawiki.ui/components/images/ok.svg?2015-04-08T18:15:00Z)!ie;background-image:-o-linear-gradient(transparent,transparent),url(//bits.wikimedia.org/static-1.26wmf1/resources/src/mediawiki.ui/components/images/ok.png?2015-04-08T18:15:00Z)}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:cdba61b70f706c8eaf042c369659b0d6 */
+#p-lang .uls-settings-trigger{background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAgCAQAAACI54EcAAAAAnNCSVQICFXsRgQAAAAJcEhZcwAADdcAAA3XAUIom3gAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAABWklEQVQoz42RwWrCQBBAc/PkyXiQfpEXobKzEsipCkKh5CBUhBBmaWrw6j/oIQr6VeaSXzDpZDbZ1CWVMhBm5zGT2X1O6fwdv1L0saTwLajmar0d4JHh6XuEofqooVpiQcU7ozbeGWJklXVEGrrcWWKOCUXOeYEuQeXhQaNdv/rPrl/jFH3HjEnM1klTa2FsYNzCBV45zfa9Cu17mPH5gm903A7rhW60d0Rf7opf9D03nVf50jCwyjxHrZvnCzCkR0sZndFVK/y0Hl7NGC46rTxV9hRKH0oope0T5nL9OhDHCsJpOhKhaHyKJRRUvDMyIbRPiB7LdWifnsudJeSQUOScF17lU3pw0GjCPid9jWUqfceMMT6pu6610PiE2ECxgCun2Zh9jnuQ8fkiK58wrBe60d4RfXWf9ik2XVeR2icEFuA5svEJgQinI5kyOnuuWAnbJ8z42f7r8wfhovZYX3llNQAAAABJRU5ErkJggg==) no-repeat right top;background:transparent url(//bits.wikimedia.org/static-1.26wmf1/extensions/UniversalLanguageSelector/resources/css/../images/cog-sprite.png?2015-04-08T18:20:00Z) no-repeat right top!ie;background-image:-webkit-linear-gradient(transparent,transparent),url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2214%22%20height%3D%2232%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M14%209.3V6.73l-1.575-.264c-.117-.44-.292-.848-.496-1.2l.93-1.285-1.81-1.84-1.31.908c-.38-.205-.79-.38-1.196-.497L8.284%201H5.716l-.263%201.578c-.437.117-.816.293-1.196.497L2.975%202.17%201.137%203.98l.934%201.287c-.2.38-.376.79-.493%201.228L0%206.73V9.3l1.575.264c.117.438.292.818.496%201.198l-.93%201.315L2.95%2013.89l1.312-.938c.38.205.787.38%201.224.497L5.746%2015h2.566l.263-1.578c.408-.117.817-.293%201.196-.497l1.315.935%201.81-1.812-.935-1.315c.203-.38.38-.76.495-1.2L14%209.303zm-7%201.404c-1.488%200-2.683-1.2-2.683-2.69S5.542%205.327%207%205.327c1.458%200%202.683%201.198%202.683%202.69%200%201.49-1.195%202.688-2.683%202.688z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%20fill%3D%22%23808080%22%2F%3E%3Cuse%20transform%3D%22translate%280%2016%29%22%20xlink%3Ahref%3D%22%23a%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E%0A);background-image:-webkit-linear-gradient(transparent,transparent),url(//bits.wikimedia.org/static-1.26wmf1/extensions/UniversalLanguageSelector/resources/css/../images/cog-sprite.svg?2015-04-08T18:20:00Z)!ie;background-image:linear-gradient(transparent,transparent),url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%3F%3E%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2214%22%20height%3D%2232%22%3E%3Cdefs%3E%3Cpath%20d%3D%22M14%209.3V6.73l-1.575-.264c-.117-.44-.292-.848-.496-1.2l.93-1.285-1.81-1.84-1.31.908c-.38-.205-.79-.38-1.196-.497L8.284%201H5.716l-.263%201.578c-.437.117-.816.293-1.196.497L2.975%202.17%201.137%203.98l.934%201.287c-.2.38-.376.79-.493%201.228L0%206.73V9.3l1.575.264c.117.438.292.818.496%201.198l-.93%201.315L2.95%2013.89l1.312-.938c.38.205.787.38%201.224.497L5.746%2015h2.566l.263-1.578c.408-.117.817-.293%201.196-.497l1.315.935%201.81-1.812-.935-1.315c.203-.38.38-.76.495-1.2L14%209.303zm-7%201.404c-1.488%200-2.683-1.2-2.683-2.69S5.542%205.327%207%205.327c1.458%200%202.683%201.198%202.683%202.69%200%201.49-1.195%202.688-2.683%202.688z%22%20id%3D%22a%22%2F%3E%3C%2Fdefs%3E%3Cuse%20xlink%3Ahref%3D%22%23a%22%20fill%3D%22%23808080%22%2F%3E%3Cuse%20transform%3D%22translate%280%2016%29%22%20xlink%3Ahref%3D%22%23a%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E%0A);background-image:linear-gradient(transparent,transparent),url(//bits.wikimedia.org/static-1.26wmf1/extensions/UniversalLanguageSelector/resources/css/../images/cog-sprite.svg?2015-04-08T18:20:00Z)!ie;height:16px;width:14px;float:right;cursor:pointer}.skin-vector #p-lang .uls-settings-trigger{ margin-top:3px}#p-lang .uls-settings-trigger:hover{background-position:right -16px}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:36d7c94037c7da31031f385d8d1ef54c */</style><style>
+.suggestions a.mw-searchSuggest-link,.suggestions a.mw-searchSuggest-link:hover,.suggestions a.mw-searchSuggest-link:active,.suggestions a.mw-searchSuggest-link:focus{color:black;text-decoration:none}.suggestions-result-current a.mw-searchSuggest-link,.suggestions-result-current a.mw-searchSuggest-link:hover,.suggestions-result-current a.mw-searchSuggest-link:active,.suggestions-result-current a.mw-searchSuggest-link:focus{color:white}.suggestions a.mw-searchSuggest-link .special-query{ overflow:hidden;-o-text-overflow:ellipsis; text-overflow:ellipsis;white-space:nowrap}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:ae3fa4570b5ac0c6cf7b3776c8ae4d6f */</style><style>
+.mw-mmv-overlay{position:fixed;top:0px;left:0px;right:0px;bottom:0px;z-index:1000;background-color:#000000}body.mw-mmv-lightbox-open{overflow-y:auto}body.mw-mmv-lightbox-open #mw-page-base,body.mw-mmv-lightbox-open #mw-head-base,body.mw-mmv-lightbox-open #mw-navigation,body.mw-mmv-lightbox-open #content,body.mw-mmv-lightbox-open #footer,body.mw-mmv-lightbox-open #globalWrapper // monobook{ display:none}body.mw-mmv-lightbox-open > *{ display:none}body.mw-mmv-lightbox-open > .mw-mmv-overlay,body.mw-mmv-lightbox-open > .mw-mmv-wrapper{display:block}.mw-mmv-filepage-buttons{margin-top:5px}.mw-mmv-filepage-buttons .mw-mmv-view-expanded,.mw-mmv-filepage-buttons .mw-mmv-view-config{display:block}.mw-mmv-filepage-buttons .mw-mmv-view-expanded.mw-ui-icon:before{background-image:url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3C%21--%20Created%20with%20Inkscape%20%28http%3A%2F%2Fwww.inkscape.org%2F%29%20--%3E%0A%0A%3Csvg%0A%20%20%20xmlns%3Adc%3D%22http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2F%22%0A%20%20%20xmlns%3Acc%3D%22http%3A%2F%2Fcreativecommons.org%2Fns%23%22%0A%20%20%20xmlns%3Ardf%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%22%0A%20%20%20xmlns%3Asvg%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20%20%20version%3D%221.1%22%0A%20%20%20width%3D%22100%25%22%0A%20%20%20height%3D%22100%25%22%0A%20%20%20viewBox%3D%220%200%201024%20768%22%0A%20%20%20id%3D%22Layer_1%22%0A%20%20%20xml%3Aspace%3D%22preserve%22%3E%3Cmetadata%0A%20%20%20%20%20id%3D%22metadata17%22%3E%3Crdf%3ARDF%3E%3Ccc%3AWork%0A%20%20%20%20%20%20%20%20%20rdf%3Aabout%3D%22%22%3E%3Cdc%3Aformat%3Eimage%2Fsvg%2Bxml%3C%2Fdc%3Aformat%3E%3Cdc%3Atype%0A%20%20%20%20%20%20%20%20%20%20%20rdf%3Aresource%3D%22http%3A%2F%2Fpurl.org%2Fdc%2Fdcmitype%2FStillImage%22%20%2F%3E%3Cdc%3Atitle%3E%3C%2Fdc%3Atitle%3E%3C%2Fcc%3AWork%3E%3C%2Frdf%3ARDF%3E%3C%2Fmetadata%3E%3Cdefs%0A%20%20%20%20%20id%3D%22defs15%22%20%2F%3E%3Cg%0A%20%20%20%20%20id%3D%22g3%22%3E%3Cpolygon%0A%20%20%20%20%20%20%20points%3D%22851.2%2C71.6%20690.7%2C232.1%20650.6%2C191.8%20641%2C356.6%20805.8%2C347.3%20765.5%2C306.9%20926%2C146.4%20984.5%2C204.9%20997.6%2C0%20792.7%2C13.1%20%22%0A%20%20%20%20%20%20%20id%3D%22polygon5%22%0A%20%20%20%20%20%20%20style%3D%22fill%3A%23777777%22%20%2F%3E%3Cpolygon%0A%20%20%20%20%20%20%20points%3D%22769.6%2C89.3%20611.9%2C89.3%20682.8%2C160.1%20690.7%2C167.6%20%22%0A%20%20%20%20%20%20%20id%3D%22polygon7%22%0A%20%20%20%20%20%20%20style%3D%22fill%3A%23777777%22%20%2F%3E%3Cpath%0A%20%20%20%20%20%20%20d%3D%22m%20643.6%2C402.2%20-51.2%2C3%203%2C-51.2%209.4%2C-164.4%205.8%2C-100.3%20H%2026.4%20V%20768%20H%20909.5%20V%20387%20l%20-100.9%2C5.8%20-165%2C9.4%20z%20M%20813.9%2C678%20H%20113.6%20l%20207.2%2C-270.2%2031.5%2C-12.9%20195.7%2C204.9%20105.9%2C-63.2%20159.8%2C140.8%200.2%2C0.6%200%2C0%20z%22%0A%20%20%20%20%20%20%20id%3D%22path9%22%0A%20%20%20%20%20%20%20style%3D%22fill%3A%23777777%22%20%2F%3E%3Cpolygon%0A%20%20%20%20%20%20%20points%3D%22909.5%2C386.1%20909.5%2C228%20830.4%2C306.9%20838.2%2C314.8%20%22%0A%20%20%20%20%20%20%20id%3D%22polygon11%22%0A%20%20%20%20%20%20%20style%3D%22fill%3A%23777777%22%20%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E);background-image:url(//bits.wikimedia.org/static-1.26wmf1/extensions/MultimediaViewer/resources/mmv/img/expand.svg?2015-04-08T18:18:20Z)!ie}.mw-mmv-filepage-buttons .mw-mmv-view-config.mw-ui-icon:before{background-image:url(data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3C%21--%20Created%20with%20Inkscape%20%28http%3A%2F%2Fwww.inkscape.org%2F%29%20--%3E%0A%0A%3Csvg%0A%20%20%20xmlns%3Adc%3D%22http%3A%2F%2Fpurl.org%2Fdc%2Felements%2F1.1%2F%22%0A%20%20%20xmlns%3Acc%3D%22http%3A%2F%2Fcreativecommons.org%2Fns%23%22%0A%20%20%20xmlns%3Ardf%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%22%0A%20%20%20xmlns%3Asvg%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20%20%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%0A%20%20%20version%3D%221.1%22%0A%20%20%20width%3D%22100%25%22%0A%20%20%20height%3D%22100%25%22%0A%20%20%20viewBox%3D%220%200%201024%20768%22%0A%20%20%20id%3D%22Layer_1%22%0A%20%20%20xml%3Aspace%3D%22preserve%22%3E%3Cmetadata%0A%20%20%20%20%20id%3D%22metadata9%22%3E%3Crdf%3ARDF%3E%3Ccc%3AWork%0A%20%20%20%20%20%20%20%20%20rdf%3Aabout%3D%22%22%3E%3Cdc%3Aformat%3Eimage%2Fsvg%2Bxml%3C%2Fdc%3Aformat%3E%3Cdc%3Atype%0A%20%20%20%20%20%20%20%20%20%20%20rdf%3Aresource%3D%22http%3A%2F%2Fpurl.org%2Fdc%2Fdcmitype%2FStillImage%22%20%2F%3E%3Cdc%3Atitle%3E%3C%2Fdc%3Atitle%3E%3C%2Fcc%3AWork%3E%3C%2Frdf%3ARDF%3E%3C%2Fmetadata%3E%3Cdefs%0A%20%20%20%20%20id%3D%22defs7%22%20%2F%3E%3Cpath%0A%20%20%20%20%20d%3D%22M%20897%2C454.6%20V%20313.4%20L%20810.4%2C299%20c%20-6.4%2C-23.3%20-16%2C-45.7%20-27.3%2C-65.8%20L%20833.6%2C161.8%20734.2%2C61.6%20662.8%2C112.1%20C%20641.9%2C100.9%20620.3%2C91.2%20597%2C84.8%20L%20582.6%2C-1%20H%20441.4%20L%20427%2C85.6%20c%20-23.3%2C6.4%20-45.7%2C16%20-65.8%2C27.3%20L%20289.8%2C62.4%20189.5%2C161.9%20240%2C233.3%20c%20-11.2%2C20.9%20-20.9%2C42.5%20-27.3%2C66.6%20L%20127%2C313.4%20v%20141.2%20l%2085.8%2C14.4%20c%206.4%2C23.3%2016%2C45.7%2027.3%2C66.6%20l%20-50.5%2C71.4%2099.5%2C99.5%2071.4%2C-50.5%20c%2020.9%2C11.2%2042.5%2C20.9%2066.6%2C27.3%20l%2014.4%2C85.8%20h%20141.2%20l%2014.4%2C-86.6%20c%2023.3%2C-6.4%2045.7%2C-16%2065.8%2C-27.3%20l%2071.4%2C50.5%2099.5%2C-99.5%20-50.5%2C-71.4%20c%2011.2%2C-20.9%2020.9%2C-42.5%2027.3%2C-66.6%20L%20897%2C454.6%20z%20m%20-385%2C77%20C%20430.2%2C531.6%20364.4%2C465%20364.4%2C384%20364.4%2C302.2%20431%2C236.4%20512%2C236.4%20c%2081%2C0%20147.6%2C65.8%20147.6%2C147.6%200%2C81.8%20-65.8%2C147.6%20-147.6%2C147.6%20z%22%0A%20%20%20%20%20id%3D%22path3%22%0A%20%20%20%20%20style%3D%22fill%3A%23777777%22%20%2F%3E%3C%2Fsvg%3E);background-image:url(//bits.wikimedia.org/static-1.26wmf1/extensions/MultimediaViewer/resources/mmv/img/gear_gray.svg?2015-04-08T18:18:20Z)!ie;opacity:0.75}.mw-mmv-filepage-buttons .mw-mmv-view-config.mw-ui-icon:before:hover{opacity:1}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:e00ca84bab45092d5d5f2a35d46a7178 */
+.referencetooltip{position:absolute;list-style:none;list-style-image:none;opacity:0;font-size:10px;margin:0;z-index:5;padding:0}.referencetooltip li{border:#080086 2px solid;max-width:260px;padding:10px 8px 13px 8px;margin:0px;background-color:#F7F7F7;box-shadow:2px 4px 2px rgba(0,0,0,0.3);-moz-box-shadow:2px 4px 2px rgba(0,0,0,0.3);-webkit-box-shadow:2px 4px 2px rgba(0,0,0,0.3)}.referencetooltip li+li{margin-left:7px;margin-top:-2px;border:0;padding:0;height:3px;width:0px;background-color:transparent;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;border-top:12px #080086 solid;border-right:7px transparent solid;border-left:7px transparent solid}.referencetooltip>li+li::after{content:'';border-top:8px #F7F7F7 solid;border-right:5px transparent solid;border-left:5px transparent solid;margin-top:-12px;margin-left:-5px;z-index:1;height:0px;width:0px;display:block}.client-js body .referencetooltip li li{border:none;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;height:auto;width:auto;margin:auto;padding:0;position:static}.RTflipped{padding-top:13px}.referencetooltip.RTflipped li+li{position:absolute;top:2px;border-top:0;border-bottom:12px #080086 solid}.referencetooltip.RTflipped li+li::after{border-top:0;border-bottom:8px #F7F7F7 solid;position:absolute;margin-top:7px}.RTsettings{float:right;height:24px;width:24px;cursor:pointer;background-image:url(//upload.wikimedia.org/wikipedia/commons/thumb/7/77/Gear_icon.svg/24px-Gear_icon.svg.png);background-image:linear-gradient(transparent,transparent),url(//upload.wikimedia.org/wikipedia/commons/7/77/Gear_icon.svg);margin-top:-9px;margin-right:-7px;-webkit-transition:opacity 0.15s;-moz-transition:opacity 0.15s;-o-transition:opacity 0.15s;-ms-transition:opacity 0.15s;transition:opacity 0.15s;opacity:0.6;filter:alpha(opacity=60)}.RTsettings:hover{opacity:1;filter:alpha(opacity=100)}.RTTarget{border:#080086 2px solid}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:1a7de28fa04cd61435c75627cef69e87 */
+.skin-vector li.GA,.skin-monobook li.GA,.skin-modern li.GA{list-style-image:url(//upload.wikimedia.org/wikipedia/commons/4/42/Monobook-bullet-ga.png)} .skin-vector li.FA,.skin-monobook li.FA{list-style-image:url(//upload.wikimedia.org/wikipedia/commons/d/d4/Monobook-bullet-star.png)}.skin-modern li.FA{list-style-image:url(//upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Modern-bullet-star.svg/9px-Modern-bullet-star.svg.png)}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:22ca6c0fc9d0923a196f8a3aec796994 */
+.postedit-container{margin:0 auto;position:fixed;top:0;height:0;left:50%;z-index:1000;font-size:13px}.postedit-container:hover{cursor:pointer}.postedit{position:relative;top:0.6em;left:-50%;padding:.6em 3.6em .6em 1.1em;line-height:1.5625em;color:#626465;background-color:#f4f4f4;border:1px solid #dcd9d9;text-shadow:0 0.0625em 0 rgba(255,255,255,0.5);border-radius:5px;box-shadow:0 2px 5px 0 #ccc;-webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;-ms-transition:all 0.25s ease-in-out;-o-transition:all 0.25s ease-in-out;transition:all 0.25s ease-in-out}.skin-monobook .postedit{top:6em !important}.postedit-faded{opacity:0}.postedit-icon{padding-left:41px;  line-height:25px;background-repeat:no-repeat;background-position:8px 50%}.postedit-icon-checkmark{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABblBMVEUAAAD///////9PfTf///80aRdTgjn///9Feij///////////9Rfzf///////////9PfjZRgDh1o1xOfTb///////+bwYqLtnj///////9PfTa82K////9WhT6YxIL///9QgDdTgzr////////j7uDl7eLq8efi693k7OH///////9UhjuBr2rp9uRUhjr///9YljVKgir///9WiTlYjT3////9/v57vFlbkT5PjC9dlD/5/fhuq09stUTs9uhxuElctCpfnT1huDFloEZloUZmpENmvDZpvDxpvTxqvjxrvT5rvT9rwTxsqktswD5uwkBvuUdxw0NztFBztU9ztVBzwkp0tlJ1xkd2t1R3uVR4w1F4xk54x014yE15uVZ5v1R5xVB6v1R7yFJ8wVh9xVl9yFR9yVd9ylN+xVh+yFd/x1l/yFeAylmEx1+Ny2uY0Hqe04Wj1Ymv3Ze33qLD47TJ5L3O6cPU7Mrq9eb2+/Q4j37OAAAAQHRSTlMAAQIEBAUFBQwPFB4fJCUoKiosQEhJS01RUlZZXmdydXaChYuSlJSWmJmoq6uur8LExcvM19fg5ejt8fX2+Pr7SljgewAAAKpJREFUGBkFwQNCAwAAAMDLtl3LtrG4rWXbtvX77gAgZ6grFwC0bhwNVgKgdPZx8b0dgLi+s7Wn0VoAqpfOI9+BNADZI7fLrz2pSEwGHZuH+78lSK8ZLkLezF3ooyUG3VPXq2USei9WngeyoG195yBYWDF3E/2pAhl1e9Gr8bGT+bfOFCC2fnvh4X7rcqIAQNNu+HT6sxkAjceTL/2ZAIhv+PorBwBJxfkA//dFHSCBy/UTAAAAAElFTkSuQmCC);background-image:url(//bits.wikimedia.org/static-1.26wmf1/resources/src/mediawiki.action/images/green-checkmark.png?2015-04-08T18:15:00Z)!ie;background-position:left}.postedit-close{position:absolute;padding:0 .8em;right:0;top:0;font-size:1.25em;font-weight:bold;line-height:2.3em;color:black;text-shadow:0 0.0625em 0 white;text-decoration:none;opacity:0.2;filter:alpha(opacity=20)}.postedit-close:hover{color:black;text-decoration:none;opacity:0.4;filter:alpha(opacity=40)}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:e1381a35fe112415e5a410da6b521eb7 */</style><meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="FASTQ%20format_files/load_002.css">
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: enwiki:resourceloader:filter:minify-css:7:3904d24a08aa08f6a68dc338f9be277e */</style>
+<script src="FASTQ%20format_files/load_002.php"></script><script src="FASTQ%20format_files/load.php"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"FASTQ_format","wgTitle":"FASTQ format","wgCurRevisionId":651348382,"wgRevisionId":651348382,"wgArticleId":22431652,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Bioinformatics","Biological sequence format"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"FASTQ_format","wgRelevantArticleId":22431652,"wgIsProbablyEditable":true,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgWikiEditorEnabledModules":{"toolbar":true,"dialogs":true,"hidesig":true,"preview":false,"publish":false},"wgMediaViewerOnClick":true,"wgMediaViewerEnabledByDefault":true,"wgVisualEditor":{"pageLanguageCode":"en","pageLanguageDir":"ltr"},"wikilove-recipient":"","wikilove-anon":0,"wgGatherShouldShowTutorial":true,"wgGatherPageImageThumbnail":"//upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Probability_metrics.svg/100px-Probability_metrics.svg.png","wgPoweredByHHVM":true,"wgULSAcceptLanguageList":["en-us","en"],"wgULSCurrentAutonym":"English","wgBetaFeaturesFeatures":[],"wgFlaggedRevsParams":{"tags":{"status":{"levels":1,"quality":2,"pristine":3}}},"wgStableRevisionId":null,"wgCategoryTreePageCategoryOptions":"{\"mode\":0,\"hideprefix\":20,\"showcount\":true,\"namespaces\":false}","wgNoticeProject":"wikipedia","wgWikibaseItemId":"Q3063023"});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});
+/* cache key: enwiki:resourceloader:filter:minify-js:7:a5c52c063dc436c1ca7c9f456936a5e9 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","ext.centralauth.centralautologin","mmv.head","ext.imageMetrics.head","ext.visualEditor.viewPageTarget.init","ext.uls.init","ext.uls.interface","ext.centralNotice.bannerController","skins.vector.js"]);
+}</script><script src="FASTQ%20format_files/load_003.php"></script>
+<link rel="dns-prefetch" href="http://meta.wikimedia.org/">
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/w/static-1.26wmf1/skins/Vector/csshover.min.htc")}</style><![endif]-->
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-FASTQ_format skin-vector action-view">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+
+							<div id="siteNotice"><div id="centralNotice"></div><!-- CentralNotice --></div>
+						<div class="mw-indicators">
+</div>
+			<h1 id="firstHeading" class="firstHeading" lang="en">FASTQ format</h1>
+						<div id="bodyContent" class="mw-body-content">
+									<div id="siteSub">From Wikipedia, the free encyclopedia</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Jump to:					<a href="#mw-head">navigation</a>, 					<a href="#p-search">search</a>
+				</div>
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="en"><p><b>FASTQ format</b> is a text-based <a href="http://en.wikipedia.org/wiki/File_format" title="File format">format</a> for storing both a biological sequence (usually <a href="http://en.wikipedia.org/wiki/Nucleotide_sequence" title="Nucleotide sequence" class="mw-redirect">nucleotide sequence</a>) and its corresponding quality scores. Both the sequence letter and quality score are each encoded with a single <a href="http://en.wikipedia.org/wiki/ASCII" title="ASCII">ASCII</a> character for brevity. It was originally developed at the <a href="http://en.wikipedia.org/wiki/Wellcome_Trust_Sanger_Institute" title="Wellcome Trust Sanger Institute">Wellcome Trust Sanger Institute</a> to bundle a <a href="http://en.wikipedia.org/wiki/FASTA_format" title="FASTA format">FASTA</a> sequence and its quality data, but has recently become the <i>de facto</i> standard for storing the output of high-throughput sequencing instruments such as the <a href="http://en.wikipedia.org/wiki/Illumina_%28company%29" title="Illumina (company)">Illumina</a> Genome Analyzer.<sup id="cite_ref-Cock_et_al_2009_1-0" class="reference"><a href="#cite_note-Cock_et_al_2009-1"><span>[</span>1<span>]</span></a></sup></p>
+<p></p>
+<div id="toc" class="toc">
+<div id="toctitle">
+<h2>Contents</h2>
+<span class="toctoggle">&nbsp;[<a href="#" id="togglelink">hide</a>]&nbsp;</span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Format"><span class="tocnumber">1</span> <span class="toctext">Format</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Illumina_sequence_identifiers"><span class="tocnumber">1.1</span> <span class="toctext">Illumina sequence identifiers</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#NCBI_Sequence_Read_Archive"><span class="tocnumber">1.2</span> <span class="toctext">NCBI Sequence Read Archive</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Variations"><span class="tocnumber">2</span> <span class="toctext">Variations</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Quality"><span class="tocnumber">2.1</span> <span class="toctext">Quality</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Encoding"><span class="tocnumber">2.2</span> <span class="toctext">Encoding</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Color_space"><span class="tocnumber">2.3</span> <span class="toctext">Color space</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Compression"><span class="tocnumber">2.4</span> <span class="toctext">Compression</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#File_extension"><span class="tocnumber">3</span> <span class="toctext">File extension</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Format_converters"><span class="tocnumber">4</span> <span class="toctext">Format converters</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#Command_line_conversions"><span class="tocnumber">4.1</span> <span class="toctext">Command line conversions</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#See_also"><span class="tocnumber">5</span> <span class="toctext">See also</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#References"><span class="tocnumber">6</span> <span class="toctext">References</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#External_links"><span class="tocnumber">7</span> <span class="toctext">External links</span></a></li>
+</ul>
+</div>
+<p></p>
+<h2><span class="mw-headline" id="Format">Format</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=1" title="Edit section: Format">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>A FASTQ file normally uses four lines per sequence.</p>
+<ul>
+<li>Line 1 begins with a '@' character and is followed by a sequence identifier and an <i>optional</i> description (like a <a href="http://en.wikipedia.org/wiki/FASTA_format" title="FASTA format">FASTA</a> title line).</li>
+<li>Line 2 is the raw sequence letters.</li>
+<li>Line 3 begins with a '+' character and is <i>optionally</i> followed by the same sequence identifier (and any description) again.</li>
+<li>Line 4 encodes the quality values for the sequence in Line 2, and 
+must contain the same number of symbols as letters in the sequence.</li>
+</ul>
+<p>A FASTQ file containing a single sequence might look like this:</p>
+<pre>@SEQ_ID
+GATTTGGGGTTCAAAGCAGTATCGATCAAATAGTAAATCCATTTGTTCAACTCACAGTTT
++
+!''*((((***+))%%%++)(%%%%).1***-+*''))**55CCF&gt;&gt;&gt;&gt;&gt;&gt;CCCCCCC65
+</pre>
+<p>The character '!' represents the lowest quality while '~' is the 
+highest. Here are the quality value characters in left-to-right 
+increasing order of quality (<a href="http://en.wikipedia.org/wiki/ASCII" title="ASCII">ASCII</a>):</p>
+<pre> !"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+</pre>
+<p>The original Sanger FASTQ files also allowed the sequence and quality
+ strings to be wrapped (split over multiple lines), but this is 
+generally discouraged as it can make parsing complicated due to the 
+unfortunate choice of "@" and "+" as markers (these characters can also 
+occur in the quality string).<sup id="cite_ref-2" class="reference"><a href="#cite_note-2"><span>[</span>2<span>]</span></a></sup> An example of a tools that break the 4 line convention is vcfutils.pl from samtools.<sup id="cite_ref-3" class="reference"><a href="#cite_note-3"><span>[</span>3<span>]</span></a></sup></p>
+<h3><span class="mw-headline" id="Illumina_sequence_identifiers">Illumina sequence identifiers</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=2" title="Edit section: Illumina sequence identifiers">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Sequences from the <a href="http://en.wikipedia.org/wiki/Solexa" title="Solexa" class="mw-redirect">Illumina</a> software use a systematic identifier:</p>
+<pre>@HWUSI-EAS100R:6:73:941:1973#0/1
+</pre>
+<table class="wikitable">
+<tbody><tr>
+<th>HWUSI-EAS100R</th>
+<td>the unique instrument name</td>
+</tr>
+<tr>
+<th>6</th>
+<td>flowcell lane</td>
+</tr>
+<tr>
+<th>73</th>
+<td>tile number within the flowcell lane</td>
+</tr>
+<tr>
+<th>941</th>
+<td>'x'-coordinate of the cluster within the tile</td>
+</tr>
+<tr>
+<th>1973</th>
+<td>'y'-coordinate of the cluster within the tile</td>
+</tr>
+<tr>
+<th>#0</th>
+<td>index number for a multiplexed sample (0 for no indexing)</td>
+</tr>
+<tr>
+<th>/1</th>
+<td>the member of a pair, /1 or /2 <i>(paired-end or mate-pair reads only)</i></td>
+</tr>
+</tbody></table>
+<p>Versions of the Illumina pipeline since 1.4 appear to use <b>#NNNNNN</b> instead of <b>#0</b> for the multiplex ID, where <b>NNNNNN</b> is the sequence of the multiplex tag.</p>
+<p>With Casava 1.8 the format of the '@' line has changed:</p>
+<pre>@EAS139:136:FC706VJ:2:2104:15343:197393 1:Y:18:ATCACG
+</pre>
+<table class="wikitable">
+<tbody><tr>
+<th>EAS139</th>
+<td>the unique instrument name</td>
+</tr>
+<tr>
+<th>136</th>
+<td>the run id</td>
+</tr>
+<tr>
+<th>FC706VJ</th>
+<td>the flowcell id</td>
+</tr>
+<tr>
+<th>2</th>
+<td>flowcell lane</td>
+</tr>
+<tr>
+<th>2104</th>
+<td>tile number within the flowcell lane</td>
+</tr>
+<tr>
+<th>15343</th>
+<td>'x'-coordinate of the cluster within the tile</td>
+</tr>
+<tr>
+<th>197393</th>
+<td>'y'-coordinate of the cluster within the tile</td>
+</tr>
+<tr>
+<th>1</th>
+<td>the member of a pair, 1 or 2 <i>(paired-end or mate-pair reads only)</i></td>
+</tr>
+<tr>
+<th>Y</th>
+<td>Y if the read is filtered, N otherwise</td>
+</tr>
+<tr>
+<th>18</th>
+<td>0 when none of the control bits are on, otherwise it is an even number</td>
+</tr>
+<tr>
+<th>ATCACG</th>
+<td>index sequence</td>
+</tr>
+</tbody></table>
+<h3><span class="mw-headline" id="NCBI_Sequence_Read_Archive">NCBI Sequence Read Archive</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=3" title="Edit section: NCBI Sequence Read Archive">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>FASTQ files from the <a href="http://en.wikipedia.org/wiki/National_Center_for_Biotechnology_Information" title="National Center for Biotechnology Information">NCBI</a>/<a href="http://en.wikipedia.org/wiki/European_Bioinformatics_Institute" title="European Bioinformatics Institute">EBI</a> <a href="http://en.wikipedia.org/wiki/Sequence_Read_Archive" title="Sequence Read Archive">Sequence Read Archive</a> often include a description, e.g.</p>
+<pre>@SRR001666.1 071112_SLXA-EAS1_s_7:5:1:817:345 length=36
+GGGTGATGGCCGCTGCCGATGGCGTCAAATCCCACC
++SRR001666.1 071112_SLXA-EAS1_s_7:5:1:817:345 length=36
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIII9IG9IC
+</pre>
+<p>In this example there is an NCBI-assigned identifier, and the description holds the original identifier from <a href="http://en.wikipedia.org/wiki/Solexa" title="Solexa" class="mw-redirect">Solexa/Illumina</a> (as described above) plus the read length.</p>
+<p>Also note that the NCBI have converted this FASTQ data from the 
+original Solexa/Illumina encoding to the Sanger standard (see encodings 
+below).</p>
+<h2><span class="mw-headline" id="Variations">Variations</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=4" title="Edit section: Variations">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h3><span class="mw-headline" id="Quality">Quality</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=5" title="Edit section: Quality">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>A quality value <i>Q</i> is an integer mapping of <i>p</i> (i.e., the
+ probability that the corresponding base call is incorrect). Two 
+different equations have been in use. The first is the standard Sanger 
+variant to assess reliability of a base call, otherwise known as <a href="http://en.wikipedia.org/wiki/Phred_quality_score" title="Phred quality score">Phred quality score</a>:</p>
+<p><img class="mwe-math-fallback-image-inline tex" alt="Q_\text{sanger} = -10 \, \log_{10} p" src="FASTQ%20format_files/57446e5cfc3efb3788ec8fb7cc4f9f16.png"></p>
+<p>The Solexa pipeline (i.e., the software delivered with the Illumina 
+Genome Analyzer) earlier used a different mapping, encoding the <a href="http://en.wikipedia.org/wiki/Odds" title="Odds">odds</a> <i>p</i>/(1-<i>p</i>) instead of the probability <i>p</i>:</p>
+<p><img class="mwe-math-fallback-image-inline tex" alt="Q_\text{solexa-prior to v.1.3} = -10 \, \log_{10} \frac{p}{1-p}" src="FASTQ%20format_files/9b81bbe1abc9e35158072bbe82130b9c.png"></p>
+<p>Although both mappings are asymptotically identical at higher quality
+ values, they differ at lower quality levels (i.e., approximately <i>p</i> &gt; 0.05, or equivalently, <i>Q</i> &lt; 13).</p>
+<div class="thumb tleft">
+<div class="thumbinner" style="width:602px;"><a href="http://en.wikipedia.org/wiki/File:Probability_metrics.svg" class="image"><img alt="Relationship between Q and p" src="FASTQ%20format_files/600px-Probability_metrics.png" class="thumbimage" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Probability_metrics.svg/900px-Probability_metrics.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Probability_metrics.svg/1200px-Probability_metrics.svg.png 2x" data-file-width="774" data-file-height="451" height="350" width="600"></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="http://en.wikipedia.org/wiki/File:Probability_metrics.svg" class="internal" title="Enlarge"></a></div>
+Relationship between <i>Q</i> and <i>p</i> using the Sanger (red) and Solexa (black) equations (described above). The vertical dotted line indicates <i>p</i> = 0.05, or equivalently, <i>Q</i> ≈ 13.</div>
+</div>
+</div>
+<p><br style="clear:both;"></p>
+<p>At times there has been disagreement about which mapping Illumina 
+actually uses. The user guide (Appendix B, page 122) for version 1.4 of 
+the Illumina pipeline states that: "The scores are defined as 
+Q=10*log10(p/(1-p))  [<i><a href="http://en.wikipedia.org/wiki/Sic" title="Sic">sic</a></i>], where p is the probability of a base call corresponding to the base in question".<sup id="cite_ref-Illumina_User_Guide_1.4_4-0" class="reference"><a href="#cite_note-Illumina_User_Guide_1.4-4"><span>[</span>4<span>]</span></a></sup>
+ In retrospect, this entry in the manual appears to have been an error. 
+The user guide (What's New, page 5) for version 1.5 of the Illumina 
+pipeline lists this description instead: "Important Changes in Pipeline 
+v1.3  [<i><a href="http://en.wikipedia.org/wiki/Sic" title="Sic">sic</a></i>].
+ The quality scoring scheme has changed to the Phred [i.e., Sanger] 
+scoring scheme, encoded as an ASCII character by adding 64 to the Phred 
+value. A Phred score of a base is: <img class="mwe-math-fallback-image-inline tex" alt="Q_\text{phred} = -10 \log_\text{10} e" src="FASTQ%20format_files/fabf377620d8302d20df0398211915ab.png">, where <i>e</i> is the estimated probability of a base being wrong.<sup id="cite_ref-Illumina_User_Guide_1.5_5-0" class="reference"><a href="#cite_note-Illumina_User_Guide_1.5-5"><span>[</span>5<span>]</span></a></sup></p>
+<h3><span class="mw-headline" id="Encoding">Encoding</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=6" title="Edit section: Encoding">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<ul>
+<li>Sanger format can encode a <a href="http://en.wikipedia.org/wiki/Phred_quality_score" title="Phred quality score">Phred quality score</a>
+ from 0 to 93 using ASCII 33 to 126 (although in raw read data the Phred
+ quality score rarely exceeds 60, higher scores are possible in 
+assemblies or read maps). Also used in SAM format.<sup id="cite_ref-Sequence.2FAlignment_Map_format_6-0" class="reference"><a href="#cite_note-Sequence.2FAlignment_Map_format-6"><span>[</span>6<span>]</span></a></sup>
+ Coming to the end of February 2011, Illumina's newest version (1.8) of 
+their pipeline CASAVA will directly produce fastq in Sanger format, 
+according to the announcement on seqanswers.com forum.<sup id="cite_ref-Upcoming_changes_in_CASAVA_topic_7-0" class="reference"><a href="#cite_note-Upcoming_changes_in_CASAVA_topic-7"><span>[</span>7<span>]</span></a></sup></li>
+<li>Solexa/Illumina 1.0 format can encode a Solexa/Illumina quality score from -5 to 62 using <a href="http://en.wikipedia.org/wiki/ASCII" title="ASCII">ASCII</a> 59 to 126 (although in raw read data Solexa scores from -5 to 40 only are expected)</li>
+<li>Starting with Illumina 1.3 and before Illumina 1.8, the format encoded a <a href="http://en.wikipedia.org/wiki/Phred_quality_score" title="Phred quality score">Phred quality score</a> from 0 to 62 using <a href="http://en.wikipedia.org/wiki/ASCII" title="ASCII">ASCII</a> 64 to 126 (although in raw read data Phred scores from 0 to 40 only are expected).</li>
+<li>Starting in Illumina 1.5 and before Illumina 1.8, the Phred scores 0
+ to 2 have a slightly different meaning. The values 0 and 1 are no 
+longer used and the value 2, encoded by ASCII 66 "B", is used also at 
+the end of reads as a <i>Read Segment Quality Control Indicator</i>.<sup id="cite_ref-8" class="reference"><a href="#cite_note-8"><span>[</span>8<span>]</span></a></sup> The Illumina manual<sup id="cite_ref-9" class="reference"><a href="#cite_note-9"><span>[</span>9<span>]</span></a></sup> (page 30) states the following: <i>If
+ a read ends with a segment of mostly low quality (Q15 or below), then 
+all of the quality values in the segment are replaced with a value of 2 
+(encoded as the letter B in Illumina's text-based encoding of quality 
+scores)... This Q2 indicator does not predict a specific error rate, but
+ rather indicates that a specific final portion of the read should not 
+be used in further analyses.</i> Also, the quality score encoded as "B" 
+letter may occur internally within reads at least as late as pipeline 
+version 1.6, as shown in the following example:</li>
+</ul>
+<pre>@HWI-EAS209_0006_FC706VJ:5:58:5894:21141#ATCACG/1
+TTAATTGGTAAATAAATCTCCTAATAGCTTAGATNTTACCTTNNNNNNNNNNTAGTTTCTTGAGATTTGTTGGGGGAGACATTTTTGTGATTGCCTTGAT
++HWI-EAS209_0006_FC706VJ:5:58:5894:21141#ATCACG/1
+efcfffffcfeefffcffffffddf`feed]`]_Ba_^__[YBBBBBBBBBBRTT\]][]dddd`ddd^dddadd^BBBBBBBBBBBBBBBBBBBBBBBB
+</pre>
+<p>An alternative interpretation of this ASCII encoding has been proposed.<sup id="cite_ref-10" class="reference"><a href="#cite_note-10"><span>[</span>10<span>]</span></a></sup>
+ Also, in Illumina runs using PhiX controls, the character 'B' was 
+observed to represent an "unknown quality score". The error rate of 'B' 
+reads was roughly 3 phred scores lower the mean observed score of a 
+given run.</p>
+<ul>
+<li>Starting in Illumina 1.8, the quality scores have basically returned to the use of the Sanger format (Phred+33).</li>
+</ul>
+<p>For raw reads, the range of scores will depend on the technology and 
+the base caller used, but will typically be up to 41 for recent Illumina
+ chemistry. Since the maximum observed quality score was previously only
+ 40, various scripts and tools break when they encounter data with 
+quality values larger than 40. For processed reads, scores may be even 
+higher. For example, quality values of 45 are observed in reads from 
+Illumina's Long Read Sequencing Service (previously Moleculo).</p>
+<pre>  <span style="color: purple">SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS</span>.....................................................
+  ..........................<span style="color: green">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span>......................
+  ...............................<span style="color: blue">IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII</span>......................
+  .................................<span style="color: orange"><b>J</b>JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ</span>......................
+  <span style="color: brown">LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL</span>....................................................
+  !"#$%&amp;'()*+,-./0123456789:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+  |                         |    |        |                              |                     |
+ 33                        59   64       73                            104                   126
+<span style="color: purple">  0........................26...31.......40                                </span>
+<span style="color: green">                           -5....0........9.............................40 </span>
+<span style="color: blue">                                 0........9.............................40 </span>
+<span style="color: orange">                                    3.....9.............................40 </span>
+<span style="color: brown">  0.2......................26...31........41                              </span>
+
+ <span style="color: purple">S - Sanger        Phred+33,  raw reads typically (0, 40)</span>
+ <span style="color: green">X - Solexa        Solexa+64, raw reads typically (-5, 40)</span>
+ <span style="color: blue">I - Illumina 1.3+ Phred+64,  raw reads typically (0, 40)</span>
+ <span style="color: orange">J - Illumina 1.5+ Phred+64,  raw reads typically (3, 40)
+     with 0=unused, 1=unused, 2=Read Segment Quality Control Indicator (bold) 
+     (Note: See discussion above).</span>
+ <span style="color: brown">L - Illumina 1.8+ Phred+33,  raw reads typically (0, 41)</span>
+</pre>
+<h3><span class="mw-headline" id="Color_space">Color space</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=7" title="Edit section: Color space">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>For SOLiD data, the sequence is in color space, except the first 
+position. The quality values are those of the Sanger format. Alignment 
+tools differ in their preferred version of the quality values: some 
+include a quality score (set to 0, i.e. '!') for the leading nucleotide,
+ others do not. The sequence read archive includes this quality score.</p>
+<h3><span class="mw-headline" id="Compression">Compression</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=8" title="Edit section: Compression">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p>Quality values account for about half of the required disk space in 
+the FASTQ format (before compression), and therefore the compression of 
+the quality values can significantly reduce storage requirements and 
+speed up analysis and transmission of sequencing data. Both lossless and
+ lossy compression are recently being considered in the literature. For 
+example, the algorithm QualComp <sup id="cite_ref-11" class="reference"><a href="#cite_note-11"><span>[</span>11<span>]</span></a></sup>
+ performs lossy compression with a rate (number of bits per quality 
+value) specified by the user. Based on rate-distortion theory results, 
+it allocates the number of bits so as to minimize the MSE (mean squared 
+error) between the original (uncompressed) and the reconstructed (after 
+compression) quality values. Other algorithms for compression of quality
+ values include SCALCE <sup id="cite_ref-12" class="reference"><a href="#cite_note-12"><span>[</span>12<span>]</span></a></sup> and Fastqz.<sup id="cite_ref-13" class="reference"><a href="#cite_note-13"><span>[</span>13<span>]</span></a></sup>
+ Both are lossless compression algorithms that provide an optional 
+controlled lossy transformation approach. For example, SCALCE reduces 
+the alphabet size based on the observation that “neighboring” quality 
+values are similar in general.</p>
+<h2><span class="mw-headline" id="File_extension">File extension</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=9" title="Edit section: File extension">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>There is no standard <a href="http://en.wikipedia.org/wiki/File_extension" title="File extension" class="mw-redirect">file extension</a> for a FASTQ file, but .fq and .fastq, are commonly used.</p>
+<h2><span class="mw-headline" id="Format_converters">Format converters</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=10" title="Edit section: Format converters">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/BioPython" title="BioPython" class="mw-redirect">Biopython</a> version 1.51 onwards (interconverts Sanger, Solexa and Illumina 1.3+)</li>
+<li><a href="http://en.wikipedia.org/wiki/EMBOSS" title="EMBOSS">EMBOSS</a> version 6.1.0 patch 1 onwards (interconverts Sanger, Solexa and Illumina 1.3+)</li>
+<li><a href="http://en.wikipedia.org/wiki/BioPerl" title="BioPerl">BioPerl</a> version 1.6.1 onwards (interconverts Sanger, Solexa and Illumina 1.3+)</li>
+<li><a href="http://en.wikipedia.org/wiki/BioRuby" title="BioRuby">BioRuby</a> version 1.4.0 onwards (interconverts Sanger, Solexa and Illumina 1.3+)</li>
+<li><a href="http://en.wikipedia.org/wiki/BioJava" title="BioJava">BioJava</a> version 1.7.1 onwards (interconverts Sanger, Solexa and Illumina 1.3+)</li>
+<li><a rel="nofollow" class="external text" href="http://maq.sourceforge.net/">MAQ</a> can convert from Solexa to Sanger (use this <a rel="nofollow" class="external text" href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=2824334&amp;group_id=191815&amp;atid=938893">patch</a> to support Illumina 1.3+ files).</li>
+<li><a rel="nofollow" class="external text" href="http://hannonlab.cshl.edu/fastx_toolkit/">fastx_toolkit</a> The included fastq_quality_converter program can convert Illumina to Sanger</li>
+</ul>
+<h3><span class="mw-headline" id="Command_line_conversions">Command line conversions</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=11" title="Edit section: Command line conversions">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
+<p><b>FASTQ to FASTA format:</b></p>
+<pre>zcat input_file.fastq.gz | awk 'NR%4==1{printf "&gt;%s\n", substr($0,2)}NR%4==2{print}' &gt; output_file.fa
+</pre>
+<p><b>Illumina FASTQ 1.8 to 1.3</b></p>
+<pre>sed -e '4~4y/!"#$%&amp;'\''()*+,-.\/0123456789:;&lt;=&gt;?@ABCDEFGHIJ/@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghi/' myfile.fastq   # add -i to save the result to the same input file
+</pre>
+<p><b>Illumina FASTQ 1.3 to 1.8</b></p>
+<pre>sed -e '4~4y/@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghi/!"#$%&amp;'\''()*+,-.\/0123456789:;&lt;=&gt;?@ABCDEFGHIJ/' myfile.fastq   # add -i to save the result to the same input file
+</pre>
+<h2><span class="mw-headline" id="See_also">See also</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=12" title="Edit section: See also">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/FASTA_format" title="FASTA format">FASTA format</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Phred_quality_score" title="Phred quality score">Phred quality score</a></li>
+<li><a href="http://en.wikipedia.org/wiki/List_of_file_formats#Biology" title="List of file formats">List of file formats for molecular biology</a></li>
+</ul>
+<h2><span class="mw-headline" id="References">References</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=13" title="Edit section: References">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="reflist columns references-column-count references-column-count-2" style="-moz-column-count: 2; -webkit-column-count: 2; column-count: 2; list-style-type: decimal;">
+<ol class="references">
+<li id="cite_note-Cock_et_al_2009-1"><span class="mw-cite-backlink"><b><a href="#cite_ref-Cock_et_al_2009_1-0"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text">Cock
+ et al (2009) The Sanger FASTQ file format for sequences with quality 
+scores, and the Solexa/Illumina FASTQ variants. Nucleic Acids Research, <a href="http://en.wikipedia.org/wiki/Digital_object_identifier" title="Digital object identifier">doi</a>:<a rel="nofollow" class="external text" href="http://dx.doi.org/10.1093%2Fnar%2Fgkp1137">10.1093/nar/gkp1137</a></span></li>
+<li id="cite_note-2"><span class="mw-cite-backlink"><b><a href="#cite_ref-2"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><span class="citation journal">Cock, P. J. A.; Fields, C. J.; Goto, N.; Heuer, M. L.; Rice, P. M. (2009). <a rel="nofollow" class="external text" href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2847217">"The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants"</a>. <i>Nucleic Acids Research</i> <b>38</b> (6): 1767–1771. <a href="http://en.wikipedia.org/wiki/Digital_object_identifier" title="Digital object identifier">doi</a>:<a rel="nofollow" class="external text" href="http://dx.doi.org/10.1093%2Fnar%2Fgkp1137">10.1093/nar/gkp1137</a>. <a href="http://en.wikipedia.org/wiki/PubMed_Central" title="PubMed Central">PMC</a>&nbsp;<a rel="nofollow" class="external text" href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2847217">2847217</a>. <a href="http://en.wikipedia.org/wiki/PubMed_Identifier" title="PubMed Identifier" class="mw-redirect">PMID</a>&nbsp;<a rel="nofollow" class="external text" href="http://www.ncbi.nlm.nih.gov/pubmed/20015970">20015970</a>.</span><span title="ctx_ver=Z39.88-2004&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AFASTQ+format&amp;rft.atitle=The+Sanger+FASTQ+file+format+for+sequences+with+quality+scores%2C+and+the+Solexa%2FIllumina+FASTQ+variants&amp;rft.au=Cock%2C+P.+J.+A.&amp;rft.au=Fields%2C+C.+J.&amp;rft.aufirst=P.+J.+A.&amp;rft.au=Goto%2C+N.&amp;rft.au=Heuer%2C+M.+L.&amp;rft.aulast=Cock&amp;rft.au=Rice%2C+P.+M.&amp;rft.date=2009&amp;rft.genre=article&amp;rft_id=%2F%2Fwww.ncbi.nlm.nih.gov%2Fpmc%2Farticles%2FPMC2847217&amp;rft_id=info%3Adoi%2F10.1093%2Fnar%2Fgkp1137&amp;rft_id=info%3Apmc%2F2847217&amp;rft_id=info%3Apmid%2F20015970&amp;rft.issue=6&amp;rft.jtitle=Nucleic+Acids+Research&amp;rft.pages=1767-1771&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.volume=38" class="Z3988"><span style="display:none;">&nbsp;</span></span> <span class="plainlinks noprint" style="font-size:smaller"><a class="external text" href="http://en.wikipedia.org/w/index.php?title=Template:Cite_doi/10.1093.2Fnar.2Fgkp1137&amp;action=edit&amp;editintro=Template:Cite_doi/editintro2">edit</a></span></span></li>
+<li id="cite_note-3"><span class="mw-cite-backlink"><b><a href="#cite_ref-3"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><a rel="nofollow" class="external free" href="http://cnr.lwlss.net/SeqConsensus/">http://cnr.lwlss.net/SeqConsensus/</a> accessed 14 March 2014</span></li>
+<li id="cite_note-Illumina_User_Guide_1.4-4"><span class="mw-cite-backlink"><b><a href="#cite_ref-Illumina_User_Guide_1.4_4-0"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text">Sequencing Analysis Software User Guide: For Pipeline Version 1.4 and CASAVA Version 1.0, dated April 2009 <a rel="nofollow" class="external text" href="http://genomecenter.ucdavis.edu/dna_technologies/documents/pipeline_1_4.pdf">PDF</a></span></li>
+<li id="cite_note-Illumina_User_Guide_1.5-5"><span class="mw-cite-backlink"><b><a href="#cite_ref-Illumina_User_Guide_1.5_5-0"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text">Sequencing Analysis Software User Guide: For Pipeline Version 1.5 and CASAVA Version 1.0, dated August 2009 <a rel="nofollow" class="external text" href="http://illumina.ucr.edu/illumina_docs/Pipeline1.5/Pipeline1.5_CASAVA1.0_User_Guide_15006500_A.pdf">PDF</a></span></li>
+<li id="cite_note-Sequence.2FAlignment_Map_format-6"><span class="mw-cite-backlink"><b><a href="#cite_ref-Sequence.2FAlignment_Map_format_6-0"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text">Sequence/Alignment Map format Version 1.0, dated August 2009 <a rel="nofollow" class="external text" href="http://samtools.sourceforge.net/SAM1.pdf">PDF</a></span></li>
+<li id="cite_note-Upcoming_changes_in_CASAVA_topic-7"><span class="mw-cite-backlink"><b><a href="#cite_ref-Upcoming_changes_in_CASAVA_topic_7-0"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text">Seqanswer's topic of skruglyak, dated January 2011 <a rel="nofollow" class="external text" href="http://seqanswers.com/forums/showthread.php?s=ba8c7dfba863815f637c0bf45882f14b&amp;t=8895">website</a></span></li>
+<li id="cite_note-8"><span class="mw-cite-backlink"><b><a href="#cite_ref-8"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text">Illumina Quality Scores, Tobias Mann, Bioinformatics, San Diego, Illumina <a rel="nofollow" class="external autonumber" href="http://seqanswers.com/forums/showthread.php?t=4721">[1]</a></span></li>
+<li id="cite_note-9"><span class="mw-cite-backlink"><b><a href="#cite_ref-9"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text">[Using Genome Analyzer Sequencing Control Software, Version 2.6, Catalog # SY-960-2601, Part # 15009921 Rev. A, November 2009]<a rel="nofollow" class="external free" href="http://watson.nci.nih.gov/solexa/Using_SCSv2.6_15009921_A.pdf">http://watson.nci.nih.gov/solexa/Using_SCSv2.6_15009921_A.pdf</a></span></li>
+<li id="cite_note-10"><span class="mw-cite-backlink"><b><a href="#cite_ref-10"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text"><a rel="nofollow" class="external text" href="http://solexaqa.sourceforge.net/questions.htm#illumina">SolexaQA project website</a></span></li>
+<li id="cite_note-11"><span class="mw-cite-backlink"><b><a href="#cite_ref-11"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text">Ochoa,
+ Idoia, et al. "QualComp: a new lossy compressor for quality scores 
+based on rate distortion theory." BMC bioinformatics 14.1 (2013): 187. <a rel="nofollow" class="external free" href="http://www.biomedcentral.com/1471-2105/14/187/">http://www.biomedcentral.com/1471-2105/14/187/</a></span></li>
+<li id="cite_note-12"><span class="mw-cite-backlink"><b><a href="#cite_ref-12"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text">Hach
+ F, Numanagi ́c I, Alkan C, Sahinalp SC:SCALCE: boosting 
+sequencecompression algorithms using locally consistent 
+encoding.Bioinformatics2012,28(23):3051–3057.</span></li>
+<li id="cite_note-13"><span class="mw-cite-backlink"><b><a href="#cite_ref-13"><span class="cite-accessibility-label">Jump up </span>^</a></b></span> <span class="reference-text">fastqz.<a rel="nofollow" class="external free" href="http://mattmahoney.net/dc/fastqz/">http://mattmahoney.net/dc/fastqz/</a></span></li>
+</ol>
+</div>
+<h2><span class="mw-headline" id="External_links">External links</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit&amp;section=14" title="Edit section: External links">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<ul>
+<li><a rel="nofollow" class="external text" href="http://maq.sourceforge.net/fastq.shtml">MAQ</a> webpage discussing FASTQ variants</li>
+<li><a rel="nofollow" class="external text" href="http://hannonlab.cshl.edu/fastx_toolkit/">Fastx toolkit</a> collection of command line tools for Short-Reads FASTA/FASTQ files preprocessing</li>
+<li><a rel="nofollow" class="external text" href="http://www.bioinformatics.bbsrc.ac.uk/projects/fastqc/">Fastqc</a> quality control tool for high throughput sequence data</li>
+<li><a rel="nofollow" class="external text" href="http://prinseq.sourceforge.net/">PRINSEQ</a> can be used for QC and to filter, reformat, or trim sequence data (web-based and command line versions)</li>
+</ul>
+
+
+<!-- 
+NewPP limit report
+Parsed by mw1215
+CPU time usage: 0.122 seconds
+Real time usage: 0.159 seconds
+Preprocessor visited node count: 611/1000000
+Preprocessor generated node count: 0/1500000
+Post‐expand include size: 11631/2097152 bytes
+Template argument size: 318/2097152 bytes
+Highest expansion depth: 10/40
+Expensive parser function count: 1/500
+Lua time usage: 0.013/10.000 seconds
+Lua memory usage: 1.01 MB/50 MB
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   79.779      1 - -total
+ 81.95%   65.375      1 - Template:Reflist
+ 52.61%   41.972      1 - Template:Cite_doi
+ 47.50%   37.892      1 - Template:Cite_doi/10.1093.2Fnar.2Fgkp1137
+ 45.58%   36.360      1 - Template:Cite_journal
+  9.60%    7.659      1 - Template:Doi
+  4.77%    3.806      2 - Template:Hide_in_print
+  2.80%    2.234      2 - Template:Sic
+  2.71%    2.162      1 - Template:-
+  2.43%    1.942      2 - Template:Str_left
+-->
+
+<!-- Saved in parser cache with key enwiki:pcache:idhash:22431652-0!*!0!!en!4!*!math=0 and timestamp 20150420152146 and revision id 651348382
+ -->
+<noscript><img src="//en.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1" alt="" title="" width="1" height="1" style="border: none; position: absolute;" /></noscript></div>									<div class="printfooter">
+						Retrieved from "<a dir="ltr" href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;oldid=651348382">http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;oldid=651348382</a>"					</div>
+													<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="http://en.wikipedia.org/wiki/Help:Category" title="Help:Category">Categories</a>: <ul><li><a href="http://en.wikipedia.org/wiki/Category:Bioinformatics" title="Category:Bioinformatics">Bioinformatics</a></li><li><a href="http://en.wikipedia.org/wiki/Category:Biological_sequence_format" title="Category:Biological sequence format">Biological sequence format</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+
+			<div id="mw-head">
+									<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+						<h3 id="p-personal-label">Personal tools</h3>
+						<ul>
+							<li id="pt-createaccount"><a href="http://en.wikipedia.org/w/index.php?title=Special:UserLogin&amp;returnto=FASTQ+format&amp;type=signup" title="You are encouraged to create an account and log in; however, it is not mandatory">Create account</a></li><li id="pt-login"><a href="http://en.wikipedia.org/w/index.php?title=Special:UserLogin&amp;returnto=FASTQ+format" title="You're encouraged to log in; however, it's not mandatory. [Alt+Shift+o]" accesskey="o">Log in</a></li>						</ul>
+					</div>
+									<div id="left-navigation">
+										<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+						<h3 id="p-namespaces-label">Namespaces</h3>
+						<ul>
+															<li id="ca-nstab-main" class="selected"><span><a href="http://en.wikipedia.org/wiki/FASTQ_format" title="View the content page [Alt+Shift+c]" accesskey="c">Article</a></span></li>
+															<li id="ca-talk"><span><a href="http://en.wikipedia.org/wiki/Talk:FASTQ_format" title="Discussion about the content page [Alt+Shift+t]" accesskey="t">Talk</a></span></li>
+													</ul>
+					</div>
+										<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+												<h3 tabindex="0" id="p-variants-label"><span>Variants</span><a tabindex="-1" href="#"></a></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+									</div>
+				<div id="right-navigation">
+										<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+						<h3 id="p-views-label">Views</h3>
+						<ul>
+															<li id="ca-view" class="selected"><span><a href="http://en.wikipedia.org/wiki/FASTQ_format">Read</a></span></li>
+															<li id="ca-edit"><span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=edit" title="You can edit this page. Please use the preview button before saving [Alt+Shift+e]" accesskey="e">Edit</a></span></li>
+															<li id="ca-history" class="collapsible"><span><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=history" title="Past versions of this page [Alt+Shift+h]" accesskey="h">View history</a></span></li>
+													</ul>
+					</div>
+										<div style="" id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+						<h3 tabindex="0" id="p-cactions-label"><span>More</span><a tabindex="-1" href="#"></a></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+										<div id="p-search" role="search">
+						<h3>
+							<label for="searchInput">Search</label>
+						</h3>
+
+						<form action="/w/index.php" id="searchform">
+														<div id="simpleSearch">
+															<input autocomplete="off" tabindex="1" name="search" placeholder="Search" title="Search Wikipedia [Alt+Shift+f]" accesskey="f" id="searchInput" type="search"><input value="Special:Search" name="title" type="hidden"><input name="go" value="Go" title="Go to a page with this exact name if one exists" id="searchButton" class="searchButton" type="submit">								</div>
+						</form>
+					</div>
+									</div>
+			</div>
+			<div id="mw-panel">
+				<div id="p-logo" role="banner"><a class="mw-wiki-logo" href="http://en.wikipedia.org/wiki/Main_Page" title="Visit the main page"></a></div>
+						<div class="portal" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+			<h3 id="p-navigation-label">Navigation</h3>
+
+			<div class="body">
+									<ul>
+													<li id="n-mainpage-description"><a href="http://en.wikipedia.org/wiki/Main_Page" title="Visit the main page [Alt+Shift+z]" accesskey="z">Main page</a></li>
+													<li id="n-contents"><a href="http://en.wikipedia.org/wiki/Portal:Contents" title="Guides to browsing Wikipedia">Contents</a></li>
+													<li id="n-featuredcontent"><a href="http://en.wikipedia.org/wiki/Portal:Featured_content" title="Featured content – the best of Wikipedia">Featured content</a></li>
+													<li id="n-currentevents"><a href="http://en.wikipedia.org/wiki/Portal:Current_events" title="Find background information on current events">Current events</a></li>
+													<li id="n-randompage"><a href="http://en.wikipedia.org/wiki/Special:Random" title="Load a random article [Alt+Shift+x]" accesskey="x">Random article</a></li>
+													<li id="n-sitesupport"><a href="https://donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source=donate&amp;utm_medium=sidebar&amp;utm_campaign=C13_en.wikipedia.org&amp;uselang=en" title="Support us">Donate to Wikipedia</a></li>
+													<li id="n-shoplink"><a href="http://shop.wikimedia.org/" title="Visit the Wikimedia Shop">Wikipedia store</a></li>
+											</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id="p-interaction" aria-labelledby="p-interaction-label">
+			<h3 id="p-interaction-label">Interaction</h3>
+
+			<div class="body">
+									<ul>
+													<li id="n-help"><a href="http://en.wikipedia.org/wiki/Help:Contents" title="Guidance on how to use and edit Wikipedia">Help</a></li>
+													<li id="n-aboutsite"><a href="http://en.wikipedia.org/wiki/Wikipedia:About" title="Find out about Wikipedia">About Wikipedia</a></li>
+													<li id="n-portal"><a href="http://en.wikipedia.org/wiki/Wikipedia:Community_portal" title="About the project, what you can do, where to find things">Community portal</a></li>
+													<li id="n-recentchanges"><a href="http://en.wikipedia.org/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [Alt+Shift+r]" accesskey="r">Recent changes</a></li>
+													<li id="n-contactpage"><a href="http://en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact page</a></li>
+											</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+			<h3 id="p-tb-label">Tools</h3>
+
+			<div class="body">
+									<ul>
+													<li id="t-whatlinkshere"><a href="http://en.wikipedia.org/wiki/Special:WhatLinksHere/FASTQ_format" title="List of all English Wikipedia pages containing links to this page [Alt+Shift+j]" accesskey="j">What links here</a></li>
+													<li id="t-recentchangeslinked"><a href="http://en.wikipedia.org/wiki/Special:RecentChangesLinked/FASTQ_format" title="Recent changes in pages linked from this page [Alt+Shift+k]" accesskey="k">Related changes</a></li>
+													<li id="t-upload"><a href="http://en.wikipedia.org/wiki/Wikipedia:File_Upload_Wizard" title="Upload files [Alt+Shift+u]" accesskey="u">Upload file</a></li>
+													<li id="t-specialpages"><a href="http://en.wikipedia.org/wiki/Special:SpecialPages" title="A list of all special pages [Alt+Shift+q]" accesskey="q">Special pages</a></li>
+													<li id="t-permalink"><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;oldid=651348382" title="Permanent link to this revision of the page">Permanent link</a></li>
+													<li id="t-info"><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;action=info" title="More information about this page">Page information</a></li>
+													<li id="t-wikibase"><a href="http://www.wikidata.org/wiki/Q3063023" title="Link to connected data repository item [Alt+Shift+g]" accesskey="g">Wikidata item</a></li>
+						<li id="t-cite"><a href="http://en.wikipedia.org/w/index.php?title=Special:CiteThisPage&amp;page=FASTQ_format&amp;id=651348382" title="Information on how to cite this page">Cite this page</a></li>					</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id="p-coll-print_export" aria-labelledby="p-coll-print_export-label">
+			<h3 id="p-coll-print_export-label">Print/export</h3>
+
+			<div class="body">
+									<ul>
+													<li id="coll-create_a_book"><a href="http://en.wikipedia.org/w/index.php?title=Special:Book&amp;bookcmd=book_creator&amp;referer=FASTQ+format">Create a book</a></li>
+													<li id="coll-download-as-rdf2latex"><a href="http://en.wikipedia.org/w/index.php?title=Special:Book&amp;bookcmd=render_article&amp;arttitle=FASTQ+format&amp;oldid=651348382&amp;writer=rdf2latex">Download as PDF</a></li>
+													<li id="t-print"><a href="http://en.wikipedia.org/w/index.php?title=FASTQ_format&amp;printable=yes" title="Printable version of this page [Alt+Shift+p]" accesskey="p">Printable version</a></li>
+											</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id="p-lang" aria-labelledby="p-lang-label"><span original-title="Language settings" aria-haspopup="true" role="button" tabindex="0" class="uls-settings-trigger"></span>
+			<h3 id="p-lang-label">Languages</h3>
+
+			<div class="body">
+									<ul>
+													<li class="interlanguage-link interwiki-ca"><a href="http://ca.wikipedia.org/wiki/Format_FASTQ" title="Format FASTQ – Catalan" hreflang="ca" lang="ca">Català</a></li>
+													<li class="interlanguage-link interwiki-fa"><a href="http://fa.wikipedia.org/wiki/%D9%82%D8%A7%D9%84%D8%A8_%D9%81%D8%B3%D8%AA%DA%A9" title="قالب فستک – Persian" hreflang="fa" lang="fa">فارسی</a></li>
+													<li class="interlanguage-link interwiki-fr"><a href="http://fr.wikipedia.org/wiki/FASTQ" title="FASTQ – French" hreflang="fr" lang="fr">Français</a></li>
+													<li class="interlanguage-link interwiki-id"><a href="http://id.wikipedia.org/wiki/Format_FASTQ" title="Format FASTQ – Indonesian" hreflang="id" lang="id">Bahasa Indonesia</a></li>
+													<li class="interlanguage-link interwiki-ja"><a href="http://ja.wikipedia.org/wiki/Fastq" title="Fastq – Japanese" hreflang="ja" lang="ja">日本語</a></li>
+													
+											</ul>
+				<div class="after-portlet after-portlet-lang"><span class="wb-langlinks-edit wb-langlinks-link"><a href="http://www.wikidata.org/wiki/Q3063023#sitelinks-wikipedia" title="Edit interlanguage links" class="wbc-editpage">Edit links</a></span></div>			</div>
+		</div>
+				</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 14 March 2015, at 15:48.</li>
+											<li id="footer-info-copyright">Text is available under the <a rel="license" href="http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">Creative Commons Attribution-ShareAlike License</a><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/" style="display:none;"></a>;
+additional terms may apply.  By using this site, you agree to the <a href="http://wikimediafoundation.org/wiki/Terms_of_Use">Terms of Use</a> and <a href="http://wikimediafoundation.org/wiki/Privacy_policy">Privacy Policy</a>. Wikipedia® is a registered trademark of the <a href="http://www.wikimediafoundation.org/">Wikimedia Foundation, Inc.</a>, a non-profit organization.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="http://wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="http://en.wikipedia.org/wiki/Wikipedia:About" title="Wikipedia:About">About Wikipedia</a></li>
+											<li id="footer-places-disclaimer"><a href="http://en.wikipedia.org/wiki/Wikipedia:General_disclaimer" title="Wikipedia:General disclaimer">Disclaimers</a></li>
+											<li id="footer-places-contact"><a href="http://en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact Wikipedia</a></li>
+											<li id="footer-places-developers"><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute">Developers</a></li>
+											<li id="footer-places-mobileview"><a href="http://en.m.wikipedia.org/w/index.php?title=FASTQ_format&amp;mobileaction=toggle_view_mobile" class="noprint stopMobileRedirectToggle">Mobile view</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+											<li id="footer-copyrightico">
+															<a href="http://wikimediafoundation.org/"><img src="FASTQ%20format_files/wikimedia-button.png" srcset="//bits.wikimedia.org/images/wikimedia-button-1.5x.png 1.5x, //bits.wikimedia.org/images/wikimedia-button-2x.png 2x" alt="Wikimedia Foundation" height="31" width="88"></a>
+													</li>
+											<li id="footer-poweredbyico">
+															<a href="http://www.mediawiki.org/"><img src="FASTQ%20format_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="//bits.wikimedia.org/static-1.26wmf1/resources/assets/poweredby_mediawiki_132x47.png 1.5x, //bits.wikimedia.org/static-1.26wmf1/resources/assets/poweredby_mediawiki_176x62.png 2x" height="31" width="88"></a>
+													</li>
+									</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>if(window.jQuery)jQuery.ready();</script><script>if(window.mw){
+mw.loader.state({"ext.globalCssJs.site":"ready","ext.globalCssJs.user":"ready","site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["ext.cite","mediawiki.toc","mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest","ext.gadget.teahouse","ext.gadget.ReferenceTooltips","ext.gadget.DRN-wizard","ext.gadget.charinsert","ext.gadget.refToolbar","ext.gadget.switcher","ext.gadget.featured-articles-links","ext.cirrusSearch.loggingSchema","mmv.bootstrap.autostart","ext.imageMetrics.loader","ext.visualEditor.targetLoader","ext.eventLogging.subscriber","ext.wikimediaEvents.statsd","ext.navigationTiming","schema.UniversalLanguageSelector","ext.uls.eventlogger","ext.uls.interlanguage"],null,true);
+}</script><div class="suggestions" style="display: none; font-size: 13px;"><div class="suggestions-results"></div><div class="suggestions-special"></div></div>
+<script>if(window.mw){
+document.write("\u003Cscript src=\"//bits.wikimedia.org/en.wikipedia.org/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=site\u0026amp;only=scripts\u0026amp;skin=vector\u0026amp;*\"\u003E\u003C/script\u003E");
+}</script><script src="FASTQ%20format_files/load_004.php"></script>
+<script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":75,"wgHostname":"mw1251"});
+}</script>
+	
+
+</body></html>

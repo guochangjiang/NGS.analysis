@@ -1,0 +1,252 @@
+﻿<!doctype html public '-//W3C//DTD HTML 4.0 Transitional //EN'>
+<html>
+<head>
+<title>Picard</title>
+<meta charset='UTF-8' />
+<meta name='generator' content='EverEdit' />
+<link href='D:\Program Files\EverEdit\mode\markdown\default.css' rel='stylesheet'></link>
+<link href='D:\Program Files\EverEdit\mode\markdown\prettify.css' rel='stylesheet'></link>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\prettify.js'></script>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\jquery-1.10.2.min.js'></script>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\toc.js'></script>
+</head>
+<body>
+<div id='generated-toc'></div>
+<h2>Picard工具箱</h2>
+
+<h3>1. 简介</h3>
+
+<p>Picard由一系列用于处理BAM格式相关的下代测序数据的工具组成。</p>
+
+<p>Picard命令行工具打包成可执行的jar文件，用法如下：</p>
+
+<pre><code>java jvm-args-jar PicardCommand.jar OPT1=value1 OPT2=value2...
+</code></pre>
+
+<p>大多数命令设计于2G的JVM，所以推荐使用JVM参数<code>-Xmx2g</code>。</p>
+
+<h3>2. 标准选项</h3>
+
+<p>大多数Picard程序都有一下选项：</p>
+
+<table>
+<thead>
+<tr>
+  <th>选项</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tr>
+  <td>&#8211;help</td>
+  <td>展示该工具的特殊选项</td>
+</tr>
+<tr>
+  <td>&#8211;stdhelp</td>
+  <td>展示该工具的特殊选项和其他所有Picard命令行工具的共有选项</td>
+</tr>
+<tr>
+  <td>&#8211;version</td>
+  <td>展示程序版本</td>
+</tr>
+<tr>
+  <td>TMP_DIR=File</td>
+  <td>该选项可指定0次或更多次</td>
+</tr>
+<tr>
+  <td>VERBOSITY=LogLevel</td>
+  <td>控制记录的冗余度，默认值为INFO。可以设定为null来清除默认值。可能的值为ERROR, WARNING,INFO,DEBUG.</td>
+</tr>
+<tr>
+  <td>QUIET=Boolean</td>
+  <td>是否禁止输出工作总结信息之系统err。默认值为false.该选项可以设定为null以清除默认值。可能的值有true, false.</td>
+</tr>
+<tr>
+  <td>VALIDAYTION_SRTRINGENCY=ValidationStringency</td>
+  <td>对有该程序读取的所有SAM文件read的验证严谨度。将严谨度设为SILENT可以提高处理BAM文件的绩效，此时可变长度的数据，如read, qualities, tags等不需要进行解码。默认值为STRICT。可将该选项设定为null以清除默认设置。可能值为STRICT, LENIENT, SILENT.</td>
+</tr>
+<tr>
+  <td>COMPRESSION_LEVEL=Integer</td>
+  <td>所有创建的压缩文件的压缩程度（如BAM和GELI）.默认值为5.可将该选项设定为null以清除默认值。</td>
+</tr>
+<tr>
+  <td>MAX_RECORDS_IN_RAM=Integer</td>
+  <td>当写需sort的SAM文件时，该选项可以指定在写到到磁盘前保存在RAM中的记录数。增加该值可以减少文件操作次数但提高RAM占有。默认值为500,000，该选项可设定为null以清除默认设置。</td>
+</tr>
+<tr>
+  <td>CREATE_INDEX=Boolean</td>
+  <td>当写一个coordinate-sorted的BAM文件时是否创建BAM索引。默认值为false。该选项可设定为null以清除默认设置。可能的取值：true, false.</td>
+</tr>
+<tr>
+  <td>CREATE_MD5_FILE=Boolean</td>
+  <td>是否为BAM或FASTAQ文件创建MD5码</td>
+</tr>
+</table>
+
+
+<h3>3. 工具集</h3>
+
+<h4>3.1 AddCommentsToBam</h4>
+
+<p>向指定的BAM文件的头部增加更多内容。将修改过头部的文件拷贝到指定输出文件。成块拷贝方法的采取以保证有效的转移到输出文件。不支持SAM文件。</p>
+
+<table>
+<thead>
+<tr>
+  <th>选项</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tr>
+  <td>INPUT=File</td>
+  <td>指定输入文件，<strong>必需</strong></td>
+</tr>
+<tr>
+  <td>OUTPUT=FIle</td>
+  <td>指定输出文件，<strong>必需</strong></td>
+</tr>
+<tr>
+  <td>COMMENT=String</td>
+  <td>指定需要添加到BAM文件头的内容，可多次指定</td>
+</tr>
+</table>
+
+
+<h4>3.2 AddOrReplaceReadGroups</h4>
+
+<p>用新的read group取代输出文件中的所有read group，并将输出文件中的所有read分配到该read group</p>
+
+<table>
+<thead>
+<tr>
+  <th>选项</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tr>
+  <td>INPUT=File</td>
+  <td>指定输入文件，<strong>必需</strong></td>
+</tr>
+<tr>
+  <td>OUTPUT=FIle</td>
+  <td>指定输出文件，<strong>必需</strong></td>
+</tr>
+<tr>
+  <td>SORT_ORDER=SortOrder</td>
+  <td>选择输出的sort order。如不指定则与输入文件相同。默认值为null。可取值：unsorted, queryname, coordinate.</td>
+</tr>
+<tr>
+  <td>RGID=String</td>
+  <td>read group的默认值: 该值可以设定为null以清除默认值</td>
+</tr>
+<tr>
+  <td>RGLB=String</td>
+  <td>read group library，<strong>必需</strong>.</td>
+</tr>
+<tr>
+  <td>RGPL=String</td>
+  <td>read group platform (如illumina, solid)，<strong>必需</strong></td>
+</tr>
+<tr>
+  <td>RGPU=String</td>
+  <td>read group platform unit (如run barcode) ，<strong>必需</strong></td>
+</tr>
+<tr>
+  <td>RGSM=String</td>
+  <td>read group sample name,<strong>必需</strong></td>
+</tr>
+<tr>
+  <td>RGCN=String</td>
+  <td>read group sequencing center name,默认值：null.</td>
+</tr>
+<tr>
+  <td>RGDS=String</td>
+  <td>read group description，默认值: null.</td>
+</tr>
+<tr>
+  <td>RGDT=Iso8601Date</td>
+  <td>read group run date，默认值: null.</td>
+</tr>
+<tr>
+  <td>RGPI=Integer</td>
+  <td>read group predicted insert size，默认值: null.</td>
+</tr>
+</table>
+
+
+<h4>3.3 BamToBfq</h4>
+
+<p>用法：&#8216;BamToBfq [options]</p>
+
+<p>为Maq aligner创建BFQ文件。</p>
+
+<table>
+<thead>
+<tr>
+  <th>选项</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tr>
+  <td>INPUT=File</td>
+  <td>要解析的BAM文件，<strong>必需</strong></td>
+</tr>
+<tr>
+  <td>ANALYSIS_DIR=File</td>
+  <td>二进制输出文件的分析目录，<strong>必需</strong></td>
+</tr>
+<tr>
+  <td>FLOWCELL_BARCODE=String</td>
+  <td>流动细胞条形码,如30PYMAAXX,<strong>必需</strong>，不能和选项OUTPUT_FILE_PREFIX一起使用</td>
+</tr>
+<tr>
+  <td>LANE=Integer</td>
+  <td>Lane数目，默认值：null。不能和选项OUTPUT_FILE_PREFIX一起使用</td>
+</tr>
+<tr>
+  <td>OUTPUT_FILE_PREFIX=String</td>
+  <td>所有输出文件的前缀，<strong>必需</strong>。不能和上两项同时使用。</td>
+</tr>
+<tr>
+  <td>READS_TO_ALIGN=Integer</td>
+  <td>align的read数量，默认：null（null=all)</td>
+</tr>
+<tr>
+  <td>READ_CHUNK_SIZE=Integer</td>
+  <td>用于分入单独group的read数目，默认值2,000,000。该选项可以设置为null以清除默认设置。</td>
+</tr>
+<tr>
+  <td>PAIRED_RUN=Boolean</td>
+  <td>是否是pair-end，<strong>必须</strong>。可能取值：true, false</td>
+</tr>
+<tr>
+  <td>RUN_BARCODE=String</td>
+  <td>弃用选项，用READ_NAME_PREFIX而非默认值null，不可和选项READ_NAME_PREFIX同时使用</td>
+</tr>
+<tr>
+  <td>READ_NAME_PREFIX=String</td>
+  <td>从每个read名中剥去的前缀，以使满足Maq的要求。默认值：null。</td>
+</tr>
+<tr>
+  <td>INCLUDE_NON_PF_READS=Boolean</td>
+  <td>是否保留non-PF read，默认值为false.该选项可设定为null以清除默认设置。可能取值：true, false.</td>
+</tr>
+<tr>
+  <td>CLIP_ADAPTERS=Boolean</td>
+  <td>是否从read剪掉adapter，默认值为true。可设定为null以清除默认设置。可能取值：true, false.</td>
+</tr>
+<tr>
+  <td>BASES_TO_WRITE=Integer</td>
+  <td>从每个read的那些碱基写到BFQ文件。如为non-null，只有每个read的前BASES_TO_WRITE个碱基会写到bfq文件。默认值为null</td>
+</tr>
+</table>
+
+<script type='text/javascript'>
+$(document).ready(function(){
+  if($('code').length>0){
+    $('code').parent().addClass('prettyprint linenums');
+    prettyPrint();
+};
+});
+</script>
+</body>
+</html>

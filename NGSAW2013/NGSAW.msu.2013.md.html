@@ -1,0 +1,37 @@
+﻿<!doctype html public '-//W3C//DTD HTML 4.0 Transitional //EN'>
+<html>
+<head>
+<title>NGSAW.msu.2013</title>
+<meta charset='UTF-8' />
+<meta name='generator' content='EverEdit' />
+<link href='D:\Program Files\EverEdit\mode\markdown\default.css' rel='stylesheet'></link>
+<link href='D:\Program Files\EverEdit\mode\markdown\prettify.css' rel='stylesheet'></link>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\prettify.js'></script>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\jquery-1.10.2.min.js'></script>
+<script type='text/javascript' src='D:\Program Files\EverEdit\mode\markdown\toc.js'></script>
+</head>
+<body>
+<div id='generated-toc'></div>
+<h3>第二天：命令行运行BLAST</h3>
+
+<ul>
+<li>获取BLAST： <br>
+curl -O <a href="ftp://ftp.ncbi.nih.gov/blast/executables/release/2.2.24/blast-2.2.24-x64-linux.tar.gz">ftp://ftp.ncbi.nih.gov/blast/executables/release/2.2.24/blast-2.2.24-x64-linux.tar.gz</a></li>
+<li>建立蛋白库 <br>
+formatdb -i xx.protein.faa -o T -p T</li>
+<li>有筛选地BLAST <br>
+blastall -i query.fa -d xx.protein.faa -p blastp -b 2 -v 2 -e 1e-6 -o results.txt</li>
+<li>把BLAST输出转换为CSV格式 <br>
+<ul><li>工具：ngs-scripts/blast-to-csv.py</li>
+<li>用法： python blast-to-csv.py results.txt</li></ul></li>
+</ul>
+<script type='text/javascript'>
+$(document).ready(function(){
+  if($('code').length>0){
+    $('code').parent().addClass('prettyprint linenums');
+    prettyPrint();
+};
+});
+</script>
+</body>
+</html>
