@@ -6,6 +6,25 @@
   <meta name="generator" content="pandoc" />
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
   <link rel="stylesheet" href="book.css" type="text/css" />
 </head>
 <body>
@@ -15,12 +34,9 @@
 <li>shotgun&#27979;&#24207;&#30340;&#19977;&#20010;&#22522;&#26412;&#38382;&#39064;&#65306;<strong>&#37325;&#27979;&#24207;&#12289;&#35745;&#25968;&#21644;&#32452;&#35013;</strong></li>
 </ul>
 <ol style="list-style-type: decimal">
-<li><p>&#37325;&#27979;&#24207;&#20998;&#26512;<br />
- &#24050;&#30693;&#19968;&#20010;&#21442;&#32771;&#22522;&#22240;&#32452;&#65292;&#20174;&#32972;&#26223;&#38169;&#35823;&#20013;&#25214;&#20986;&#31361;&#21464;&#12290;</p></li>
-<li><p>&#35745;&#25968;<br />
- &#24050;&#30693;&#19968;&#20010;&#22522;&#22240;&#32452;&#25110;&#22522;&#22240;&#38598;&#65292;&#24819;&#33719;&#30693;&#25105;&#20204;&#33719;&#24471;&#22810;&#23569;&#65292;&#27604;&#22914;&#22522;&#22240;&#34920;&#36798;&#21644;&#33455;&#29255;&#12290;</p></li>
-<li><p>&#32452;&#35013;<br />
- &#20174;&#22836;&#32452;&#35013;&#22522;&#22240;&#32452;</p></li>
+<li><p>&#37325;&#27979;&#24207;&#20998;&#26512;<br /> &#24050;&#30693;&#19968;&#20010;&#21442;&#32771;&#22522;&#22240;&#32452;&#65292;&#20174;&#32972;&#26223;&#38169;&#35823;&#20013;&#25214;&#20986;&#31361;&#21464;&#12290;</p></li>
+<li><p>&#35745;&#25968;<br /> &#24050;&#30693;&#19968;&#20010;&#22522;&#22240;&#32452;&#25110;&#22522;&#22240;&#38598;&#65292;&#24819;&#33719;&#30693;&#25105;&#20204;&#33719;&#24471;&#22810;&#23569;&#65292;&#27604;&#22914;&#22522;&#22240;&#34920;&#36798;&#21644;&#33455;&#29255;&#12290;</p></li>
+<li><p>&#32452;&#35013;<br /> &#20174;&#22836;&#32452;&#35013;&#22522;&#22240;&#32452;</p></li>
 </ol>
 <p>&#27010;&#35272;&#65306;</p>
 <ul>
@@ -41,14 +57,154 @@
 <p>&#31616;&#21333;&#26469;&#35828;&#65292;&#35206;&#30422;&#24230;&#26159;&#22522;&#22240;&#32452;&#19978;&#30340;&#27599;&#19968;&#20010;&#30897;&#22522;&#19978;&#35206;&#30422;&#21040;&#30340;reads&#30340;&#25968;&#37327;&#12290;</p>
 <h4 id="illumina&#20135;&#29983;&#26368;&#39640;&#28145;&#24230;&#30340;&#27979;&#24207;">Illumina&#20135;&#29983;&#26368;&#39640;&#28145;&#24230;&#30340;&#27979;&#24207;</h4>
 <ul>
-<li><p>MiSeq<br />
- &#8226;30 million reads per run<br />
- &#8226;300 base paired-end reads</p></li>
-<li><p>HiSeq2500 RR/X10<br />
- &#8226;6 billion&#160;reads per&#160;run &#160; &#8226;150 base&#160;paired-end reads</p></li>
-<li><p>PacBio<br />
- &#8226;44,000 reads&#160;per&#160;run &#160; &#8226;8500bp&#160;in&#160;length</p></li>
+<li><p>MiSeq<br /> &#8226;30 million reads per run<br /> &#8226;300 base paired-end reads</p></li>
+<li><p>HiSeq2500 RR/X10<br /> &#8226;6 billion&#160;reads per&#160;run &#160; &#8226;150 base&#160;paired-end reads</p></li>
+<li><p>PacBio<br /> &#8226;44,000 reads&#160;per&#160;run &#160; &#8226;8500bp&#160;in&#160;length</p></li>
 </ul>
-<h3 id="section">2.2</h3>
+<p>FASTQ&#25991;&#20214;&#65306;</p>
+<pre class="fastq"><code>@895:1:1:1246:14654/1
+CAGGCGCCCACCACCGTGCCCTCCAACCTGATGGT 
++
+][aaX__aa[`ZUZ[NONNFNNNNNO_____^RQ_  
+@895:1:1:1246:14654/2
+ACTGGGCGTAGACGGTGTCCTCATCGGCACCAGC 
++
+\UJUWSSV[JQQWNP]]SZ]ZWU^]ZX][^TXR` 
+@895:1:1:1252:19493/1
+CCGGCGTGGTTGGTGAGGTCACTGAGCTTCATGTC  
++
+OOOKONNNNN__`R]O[TGTRSY[IUZ]]]__X__</code></pre>
+<p>Mapping:</p>
+<ul>
+<li>&#35768;&#22810;&#24555;&#36895;&#32780;&#26377;&#25928;&#30340;&#35745;&#31639;&#31639;&#27861;&#23384;&#22312;&#65307;</li>
+<li>&#38656;&#35201;&#30693;&#36947;&#36873;&#25321;&#24590;&#26679;&#30340;&#21442;&#25968;&#20351;&#24471;&#25935;&#24863;&#24230;&#21644;&#29305;&#24322;&#24615;&#26368;&#20339;&#65292;&#36824;&#26377;&#20309;&#26102;&#29983;&#25928;&#12290;</li>
+</ul>
+<p>Assembly&#65306;</p>
+<ul>
+<li>&#35745;&#31639;&#26426;&#32452;&#35013;&#38543;&#26426;&#29255;&#27573;</li>
+</ul>
+<p><strong>&#24635;&#32467;</strong></p>
+<ul>
+<li>&#35206;&#30422;&#24230;&#20915;&#23450;SNP calls&#21644;&#32452;&#35013;</li>
+<li>read&#38271;&#24230;&#20915;&#23450;&#37325;&#24314;&#33021;&#21147;/&#32452;&#35013;&#21644;&#21333;&#20493;&#22411;typing</li>
+<li>Illumina&#20173;&#26159;&#39640;&#35206;&#30422;&#24230;&#30340;&#26368;&#20339;&#36873;&#25321;</li>
+<li>PacBio&#21644;Moleculo&#29992;&#20110;&#22522;&#22240;&#32452;&#32452;&#35013;</li>
+<li>Nanopore&#36824;&#24456;&#22797;&#26434;&#65292;&#20294;&#24050;&#21462;&#24471;&#24456;&#22810;&#36827;&#23637;</li>
+</ul>
+<p>Incorrect Phred Scores</p>
+<blockquote>
+<p>&#8220;the NCBI SRA makes all its data available as standard Sanger FASTQ files (even if originally from a Solexa/Illumina machine)&#8221;</p>
+</blockquote>
+<h3 id="ngs-data&#36136;&#37327;&#20462;&#21098;quality-trimming">2.2 NGS data&#36136;&#37327;&#20462;&#21098;(Quality Trimming)</h3>
+<p><strong>&#24635;&#32467;</strong></p>
+<p>&#8226; Trimming does reduce assembly error, but at the cost of content &amp; contiguity.</p>
+<p>&#8226; Proposed guidelines.</p>
+<ol style="list-style-type: decimal">
+<li><p>To max transcriptome assembly content &amp; contiguity &#10144; Trim at 0 or 2</p></li>
+<li><p>If concerned about error &#10144; Trim at Phred=5</p></li>
+<li><p>Usually probably never trim at Phred &#8805; 10</p></li>
+</ol>
+<ul>
+<li><p>&#29992;&#20110;&#36136;&#37327;&#20462;&#21098;&#30340;&#31243;&#24207;&#21253;&#65306;Trimmomatic, khmer&#21644;Jellyfish.</p></li>
+<li><p>&#23433;&#35013;Trimmomatic&#65288;&#26368;&#21916;&#27426;&#30340;adaptor&#21644;quality trimming&#24037;&#20855;&#65289;&#65306;</p></li>
+</ul>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">wget</span> http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-0.33.zip
+<span class="kw">unzip</span> Trimmomatic-0.33.zip
+<span class="kw">cd</span> Trimmomatic-0.33
+<span class="kw">chmod</span> +x trimmomatic-0.33.jar</code></pre>
+<ul>
+<li>&#23433;&#35013;Jellyfish&#65288;&#19968;&#20010;kmer&#35745;&#25968;&#36719;&#20214;&#65292;&#19982;Kmer&#31867;&#20284;&#65289;&#65306;</li>
+</ul>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">wget</span> ftp://ftp.genome.umd.edu/pub/jellyfish/jellyfish-2.1.3.tar.gz
+<span class="kw">tar</span> -zxf jellyfish-2.1.3.tar.gz
+<span class="kw">cd</span> jellyfish-2.1.3/
+<span class="kw">./configure</span>
+<span class="kw">make</span>
+<span class="ot">PATH=$PATH</span>:<span class="ot">$(</span><span class="kw">pwd</span><span class="ot">)</span>/bin</code></pre>
+<ul>
+<li>&#23433;&#35013;Kmer&#65306;</li>
+</ul>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">pip</span> install --upgrade setuptools
+<span class="kw">pip</span> install khmer</code></pre>
+<ul>
+<li><strong>&#19979;&#36733;&#25968;&#25454;</strong></li>
+</ul>
+<p>&#20351;&#29992;&#26469;&#33258;<a href="http://mbio.asm.org/content/6/2/e02527-14.full">Jack Gibert's Merlot wine&#30740;&#31350;</a>&#30340;&#25991;&#20214;&#36827;&#34892;&#31034;&#20363;&#28436;&#31034;&#65306;</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">curl</span> http://api.metagenomics.anl.gov//download/mgm4520306.3?file=050.1 <span class="kw">&gt;</span> root_S13.R1.fq
+
+<span class="kw">curl</span> http://api.metagenomics.anl.gov//download/mgm4520307.3?file=050.1 <span class="kw">&gt;</span> root_S13.R2.fq</code></pre>
+<ul>
+<li>&#36827;&#34892;&#20004;&#20010;&#27700;&#24179;&#30340;&#36136;&#37327;&#20462;&#21098;&#8212;&#8212;Pred=2 and Pred=30&#65306;</li>
+</ul>
+<pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="co">#paste the below lines together as 1 command</span>
+<span class="co">#Pred=2</span>
+<span class="kw">java</span> -Xmx10g -jar <span class="ot">$HOME</span>/Trimmomatic-0.33/trimmomatic-0.33.jar PE \
+<span class="kw">-threads</span> 8 -baseout root_S13.Phred2.fq \
+<span class="kw">/mnt/reads/root_S13.R1.fq</span> \
+<span class="kw">/mnt/reads/root_S13.R2.fq</span> \
+<span class="kw">ILLUMINACLIP</span>:<span class="ot">$HOME</span>/Trimmomatic-0.33/adapters/TruSeq3-PE.fa:2:30:10 \
+<span class="kw">SLIDINGWINDOW</span>:4:2 \
+<span class="kw">LEADING</span>:2 \
+<span class="kw">TRAILING</span>:2 \
+<span class="kw">MINLEN</span>:25
+
+<span class="co">#and Phred=30</span>
+
+<span class="kw">java</span> -Xmx10g -jar <span class="ot">$HOME</span>/Trimmomatic-0.33/trimmomatic-0.33.jar PE \
+<span class="kw">-threads</span> 8 -baseout root_S13.Phred30.fq \
+<span class="kw">/mnt/reads/root_S13.R1.fq</span> \
+<span class="kw">/mnt/reads/root_S13.R2.fq</span> \
+<span class="kw">ILLUMINACLIP</span>:<span class="ot">$HOME</span>/Trimmomatic-0.33/adapters/TruSeq3-PE.fa:2:30:10\
+<span class="kw">SLIDINGWINDOW</span>:4:30\
+<span class="kw">LEADING</span>:30\
+<span class="kw">TRAILING</span>:30\
+<span class="kw">MINLEN</span>:25</code></pre>
+<ul>
+<li>&#36816;&#34892;kmer&#21644;Jellyfish&#65306;</li>
+</ul>
+<pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="co">#kemer</span>
+
+<span class="kw">python</span> /kmer/scripts/interleave-reads.py root_S13.Phred30_1P.fq root_S13.Phred30_2P.fq <span class="kw">&gt;</span> root_S13.Phred30.interleaved.fq
+
+<span class="kw">python</span> /kmer/scripts/interleave-reads.py root_S13.Phred2_1P.fq root_S13.Phred2_2P.fq <span class="kw">&gt;</span> root_S13.Phred2.interleaved.fq
+
+<span class="co">#Jellyfish</span>
+
+<span class="kw">jellyfish</span> count -m 25 -s 200M -t 8 -C -o trim2.jf /mnt/trimming/root_S13.Phred2.interleaved.fq
+<span class="kw">jellyfish</span> histo trim2.jf -o trim2.histo
+
+<span class="co">#and</span>
+
+<span class="kw">jellyfish</span> count -m 25 -s 200M -t 8 -C -o trim30.jf /mnt/trimming/root_S13.Phred30.interleaved.fq
+<span class="kw">jellyfish</span> histo trim30.jf -o trim30.histo</code></pre>
+<p>&#26597;&#30475;2&#20010;histograms</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">head</span> *histo</code></pre>
+<p>&#36816;&#34892;FastQC&#22788;&#29702;&#25968;&#25454;&#65306;</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">fastqc</span> -t 8 /mnt/reads/root_S13.R1.fq /mnt/reads/root_S13.R2.fq
+<span class="kw">fastqc</span> -t 8 /mnt/trimming/root_S13.Phred30_1P.fq /mnt/trimming/root_S13.Phred30_2P.fq
+<span class="kw">fastqc</span> -t 8 /mnt/trimming/root_S13.Phred2_1P.fq /mnt/trimming/root_S13.Phred2_2P.fq
+<span class="kw">ls</span> -lth</code></pre>
+<p>R&#32472;&#22270;histograms</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Import and visualize the 2 histogram datasets:</span>
+
+trim2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;~/Downloads/trim2.histo&quot;</span>, <span class="dt">quote=</span><span class="st">&quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)
+trim30 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;~/Downloads/trim30.histo&quot;</span>, <span class="dt">quote=</span><span class="st">&quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)
+
+<span class="co">#Plot: Make sure and change the names to match what you import.</span>
+<span class="co">#What does this plot show you??</span>
+
+<span class="kw">barplot</span>(<span class="kw">c</span>(trim2$V2[<span class="dv">1</span>],trim30$V2[<span class="dv">1</span>]),
+    <span class="dt">names=</span><span class="kw">c</span>(<span class="st">&#39;Phred2&#39;</span>, <span class="st">&#39;Phred30&#39;</span>),
+    <span class="dt">main=</span><span class="st">&#39;Number of unique kmers&#39;</span>)
+
+<span class="co"># plot differences between non-unique kmers</span>
+
+<span class="kw">plot</span>(trim2$V2[<span class="dv">2</span>:<span class="dv">30</span>] -<span class="st"> </span>trim30$V2[<span class="dv">2</span>:<span class="dv">30</span>], <span class="dt">type=</span><span class="st">&#39;l&#39;</span>,
+    <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">xaxs=</span><span class="st">&quot;i&quot;</span>, <span class="dt">yaxs=</span><span class="st">&quot;i&quot;</span>, <span class="dt">frame.plot=</span>F,
+    <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">20000000</span>), <span class="dt">col=</span><span class="st">&#39;red&#39;</span>, <span class="dt">xlab=</span><span class="st">&#39;kmer frequency&#39;</span>,
+    <span class="dt">lwd=</span><span class="dv">4</span>, <span class="dt">ylab=</span><span class="st">&#39;count&#39;</span>,
+    <span class="dt">main=</span><span class="st">&#39;Diff in 25mer counts of freq 1 to 5 </span><span class="ch">\n</span><span class="st"> Phred2 vs. Phred30&#39;</span>)</code></pre>
 </body>
 </html>
