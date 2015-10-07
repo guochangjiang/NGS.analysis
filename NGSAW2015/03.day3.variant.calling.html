@@ -7,23 +7,41 @@
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
+div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; }
-code > span.dt { color: #902000; }
-code > span.dv { color: #40a070; }
-code > span.bn { color: #40a070; }
-code > span.fl { color: #40a070; }
-code > span.ch { color: #4070a0; }
-code > span.st { color: #4070a0; }
-code > span.co { color: #60a0b0; font-style: italic; }
-code > span.ot { color: #007020; }
-code > span.al { color: #ff0000; font-weight: bold; }
-code > span.fu { color: #06287e; }
-code > span.er { color: #ff0000; font-weight: bold; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
   </style>
   <link rel="stylesheet" href="book.css" type="text/css" />
 </head>
@@ -35,8 +53,10 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>&#38271;read vs &#30701;read</p>
 <ul>
 <li>&#19982;&#30701;read&#30340;mapping&#30456;&#27604;&#65292;mapping&#38271;read&#26159;&#19981;&#21516;&#30340;&#38382;&#39064;</li>
-<li>&#26377;&#20197;&#19979;&#20004;&#20010;&#21407;&#22240;&#65306;<br /></li>
-<li>&#25968;&#25454;&#30340;&#20307;&#31215;&#23567;&#24456;&#22810;&#65306; 1M 454 vs 200M+ Illumina<br /></li>
+<li>&#26377;&#20197;&#19979;&#20004;&#20010;&#21407;&#22240;&#65306;<br />
+</li>
+<li>&#25968;&#25454;&#30340;&#20307;&#31215;&#23567;&#24456;&#22810;&#65306; 1M 454 vs 200M+ Illumina<br />
+</li>
 <li>&#38271;read&#26159;&#26356;&#21152;&#21487;&#33021;&#21253;&#21547;indels</li>
 </ul>
 <p>How alignment works, and why indel are the devil?</p>
@@ -78,8 +98,10 @@ Bowtie v2&#65306;&#26356;&#24930;&#20294;&#26356;&#21152;&#28789;&#27963;</code>
 <p>Bowtie1</p>
 <ul>
 <li>&#19981;&#25903;&#25345;indel&#65292;&#22312;Bowtie2&#20013;&#20462;&#22797;&#65307;</li>
-<li>&#20026;&#20197;&#19979;&#24773;&#20917;&#35774;&#35745;<br /></li>
-<li>&#35768;&#22810;read&#20855;&#26377;&#19968;&#20010;&#22909;&#30340;&#21512;&#27861;&#30340;alignment<br /></li>
+<li>&#20026;&#20197;&#19979;&#24773;&#20917;&#35774;&#35745;<br />
+</li>
+<li>&#35768;&#22810;read&#20855;&#26377;&#19968;&#20010;&#22909;&#30340;&#21512;&#27861;&#30340;alignment<br />
+</li>
 <li>&#35768;&#22810;read&#20855;&#26377;&#39640;&#36136;&#37327;</li>
 <li>&#23567;&#25968;&#37327;&#30340;&#27604;&#23545;/read</li>
 </ul>
@@ -126,7 +148,8 @@ Bowtie v2&#65306;&#26356;&#24930;&#20294;&#26356;&#21152;&#28789;&#27963;</code>
 <p>&#30001;&#20110;&#21462;&#26679;&#26159;&#38543;&#26426;&#30340;&#65292;&#22240;&#27492;&#30495;&#23454;&#30340;&#35206;&#30422;&#24230;&#19982;&#24179;&#22343;&#35206;&#30422;&#24230;&#30456;&#27604;&#21464;&#21270;&#24456;&#22823;&#12290;</p>
 <p>&#20004;&#31181;&#22522;&#26412;&#30340;assembly&#26041;&#27861;&#65306;</p>
 <ul>
-<li>Overlap&#65288;&#37325;&#21472;&#65289;/layout&#65288;&#25490;&#21015;&#65289;/consensus&#65288;&#19968;&#33268;&#65289;<br /></li>
+<li>Overlap&#65288;&#37325;&#21472;&#65289;/layout&#65288;&#25490;&#21015;&#65289;/consensus&#65288;&#19968;&#33268;&#65289;<br />
+</li>
 </ul>
 <ol style="list-style-type: decimal">
 <li>&#35745;&#31639;&#25152;&#26377;&#30340;&#37325;&#21472;</li>
@@ -156,17 +179,17 @@ Bowtie v2&#65306;&#26356;&#24930;&#20294;&#26356;&#21152;&#28789;&#27963;</code>
 </ul>
 <p>&#22788;&#29702;genomics&#25991;&#20214;&#26102;&#24635;&#26159;&#38656;&#35201;&#29992;&#21040;shell&#65292;&#34429;&#28982;&#36825;&#19981;&#26159;&#23448;&#26041;&#30340;shell&#25945;&#31243;&#65292;&#25105;&#20204;&#23558;&#29992;&#21040;&#35768;&#22810;bash&#21151;&#33021;&#12290;</p>
 <p>&#39318;&#20808;&#65292;&#25105;&#20204;&#23558;&#19979;&#36733;&#19968;&#20010;zip&#25991;&#20214;&#65292;&#21487;&#20351;&#29992;wget&#21644;curl&#36827;&#34892;&#12290;</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">which</span> curl
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">which</span> curl
 <span class="kw">which</span> wget
 <span class="kw">wget</span> https://www.dropbox.com/s/alz96ei6udjazu3/Genomics.zip
-<span class="kw">curl</span> -LO https://www.dropbox.com/s/alz96ei6udjazu3/Genomics.zip</code></pre>
+<span class="kw">curl</span> -LO https://www.dropbox.com/s/alz96ei6udjazu3/Genomics.zip</code></pre></div>
 <p>&#28982;&#21518;&#65292;&#26816;&#26597;&#25968;&#25454;&#12290;&#19968;&#33324;&#22522;&#22240;&#32452;&#25968;&#25454;&#27604;&#36739;&#22823;&#32780;&#23481;&#26131;&#20986;&#38169;&#65292;&#21487;&#20351;&#29992;MD5&#20449;&#24687;&#36827;&#34892;&#26816;&#26597;&#12290;</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">which</span> md5
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">which</span> md5
 <span class="kw">which</span> md5sum
 <span class="kw">md5</span> Genomics.zip
 <span class="kw">md5sum</span> Genomics.zip
 <span class="kw">md5</span> GenomicsLesson.zip
-<span class="kw">MD5</span> (GenomicsLesson.zip) = <span class="kw">322b4f856846fce3c9b7c507f18ee12c</span></code></pre>
+<span class="kw">MD5</span> (GenomicsLesson.zip) = <span class="kw">322b4f856846fce3c9b7c507f18ee12c</span></code></pre></div>
 <ul>
 <li>&#22788;&#29702;&#21387;&#32553;&#25991;&#20214;</li>
 </ul>
@@ -177,32 +200,169 @@ Bowtie v2&#65306;&#26356;&#24930;&#20294;&#26356;&#21152;&#28789;&#27963;</code>
 <p>&#22914;&#38656;&#21387;&#32553;&#30446;&#24405;&#21017;&#38656;&#35201;&#28155;&#21152;<code>-r</code>&#21442;&#25968;&#12290;</p>
 <p><strong>gzip</strong>:</p>
 <p>&#19982;zip&#35299;&#21387;&#21629;&#20196;&#30456;&#20284;&#26377;&#65306;</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">gunzip</span> [bunble.gz]
-<span class="kw">gunzip</span> -l [bunble.zip]</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">gunzip</span> [bunble.gz]
+<span class="kw">gunzip</span> -l [bunble.zip]</code></pre></div>
 <p><strong>Tarball&#25171;&#21253;&#24037;&#20855;</strong></p>
 <p>&#24120;&#35265;&#30340;&#25171;&#21253;&#25991;&#20214;&#26684;&#24335;&#26377;&#65306;<code>.tar, .tar.gz, .tgz</code>&#65292;</p>
 <p>&#26597;&#30475;&#21253;&#21629;&#20196;&#26377;&#65306;</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">tar</span> -tf [thisfile.tar]
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">tar</span> -tf [thisfile.tar]
 <span class="kw">tar</span> -ztcf [thisfile.tar.gz]
-<span class="kw">tar</span> -ztvf [tacofile.tgz]</code></pre>
+<span class="kw">tar</span> -ztvf [tacofile.tgz]</code></pre></div>
 <p>&#35299;&#21253;&#21629;&#20196;&#26377;&#65306;</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">tar</span> -xf [thisfile.tar]
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">tar</span> -xf [thisfile.tar]
 <span class="kw">tar</span> -zxvf [thatfile.tar.gz]
-<span class="kw">tar</span> -zxvf [tacofile.tgz]</code></pre>
+<span class="kw">tar</span> -zxvf [tacofile.tgz]</code></pre></div>
 <ul>
 <li>&#26597;&#30475;&#25968;&#25454;&#25991;&#20214;</li>
 </ul>
 <p>&#22312;&#22788;&#29702;&#21644;&#20998;&#26512;&#22522;&#22240;&#32452;&#23398;pipeline&#30340;&#27599;&#19968;&#27493;&#37117;&#20250;&#20135;&#29983;&#26032;&#30340;&#25991;&#20214;&#26684;&#24335;&#65292;&#22914;gff&#12290;&#20854;&#23454;&#22823;&#22810;&#24819;fastq&#25991;&#20214;&#12290;</p>
 <p>&#39318;&#20808;&#65292;&#30475;&#30475;&#30446;&#24405;&#19979;&#26377;&#21738;&#20123;&#25991;&#20214;&#65306;</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ls</span>
-<span class="kw">ls</span> -lah</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ls</span>
+<span class="kw">ls</span> -lah</code></pre></div>
 <p><strong>SAM &amp; BAM</strong></p>
 <p>SAM&#25991;&#20214;&#26159;tab&#20998;&#38548;&#30340;&#25991;&#20214;&#65292;&#25551;&#36848;read&#22914;&#20309;align&#21040;&#24207;&#21015;&#19978;&#30340;&#12290;&#23427;&#20204;&#36890;&#24120;&#20197;head lines(@)&#24320;&#22987;&#65292;&#28982;&#21518;&#26159;&#30495;&#27491;&#30340;alignment&#12290;</p>
 <p>BAM&#25991;&#20214;&#20445;&#23384;&#30456;&#21516;&#30340;&#20449;&#24687;&#65292;&#20294;&#26159;&#26159;&#20108;&#36827;&#21046;&#26684;&#24335;&#65292;&#20351;&#24471;&#35745;&#31639;&#26426;&#21487;&#20197;&#26356;&#24555;&#36895;&#22320;&#22788;&#29702;&#12290;</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">head</span> 12724.bam
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">head</span> 12724.bam
 <span class="kw">head</span> 12724.sam
 <span class="kw">head</span> -20 12724.sam
 <span class="kw">head</span> -100 12724.sam
-<span class="kw">tail</span> -20 12724.sam</code></pre>
+<span class="kw">tail</span> -20 12724.sam</code></pre></div>
+<p>alignment&#33267;&#23569;&#21547;&#26377;11&#20010;&#26631;&#20934;&#26639;&#65292;&#21363;&#20351;&#20854;&#20540;&#20026;0&#65292;&#20063;&#21487;&#20197;&#20855;&#26377;&#26356;&#22810;&#30340;&#33258;&#23450;&#20041;&#26639;&#12290;</p>
+<p>11&#20010;&#26631;&#20934;&#26639;&#65306;QNAME&#65292;FLAG&#65292;RNAME&#65292;POS&#65292;MAPQ&#65292;CIGAR&#65292;RNEXT&#65292;PNEXT&#65292;TLEN&#65292;SEQ&#65292;QUAL</p>
+<p>&#20174;SAM&#25991;&#20214;&#33719;&#21462;flag&#30340;&#26041;&#27861;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">cut</span> -f 2 12724.sam</code></pre></div>
+<p>&#20854;&#20013;&#65292;-f&#34920;&#31034;&#30446;&#30340;&#21015;&#65292;&#22914;&#26524;&#21482;&#25552;&#21462;&#26411;&#23614;20&#34892;&#30340;flag&#21487;&#20197;&#36825;&#26679;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">tail</span> -20 12724.sam <span class="kw">|</span> <span class="kw">cut</span> -f 2</code></pre></div>
+<p><code>|</code>&#34920;&#31034;&#31649;&#36947;&#12290;</p>
+<p><strong>FASTA</strong></p>
+<ul>
+<li>&#26597;&#25214;&#24207;&#21015;</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">grep</span> <span class="st">&quot;GAATTC&quot;</span> Raphanus.fa
+<span class="kw">grep</span> -B 1 <span class="st">&quot;GAATTC&quot;</span> Raphanus.fa <span class="kw">&gt;</span> Raphanus_EcoRI.fa
+<span class="kw">grep</span> -c <span class="st">&quot;GAATTC&quot;</span> Raphanus.fa
+<span class="kw">grep</span> <span class="st">&quot;GAATTC&quot;</span> Raphanus.fa <span class="kw">|</span> <span class="kw">wc</span></code></pre></div>
+<p>&#20854;&#20013;&#65292;<code>-B [N]</code>&#34920;&#31034;&#36755;&#20986;&#21305;&#37197;&#21069;&#30340;N&#34892;&#20869;&#23481;&#12290;<code>-c</code>&#34920;&#31034;&#35745;&#25968;&#12290;<code>wc</code>&#34920;&#31034;&#21333;&#35789;&#35745;&#25968;&#65288;word count&#65289;&#65292;&#20998;&#21035;&#28155;&#21152;<code>-l</code>, <code>-w</code>, <code>-c</code>&#34920;&#31034;&#26174;&#31034;&#34892;&#25968;&#12289;&#21333;&#35789;&#25968;&#21644;&#23383;&#31526;&#25968;&#12290;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">ls</span> -latr</code></pre></div>
+<p>&#20854;&#20013;&#65292;<code>-r</code>&#36873;&#39033;&#34920;&#31034;&#26102;&#38388;&#36870;&#24207;&#25490;&#21015;&#65292;&#25152;&#20197;&#26368;&#26032;&#30340;&#25991;&#20214;&#22312;&#26368;&#24213;&#37096;&#12290;</p>
+<p>&#31034;&#20363;&#65306;&#26597;&#25214;AccI&#37238;&#20999;&#24207;&#21015;&#65288;CTMKAC&#65289;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">grep</span> <span class="st">&quot;GTAGAC&quot;</span> Raphanus.fa <span class="kw">&gt;</span> Raphanus_AccI.fa
+<span class="kw">grep</span> <span class="st">&quot;GTCGAC&quot;</span> Raphanus.fa <span class="kw">&gt;&gt;</span> Raphanus_AccI.fa
+<span class="kw">grep</span> <span class="st">&quot;GTATAC&quot;</span> Raphanus.fa <span class="kw">&gt;&gt;</span> Raphanus_AccI.fa
+<span class="kw">grep</span> <span class="st">&quot;GTCTAC&quot;</span> Raphanus.fa <span class="kw">&gt;&gt;</span> Raphanus_AccI.fa</code></pre></div>
+<p>&#36825;&#26679;&#22826;&#36807;&#40635;&#28902;&#65292;&#21487;&#20197;&#20351;&#29992;&#27491;&#21017;&#34920;&#36798;&#24335;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">grep</span> <span class="st">&quot;GT[AC][GT]AC&quot;</span> Raphanus.fa <span class="kw">&gt;</span> Raphanus_AccI.fa</code></pre></div>
+<p>&#22914;&#26524;&#38656;&#35201;&#24573;&#30053;&#22823;&#23567;&#20889;&#65292;&#21017;&#26377;&#20197;&#19979;&#20889;&#27861;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">grep</span> -c <span class="st">&quot;[Gg][Tt][AaCc][GgTt][Aa][Cc]&quot;</span> Raphanus.fastq
+<span class="kw">grep</span> -ci <span class="st">&quot;gt[ac][gt]ac&quot;</span> Raphanus.fa
+<span class="kw">grep</span> -c -i <span class="st">&quot;gt[ac][gt]ac&quot;</span> Raphanus.fa</code></pre></div>
+<p>&#22914;&#26524;&#24819;&#35201;<code>grep -i -B 1 &quot;gt[ac][gt]ac&quot;</code>25&#27425;&#65292;&#24590;&#20040;&#20570;&#65311;&#23601;&#38656;&#35201;&#20351;&#29992;&#24490;&#29615;&#65306;<code>for xxx in xx; do xxxx; done</code>&#12290;&#27604;&#22914;&#22788;&#29702;&#25991;&#20214;&#22841;<code>FASTAS</code>&#19979;&#30340;&#25152;&#26377;&#25991;&#20214;&#65292;&#21629;&#20196;&#20026;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">ATfiles</span> in <span class="kw">`ls`;</span> <span class="kw">do</span> <span class="kw">grep</span> -i -B 1 <span class="st">&quot;gt[ac][gt]ac&quot;</span> <span class="ot">${ATfiles}</span> <span class="kw">;</span> <span class="kw">done</span></code></pre></div>
+<p>&#20854;&#20013;&#21453;&#24341;&#21495;&#22914;&#21516;&#25324;&#21495;&#65292;&#34920;&#31034;&#21578;&#35785;&#35745;&#31639;&#26426;&#39318;&#20808;&#25191;&#34892;&#35813;&#21629;&#20196;&#12290;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">for</span> <span class="kw">ATfiles</span> in <span class="kw">`ls`;</span> <span class="kw">do</span> <span class="kw">grep</span> -i -B 1 <span class="st">&quot;gt[ac][gt]ac&quot;</span> <span class="ot">${ATfiles}</span> <span class="kw">|</span> <span class="kw">grep</span> <span class="st">&quot;&gt;&quot;</span> <span class="kw">;</span> <span class="kw">done</span>
+<span class="kw">for</span> <span class="kw">ATfiles</span> in <span class="kw">`ls`;</span> <span class="kw">do</span> <span class="kw">grep</span> -i -B 1 <span class="st">&quot;gt[ac][gt]ac&quot;</span> <span class="ot">${ATfiles}</span> <span class="kw">|</span> <span class="kw">grep</span> <span class="st">&quot;&gt;&quot;</span> <span class="kw">|</span> <span class="kw">cut</span> -f 1 -d <span class="st">&quot; &quot;</span> <span class="kw">;</span> <span class="kw">done</span></code></pre></div>
+<p>&#34429;&#28982;&#35813;&#21629;&#20196;&#21487;&#20197;&#27491;&#24120;&#24037;&#20316;&#65292;&#20294;&#19981;&#20855;&#26377;&#38271;&#25928;&#24615;&#65292;&#38656;&#35201;&#26368;&#22909;&#23558;&#20854;&#20445;&#23384;&#20026;&#19968;&#20010;&#33050;&#26412;&#25991;&#20214;<code>.sh</code>:</p>
+<pre class="script"><code>for ATfiles in `ls`
+        do grep -i -B 1 &quot;gt[ac][gt]ac&quot; ${ATfiles} | #search for AccI in a list, get the comment line as well
+        grep &quot;&gt;&quot; | #Get only the comment lines
+        cut -f 1 -d &quot; &quot; | #Remove the description from the comment lines
+        cut -f 2 -d &quot;&gt;&quot; #Remove the leading &quot;&gt;&quot; from the comment lines
+done</code></pre>
+<p>&#20854;&#20013;&#65292;&#29992;&#25442;&#34892;&#21462;&#20195;&#20998;&#21495;&#65292;&#24182;&#22312;&#24490;&#29615;&#20869;&#37096;&#20351;&#29992;&#32553;&#36827;&#12290;&#20351;&#29992;<code>#</code>&#36827;&#34892;&#27880;&#37322;&#12290;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">chmod</span> +x REscript.sh
+<span class="kw">sh</span> REscript.sh</code></pre></div>
+<p>&#19968;&#20010;&#26356;&#22797;&#26434;&#30340;&#33050;&#26412;&#65306;</p>
+<p>```script echo &quot;Enter file list&quot; read filelist echo &quot;Enter search term&quot; read sequence</p>
+<p>for filenames in <code>${filelist}</code> #Matt thought calling the thing bananas was funny do grep -i -B 1 ${sequence} ${filenames} | #search for ThgI grep &quot;&gt;&quot; | #search for header lines cut -f 1 -d &quot; &quot; | #Only keep sequence name cut -c 2- # get rid of &quot;&gt;&quot; done ```</p>
+<p>### Variant calling</p>
+<p>#### &#36719;&#20214;&#23433;&#35013;</p>
+<p>BWA aligner&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">wget</span> -O bwa-0.7.12.tar.bz2 http://sourceforge.net/projects/bio-bwa/files/bwa-0.7.12.tar.bz2/download
+
+<span class="kw">tar</span> xvfj bwa-0.7.12.tar.bz2
+<span class="kw">cd</span> bwa-0.7.12
+<span class="kw">make</span>
+
+<span class="kw">cp</span> bwa /usr/local/bin</code></pre></div>
+<p>SAMtools:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> yum install samtools</code></pre></div>
+<h4 id="&#19979;&#36733;&#25968;&#25454;">&#19979;&#36733;&#25968;&#25454;</h4>
+<p>&#19979;&#36733;reference&#22522;&#22240;&#32452;&#24207;&#21015;&#21644;&#37325;&#27979;&#24207;reads&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="kw">curl</span> -O http://athyra.idyll.org/~t/REL606.fa.gz
+<span class="kw">gunzip</span> REL606.fa.gz
+
+<span class="kw">curl</span> -O ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR098/SRR098038/SRR098038.fastq.gz</code></pre></div>
+<p>&#27979;&#24207;&#26679;&#21697;&#20449;&#24687;&#65306; http://www.ebi.ac.uk/ena/data/view/SRR098042</p>
+<h4 id="mapping">Mapping</h4>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="co">#index the reference genome</span>
+<span class="kw">bwa</span> index REL606.fa
+
+<span class="co">#mapping raw reads</span>
+<span class="kw">bwa</span> aln REL606.fa SRR098038.fastq.gz <span class="kw">&gt;</span> SRR098038.sai
+
+<span class="co">#&#36890;&#36807;samse/sampe&#29983;&#25104;sam&#25991;&#20214;</span>
+<span class="kw">bwa</span> samse REL606.fa SRR098038.sai SRR098038.fastq.gz <span class="kw">&gt;</span> SRR098038.sam
+
+<span class="co"># index reference genome by samtools</span>
+<span class="kw">samtools</span> faidx REL606.fa
+
+<span class="co">#&#23558;sam&#36716;&#25442;&#20026;bam</span>
+<span class="kw">samtools</span> import REL606.fa.fai SRR098038.sam SRR098038.bam
+
+<span class="co">#sort bam file</span>
+<span class="kw">samtools</span> sort SRR098038.bam SRR098038.sorted.bam
+
+<span class="co">#index sorted bam file</span>
+<span class="kw">samtools</span> index SRR098038.sorted.bam</code></pre></div>
+<h4 id="&#21487;&#35270;&#21270;&#27604;&#23545;&#32467;&#26524;">&#21487;&#35270;&#21270;&#27604;&#23545;&#32467;&#26524;</h4>
+<p>&#25152;&#38656;&#24037;&#20855;samtools&#30340;tview&#25110;<a href="http://bioinf.scri.ac.uk/tablet/">Tablet</a>, &#20363;&#22914;&#20351;&#29992;<code>tview</code>&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">samtools</span> tview SRR098038.sorted.bam REL606.fa</code></pre></div>
+<p>&#20854;&#20013;&#65292;<code>.</code>&#34920;&#31034;&#27491;&#21521;&#23545;&#40784;&#30340;reads, &#32780;<code>,</code>&#21017;&#34920;&#31034;&#26041;&#21521;&#23545;&#40784;&#30340;reads&#65292;&#19988;&#37117;&#26159;&#23436;&#20840;&#21305;&#37197;&#30340;&#27604;&#23545;&#12290;&#38169;&#37197;&#21017;&#20197;&#30456;&#24212;&#30340;&#30897;&#22522;&#23383;&#27597;&#34920;&#31034;&#12290;</p>
+<p>&#22914;&#35201;&#36798;&#21040;&#25351;&#23450;&#20301;&#32622;&#21017;&#38656;&#35201;&#20351;&#29992;<code>g</code>&#28982;&#21518;&#36755;&#20837;contig&#30340;&#21517;&#23383;&#21644;&#30456;&#24212;&#20301;&#32622;&#12290;&#20363;&#22914;&#65292;&#20808;&#36755;&#20837;<code>g</code>&#65292;&#28982;&#21518;&#36755;&#20837;<code>rel606:553093&lt;CR&gt;</code>&#21363;&#21487;&#12290;</p>
+<p>&#36755;&#20837;<code>q</code>&#36864;&#20986;&#12290;</p>
+<p>&#23545;&#20110;<code>Tablet</code>&#65292;&#38656;&#35201;3&#20010;&#25991;&#20214;&#25165;&#33021;&#25171;&#24320;&#21487;&#35270;&#21270;&#65306;REL606.fa, SRR098038.sorted.bam, SRR098038.sorted.bam.bai.</p>
+<h4 id="&#35745;&#31639;alignment">&#35745;&#31639;alignment</h4>
+<p>&#35745;&#31639;&#27809;&#26377;&#27604;&#23545;&#21040;reference&#30340;reads&#25968;&#30446;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">samtools</span> view -c -f 4 SRR098038.bam</code></pre></div>
+<p>&#32780;&#35745;&#31639;&#27604;&#23545;&#21040;reference&#30340;reads&#25968;&#30446;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">samtools</span> view -c -F 4 SRR098038.bam</code></pre></div>
+<p>&#26597;&#30475;fastq&#25991;&#20214;&#34892;&#25968;&#65288;reads * 4&#65289;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">gunzip</span> -c SRR098038.fastq.gz <span class="kw">|</span> <span class="kw">wc</span></code></pre></div>
+<h4 id="call-snp">Call SNP</h4>
+<p>&#20351;&#29992;samtools&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">samtools</span> mpileuo -uD -f REL606.fa SRR098038.sorted.bam <span class="kw">|</span> <span class="kw">bcftools</span> view -bvcg <span class="kw">&gt;</span> SRR098038.raw.bcf
+
+<span class="co">#&#23558;bcf&#36716;&#25442;&#20026;vcf</span>
+<span class="kw">bcftools</span> view SRR098038.raw.bcf <span class="kw">&gt;</span> SRR098038.vcf
+<span class="kw">tail</span> vcf</code></pre></div>
+<h3 id="&#21306;&#38388;&#20998;&#26512;&#21644;&#21487;&#35270;&#21270;">&#21306;&#38388;&#20998;&#26512;&#21644;&#21487;&#35270;&#21270;</h3>
+<p>&#26681;&#25454;&#26410;&#23436;&#25104;&#30340;&#22522;&#22240;&#32452;&#30340;contig&#24207;&#21015;&#35780;&#20272;&#20854;&#32467;&#26524;&#12290;&#20363;&#22914;&#65292;&#19968;&#20010;&#37096;&#20998;&#23436;&#25104;&#30340;&#22823;&#32928;&#26438;&#33740;&#26679;&#21697;&#65306;http://www.ncbi.nlm.nih.gov/genome/167?genome_assembly_id=161608&#65292;&#36890;&#36807;&#19982;&#22823;&#32928;&#26438;&#33740;K12 MG1655&#36827;&#34892;&#27604;&#36739;&#21487;&#20197;&#35780;&#20272;&#20854;&#27979;&#24207;&#32467;&#26524;&#12290;</p>
+<p>&#32467;&#26524;&#25991;&#20214;&#21253;&#65306;http://apollo.huck.psu.edu/data/ms115.zip</p>
+<ul>
+<li>&#25968;&#25454;&#25628;&#38598;</li>
+</ul>
+<ol style="list-style-type: decimal">
+<li><p>&#19979;&#36733;contig&#25991;&#20214;&#21015;&#34920;ADTL01.txt&#65306;http://www.ncbi.nlm.nih.gov/Traces/wgs/condump.cgi?val=ADTL01&amp;status=&amp;search=</p></li>
+<li><p>&#36890;&#36807;<code>code/getdata.py</code>&#31243;&#24207;&#19979;&#36733;&#25152;&#26377;contig&#24207;&#21015;&#65307;</p></li>
+<li><p>&#21512;&#24182;&#25152;&#26377;&#25968;&#25454;&#65306;<code>cat *.fa &gt; MS115.fa</code></p></li>
+<li><p>&#19979;&#36733;&#22823;&#32928;&#26438;&#33740;&#22522;&#22240;&#32452;&#25968;&#25454;&#65288;GBK&#26684;&#24335;&#65289;&#65306;http://www.genome.wisc.edu/sequencing/updating.htm</p></li>
+<li><p>&#19979;&#36733;<code>readseq</code>&#24037;&#20855;&#65288;http://iubio.bio.indiana.edu/soft/molbio/readseq/java/&#65289;&#65292;&#23558;GBK&#25991;&#20214;&#36716;&#25442;&#20026;GFF&#25991;&#20214;&#21644;FASTA&#25991;&#20214;&#65306;</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># GBK to GFF format</span>
+<span class="kw">java</span> -jar readseq.jar -inform=2 -f 24 U00096.gbk
+
+<span class="co"># GBK to FASTA</span>
+<span class="kw">java</span> -jar readseq.jar -inform=2 -f 24 U00096.gbk</code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>&#20351;&#29992;bwa&#36827;&#34892;mapping&#65292;&#26368;&#32456;&#29983;&#25104;U00096.bam&#25991;&#20214;&#65306;</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">bwa</span> index U00096.fa
+<span class="kw">bwa</span> mem U00096.fa ms115.fa <span class="kw">|</span> <span class="kw">samtools</span> view -bS - <span class="kw">|</span> <span class="kw">samtools</span> sort - U00096
+<span class="kw">bedtools</span> bamtobed -i  U00096.bam  <span class="kw">&gt;</span> U00096.bed</code></pre></div>
+<ol start="7" style="list-style-type: decimal">
+<li>&#20351;&#29992;<a href="http://www.broadinstitute.org/igv/">IGV</a>&#21487;&#35270;&#21270;&#26597;&#30475;mapping&#32467;&#26524;&#12290;</li>
+</ol>
 </body>
 </html>
