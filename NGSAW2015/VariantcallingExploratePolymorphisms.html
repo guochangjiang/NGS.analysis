@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="book.css" type="text/css" />
+</head>
+<body>
+<h2 id="variant-calling-and-exploration-of-polymorphisms">Variant calling and exploration of polymorphisms</h2>
+<h3 id="&#33719;&#21462;&#25968;&#25454;&#21644;&#23433;&#35013;&#39069;&#22806;&#30340;&#27169;&#22359;">&#33719;&#21462;&#25968;&#25454;&#21644;&#23433;&#35013;&#39069;&#22806;&#30340;&#27169;&#22359;</h3>
+<p>&#23433;&#35013;&#24037;&#20855;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="co">## bwa</span>
+<span class="kw">wget</span> -O bwa-0.7.10.tar.bz2 http://sourceforge.net/projects/bio-bwa/files/bwa-0.7.10.tar.bz2/download
+<span class="kw">tar</span> xvfj bwa-0.7.10.tar.bz2
+<span class="kw">cd</span> bwa-0.7.10
+<span class="kw">make</span>
+
+<span class="kw">cp</span> bwa /usr/local/bin
+
+<span class="co">##packages</span>
+<span class="kw">yum</span> -y install samtools screen r-rcan-gplots python-matplotlib sysstat</code></pre></div>
+<p>&#19979;&#36733;&#25968;&#25454;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> clone https://github.com/schimar/ngs2014_popGen.git
+
+<span class="kw">cd</span> ngs2014_popGen/var_call2/</code></pre></div>
+<h3 id="vatiant-calling">vatiant calling</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
+<span class="co">##index ref genome</span>
+<span class="kw">bwa</span> index ref_genome.fa
+
+<span class="co">##mapping</span>
+<span class="kw">bwa</span> aln ref_genome.fa read_file.fq <span class="kw">&gt;</span> mapped_reads.sai
+
+<span class="co">##creat sam file</span>
+<span class="kw">bwa</span> samse ref_genome.fa mapped_reads.sai read_file.fq <span class="kw">&gt;</span> mapped_reads.sam
+
+<span class="co">##index ref genome</span>
+<span class="kw">samtools</span> faidx ref_genome.fa
+
+<span class="co">##convert sam to bam</span>
+<span class="kw">samtools</span> view -b -S -o mapped_reads.bam mapped_reads.sam
+
+<span class="co">##sort bam</span>
+<span class="kw">samtools</span> sort mapped_reads.bam mapped_read.sorted
+
+<span class="co">##index bam</span>
+<span class="kw">samtools</span> index mapped_reads.sorted.bam
+
+<span class="co">##&#26597;&#30475;&#27604;&#23545;&#32467;&#26524;</span>
+<span class="kw">samtools</span> tview mapped_reads.sorted.bam ref_genome.fa</code></pre></div>
+<h3 id="&#20351;&#29992;biocondctor&#36827;&#34892;variant&#25506;&#32034;">&#20351;&#29992;Biocondctor&#36827;&#34892;variant&#25506;&#32034;</h3>
+<p>&#22312;R&#20013;&#36755;&#20837;&#20197;&#19979;&#20195;&#30721;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;http://bioconductor.org/biocLite.R&quot;</span>)
+<span class="kw">biocLite</span>()
+<span class="kw">biocLite</span>(<span class="st">&quot;VariantAnnotation&quot;</span>)
+<span class="kw">biocLite</span>(<span class="st">&quot;SNPlocs.Hsapiens.dbSNP.20101109&quot;</span>)
+<span class="kw">biocLite</span>(<span class="st">&quot;BSgenome.Hsapiens.UCSC.hg19_1.3.1000&quot;</span>)</code></pre></div>
+<h3 id="&#36136;&#37327;&#25511;&#21046;">&#36136;&#37327;&#25511;&#21046;</h3>
+<p>&#26412;&#32451;&#20064;&#30340;&#30446;&#30340;&#26159;&#27604;&#36739;dbSNP&#20013;call&#30340;SNP&#19982;&#26032;SNP&#30340;&#36136;&#37327;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+<span class="co">#&#36733;&#20837;&#21253;&#21644;&#25968;&#25454;</span>
+<span class="kw">library</span>(VariantAnnotation)
+f1 &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;chr22.vcf.gz&quot;</span>, <span class="dt">package=</span><span class="st">&quot;VariantAnnotation&quot;</span>)
+
+<span class="co">#&#36733;&#20837;&#26679;&#26412;&#25968;&#25454;&#65292;&#20351;&#29992;scanVcfHeader&#25506;&#32034;&#25991;&#20214;&#20449;&#24687;&#65292;&#21457;&#29616;info&#22495;&#20013;&#30340;VT&#21644;RSQ&#65306;</span>
+(hdr &lt;-<span class="st"> </span><span class="kw">scanVcfHeader</span>(fl))
+<span class="kw">info</span>(hdr)[<span class="kw">c</span>(<span class="st">&quot;VT&quot;</span>, <span class="st">&quot;RSQ&quot;</span>),]
+
+<span class="co">#&#36755;&#20837;&#25968;&#25454;&#24182;&#22312;&#20854;&#20301;&#32622;&#22788;&#23792;&#21270;</span>
+(vcf &lt;-<span class="st"> </span><span class="kw">readVcf</span>(fl, <span class="st">&quot;hg19&quot;</span>))
+<span class="kw">head</span>(<span class="kw">rowData</span>(vcf), <span class="dv">3</span>)
+
+<span class="co">#SNP&#30001;MaCH/thunder call&#20986;&#65292;&#38656;&#23558;&#26579;&#33394;&#20307;&#32534;&#21495;&#30001;22&#21464;&#20026;chr22</span>
+<span class="kw">rowData</span>(vcf) &lt;-<span class="st"> </span><span class="kw">renameSeqlevels</span>(<span class="kw">rowData</span>(vcf), <span class="kw">c</span>(<span class="st">&quot;22&quot;</span>=<span class="st">&quot;ch22&quot;</span>))
+
+<span class="co">#&#36733;&#20837;SNP&#24211;&#24182;&#26597;&#30475;&#25105;&#20204;&#30340;SNP&#26159;&#21542;&#23384;&#22312;&#20854;&#20013;</span>
+<span class="kw">library</span>(SNPlocs.Hsapiens.dbSNP<span class="fl">.20101109</span>)
+
+destination &lt;-<span class="st"> </span><span class="kw">tempfile</span>()
+pre &lt;-<span class="st"> </span><span class="kw">FilterRules</span>(<span class="kw">list</span>(<span class="dt">isLowCoverageExomeSnp =</span> function(x) {
+<span class="kw">grepl</span>(<span class="st">&quot;LOWCOV,EXOME&quot;</span>, x, <span class="dt">fixed=</span><span class="ot">TRUE</span>)
+}))
+filt &lt;-<span class="st"> </span><span class="kw">FilterRules</span>(<span class="kw">list</span>(<span class="dt">isSNP =</span> function(x) <span class="kw">info</span>(x)$VT ==<span class="st"> &quot;SNP&quot;</span>))
+snpFilt &lt;-<span class="st"> </span><span class="kw">filterVcf</span>(fl, <span class="st">&quot;hg19&quot;</span>, destination, <span class="dt">prefilters=</span>pre, <span class="dt">filters=</span> filt)
+vcf_filt &lt;-<span class="st"> </span><span class="kw">readVcf</span>(snpFilt, <span class="st">&quot;hg19&quot;</span>)
+
+<span class="kw">rowData</span>(vcf)
+<span class="kw">rowData</span>(vcf_filt)
+
+<span class="co">#&#27604;&#36739;vcf&#21644;vcf_filt&#20250;&#21457;&#29616;10376 SNP&#22312;&#25105;&#20204;&#30340;vcf&#25991;&#20214;&#20013;&#65292;&#32780;794&#20010;&#22312;&#25968;&#25454;&#24211;&#20013;</span>
+inDbSNP &lt;-<span class="st"> </span><span class="kw">rownames</span>(vcf) %in%<span class="st"> </span><span class="kw">rownames</span>(vcf_filt)
+<span class="kw">table</span>(inDbSNP)
+metrics &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">inDbSNP =</span> inDbSNP, <span class="dt">RSQ =</span> <span class="kw">info</span>(vcf)$RSQ)
+
+<span class="co">#&#26368;&#21518;&#21487;&#35270;&#21270;</span>
+<span class="kw">library</span>(ggplot2)
+<span class="kw">ggplot</span>(metrics, <span class="kw">aes</span>(RSQ, <span class="dt">fill=</span>inDbSNP)) +
+<span class="kw">geom_density</span>(<span class="dt">alpha=</span><span class="fl">0.5</span>) +
+<span class="kw">scale_x_continuous</span>(<span class="dt">name=</span><span class="st">&quot;MaCH / Thunder Imputation Quality&quot;</span>) +
+<span class="kw">scale_y_continuous</span>(<span class="dt">name=</span><span class="st">&quot;Density&quot;</span>) +
+<span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</code></pre></div>
+</body>
+</html>
