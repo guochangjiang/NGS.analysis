@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="book.css" type="text/css" />
+</head>
+<body>
+<h2 id="day-1---getting-started-with-amazon">Day 1 - Getting started with Amazon</h2>
+<h3 id="getting-started-with-amazon-ec2">1.1 Getting started with Amazon EC2</h3>
+<p>(&#30053;)</p>
+<h3 id="&#36816;&#34892;&#21629;&#20196;&#34892;blast">1.2 &#36816;&#34892;&#21629;&#20196;&#34892;BLAST</h3>
+<h4 id="&#26356;&#26032;&#31243;&#24207;">1.2.1 &#26356;&#26032;&#31243;&#24207;</h4>
+<p>&#36816;&#34892;&#20197;&#19979;&#21629;&#20196;&#65288;Ubuntu&#65289;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> apt-get update <span class="kw">&amp;&amp;</span> <span class="kw">sudo</span> apt-get -y install python ncbi-blast+</code></pre></div>
+<h4 id="&#36816;&#34892;blast">1.2.2 &#36816;&#34892;BLAST</h4>
+<p>&#39318;&#20808;&#65292;&#19979;&#36733;&#25968;&#25454;&#65288;&#20174;NCBI&#25235;&#21462;the mouse and zebrafish RefSeq protein data&#65289;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> chmod a+rwxt /mnt
+<span class="kw">cd</span> /mnt
+
+<span class="kw">curl</span> -O ftp://ftp.ncbi.nih.gov/refseq/M_musculus/mRNA_Prot/mouse.1.protein.faa.gz
+<span class="kw">curl</span> -O ftp://ftp.ncbi.nih.gov/refseq/M_musculus/mRNA_Prot/mouse.2.protein.faa.gz
+<span class="kw">curl</span> -O ftp://ftp.ncbi.nih.gov/refseq/M_musculus/mRNA_Prot/mouse.3.protein.faa.gz
+
+<span class="kw">curl</span> -O ftp://ftp.ncbi.nih.gov/refseq/D_rerio/mRNA_Prot/zebrafish.1.protein.faa.gz
+
+<span class="kw">ls</span> -l
+
+<span class="co">#should show you:</span>
+
+<span class="kw">total</span> 28904
+<span class="kw">drwx------</span> 2 root   root      16384 Nov  2  2014 lost+found
+<span class="kw">-rw-rw-r--</span> 1 ubuntu ubuntu  8132346 Aug 10 21:44 mouse.1.protein.faa.gz
+<span class="kw">-rw-rw-r--</span> 1 ubuntu ubuntu  8091255 Aug 10 21:44 mouse.2.protein.faa.gz
+<span class="kw">-rw-rw-r--</span> 1 ubuntu ubuntu   565224 Aug 10 21:44 mouse.3.protein.faa.gz
+<span class="kw">-rw-rw-r--</span> 1 ubuntu ubuntu 12735506 Aug 10 21:44 zebrafish.1.protein.faa.gz</code></pre></div>
+<p>&#36890;&#36807;gzip&#35299;&#21387;&#25968;&#25454;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">gunzip</span> *.faa.gz</code></pre></div>
+<p>&#26597;&#30475;&#20960;&#26465;&#24207;&#21015;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">head</span> mouse.1.protein.faa
+<span class="kw">head</span> -11 mouse.1.protein.faa <span class="kw">&gt;</span> mm-first.fa</code></pre></div>
+<p>&#26500;&#24314;blast&#24211;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">makeblastdb</span> -in zebrafish.1.protein.faa -dbtype prot</code></pre></div>
+<p>&#36827;&#34892;blast&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">blastp</span> -query mm-first.fa -db zebrafish.1.protein.faa -out mm-first.x.zebrafish.txt
+<span class="kw">less</span> mm-first.x.zebrafish.txt</code></pre></div>
+<p>&#20570;&#26356;&#22810;&#30340;&#24207;&#21015;&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">head</span> -500 mouse.1.protein.faa <span class="kw">&gt;</span> mm-second.fa
+<span class="kw">blastp</span> -query mm-second.fa -db zebrafish.1.protein.faa -out mm-second.x.zebrafish.txt
+<span class="kw">less</span> mm-second.x.zebrafish.txt</code></pre></div>
+</body>
+</html>

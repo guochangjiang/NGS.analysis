@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="book.css" type="text/css" />
+</head>
+<body>
+<h2 id="pacbio&#20837;&#38376;">PacBio&#20837;&#38376;</h2>
+<h3 id="&#24037;&#20855;&#20934;&#22791;">&#24037;&#20855;&#20934;&#22791;</h3>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#&#26356;&#26032;stuff</span>
+<span class="kw">sudo</span> apt-get update
+
+<span class="co">#&#22522;&#26412;&#36719;&#20214;&#23433;&#35013;</span>
+<span class="kw">sudo</span> apt-get -y install screen git curl gcc make g++ python-dev unzip \
+default-jre pkg-config
+
+<span class="co">#&#23433;&#35013;PBcR&#25152;&#38656;&#30340;perl&#27169;&#22359;</span>
+<span class="kw">sudo</span> cpan App::cpanminus
+<span class="kw">sudo</span> cpan Statistics::Descriptive
+
+<span class="co">#&#23433;&#35013;wgs-assembler</span>
+<span class="kw">wget</span> http://sourceforge.net/projects/wgs-assembler/files/wgs-assembler/wgs-8.2beta/wgs-8.2beta-Linux_amd64.tar.bz2
+<span class="kw">tar</span> -jxf wgs-8.2beta-Linux_amd64.tar.bz2
+
+<span class="co">#&#23558;wgs&#28155;&#21152;&#21040;$PATH</span>
+<span class="ot">PATH=$PATH</span>:<span class="ot">$HOME</span>/wgs-8.2beta/Linux-amd64/bin/</code></pre></div>
+<h3 id="&#25968;&#25454;&#20934;&#22791;">&#25968;&#25454;&#20934;&#22791;</h3>
+<p>&#19979;&#36733;&#26679;&#20363;Lambda phage&#25968;&#25454;&#38598;&#65288;&#24456;&#23567;&#32780;&#21487;&#20197;&#24555;&#36895;&#22320;&#36827;&#34892;&#22788;&#29702;&#65289;&#12290;&#26356;&#22810;&#25361;&#25112;&#24615;&#30340;&#27979;&#35797;&#65288;&#22823;&#25968;&#25454;&#22823;&#30005;&#33041;&#65289;&#35265;PacBio&#25968;&#25454;&#38598;&#65306;https://github.com/PacificBiosciences/DevNet/wiki/Datasets</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#Download the sample data</span>
+<span class="kw">wget</span> http://www.cbcb.umd.edu/software/PBcR/data/sampleData.tar.gz
+<span class="kw">tar</span> -zxf sampleData.tar.gz
+<span class="kw">cd</span> sampleData/</code></pre></div>
+<h3 id="&#25968;&#25454;&#22788;&#29702;">&#25968;&#25454;&#22788;&#29702;</h3>
+<p>&#23558;FastA&#36716;&#25442;&#20026;faux-fastQ:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#This is really old PacBio data, provided in fastA format. </span>
+<span class="co">#Look at the reads - note that they are not actually as long as </span>
+<span class="co">#I just told you they should be. The PacBio tech has improved massively over the past few years.</span>
+
+<span class="kw">java</span> -jar convertFastaAndQualToFastq.jar \
+pacbio.filtered_subreads.fasta <span class="kw">&gt;</span> pacbio.filtered_subreads.fastq</code></pre></div>
+<p>&#20351;&#29992;wgs&#36827;&#34892;assembly&#65306;</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">PBcR</span> -length 500 -partitions 200 -l lambda -s pacbio.spec \
+-fastq pacbio.filtered_subreads.fastq genomeSize=50000</code></pre></div>
+<p>&#26597;&#30475;&#36755;&#20986;&#65292;&#21487;&#20197;&#21457;&#29616;phage&#22522;&#22240;&#32452;&#34987;&#20998;&#25104;2&#20010;contig&#12290;</p>
+</body>
+</html>
