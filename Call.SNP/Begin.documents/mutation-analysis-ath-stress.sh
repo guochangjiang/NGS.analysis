@@ -1,22 +1,5 @@
 #!/bin/sh
 #   MAGIC_mutation.sh - Mutation analysis of arabidopsis samples from MAGIC lines.
-#
-#   Author: Nowind
-#   Created: 2014-03-27
-#   Updated: 2014-06-13
-#
-#   References:
-#   http://www.broadinstitute.org/gatk
-#   http://bio-bwa.sourceforge.net/
-#   http://samtools.sourceforge.net/
-#   http://www.novocraft.com/main/index.php
-#
-#   Change logs:
-#   Version 1.0.0 14/05/12: The initial version.
-#   Version 1.1.0 14/05/26: Add remain samples.
-#   Version 1.1.1 14/06/13: Fixed version for archive.
-
-
 
 VERSION=1.1.1
 echo ===============[$0 v$VERSION]==============
